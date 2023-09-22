@@ -15,7 +15,6 @@ namespace Larva.Game.Core
             _gameManager.GameState.Value = GameState.Null;
             _gameController = new GameController(_gameManager);
         }
-
         private void OnDestroy()
         {
             _gameController?.Dispose();

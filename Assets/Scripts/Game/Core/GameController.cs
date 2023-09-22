@@ -18,9 +18,10 @@ namespace Larva.Game.Core
 
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.GameAreaPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLight);
-            ResourcesLoader.InstantiateObject<Camera>(_gameManager.PathForObjects + _gameManager.CameraPath);
+            //ResourcesLoader.InstantiateObject<Camera>(_gameManager.PathForObjects + _gameManager.CameraPath);
 
             _gameManager.GameState.SubscribeOnChange(OnChangeGameState);
+
             _gameManager.GameState.Value = GameState.Game;
             _gameManager.Score.Value = 0;
         }
@@ -61,6 +62,7 @@ namespace Larva.Game.Core
         }
         private void GameOver()
         {
+            Debug.Log("GameOver");
             RecalculateFood();
         }
         private void RecalculateFood() { }
