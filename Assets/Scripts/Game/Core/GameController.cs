@@ -1,4 +1,5 @@
-﻿using Larva.Game.Data;
+﻿using Larva.Game.Core.Player;
+using Larva.Game.Data;
 using Larva.Game.Tools;
 using Larva.Tools;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace Larva.Game.Core
 
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.GameAreaPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLight);
-            ResourcesLoader.InstantiateObject<Camera>(_gameManager.PathForObjects + _gameManager.CameraPath);
+            //ResourcesLoader.InstantiateObject<Camera>(_gameManager.PathForObjects + _gameManager.CameraPath);
 
             _gameManager.GameState.SubscribeOnChange(OnChangeGameState);
             _gameManager.GameState.Value = GameState.Game;
