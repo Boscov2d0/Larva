@@ -28,6 +28,7 @@ namespace Larva.Game.Core.Player
             _playerBodyController = new PlayerBodyController(_larvaProfile, _bodyNodeList, _larvaManager);
 
             _larvaManager.State.SubscribeOnChange(OnChangeState);
+            _larvaManager.State.Value = PlayerState.Null;
         }
         private void OnDestroy()
         {

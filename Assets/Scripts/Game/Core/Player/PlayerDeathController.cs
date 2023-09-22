@@ -14,6 +14,6 @@ namespace Larva.Game.Core.Player
             _headTransform = headTransform;
             _larvaManager = larvaManager;
         }
-        public void Death()=> ResourcesLoader.InstantiateAndGetObject<GameObject>(_larvaManager.ObjectsPath + _larvaManager.StarsPath, _headTransform);
+        public void Death() => ResourcesLoader.InstantiateAndGetObject<GameObject>(_larvaManager.ObjectsPath + _larvaManager.StarsPath, _headTransform);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Larva.Game.Core.Player
 {
-    public class PlayerLarvaView : MonoBehaviour
+    public class LarvaView : MonoBehaviour
     {
         [field: SerializeField] public Renderer Head { get; private set; }
         [field: SerializeField] public Renderer Hand { get; private set; }

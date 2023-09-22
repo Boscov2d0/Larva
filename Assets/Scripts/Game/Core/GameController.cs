@@ -10,29 +10,48 @@ namespace Larva.Game.Core
     public class GameController : ObjectsDisposer
     {
         private readonly GameManager _gameManager;
+        private readonly LarvaManager _larvaManager;
 
         private Camera _camera;
+        private MoveController _moveController;
 
-        public GameController(GameManager gameManager)
+        public GameController(GameManager gameManager, LarvaManager larvaManager)
         {
             _gameManager = gameManager;
+            _larvaManager = larvaManager;
 
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.GameAreaPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLight);
-            //ResourcesLoader.InstantiateObject<Camera>(_gameManager.PathForObjects + _gameManager.CameraPath);
+            _camera = ResourcesLoader.InstantiateAndGetObject<Camera>(_gameManager.PathForObjects + _gameManager.CameraPath);
+            ResourcesLoader.InstantiateObject<LarvaView>(_larvaManager.ObjectsPath + _larvaManager.LarvaPath);
 
-            _gameManager.GameState.SubscribeOnChange(OnChangeGameState);
+            _larvaManager.State.SubscribeOnChange(OnLarvaStateChange);
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            _moveController = new InputTouchScreenController()
+#else
+            _moveController = new InputKeyBoardController(_gameManager, larvaManager);
+#endif
+
+            _gameManager.GameState.SubscribeOnChange(OnGameStateChange);
             _gameManager.GameState.Value = GameState.Game;
             _gameManager.Score.Value = 0;
         }
 
         protected override void OnDispose()
         {
-            _gameManager.GameState.UnSubscribeOnChange(OnChangeGameState);
+            _larvaManager.State.UnSubscribeOnChange(OnLarvaStateChange);
+            _gameManager.GameState.UnSubscribeOnChange(OnGameStateChange);
+
+            _moveController?.Dispose();
 
             base.OnDispose();
         }
-        private void OnChangeGameState()
+        public void Execute()
+        {
+            _moveController?.Execute();
+        }
+        private void OnGameStateChange()
         {
             switch (_gameManager.GameState.Value)
             {
@@ -53,6 +72,11 @@ namespace Larva.Game.Core
                     break;
             }
         }
+        private void OnLarvaStateChange() 
+        {
+            if (_larvaManager.State.Value == PlayerState.Death)
+                _gameManager.GameState.Value = GameState.Lose;
+        }
         private void GamePause(bool isPause)
         {
             if (isPause)
@@ -63,9 +87,10 @@ namespace Larva.Game.Core
         private void GameOver()
         {
             RecalculateFood();
+            _camera.GetComponentInChildren<Animator>().enabled = true;
         }
         private void RecalculateFood() { }
-        private void Restart() => SceneManager.LoadScene(1);
+        private void Restart() => SceneManager.LoadScene(0);
         private void Exit() => SceneManager.LoadScene(0);
     }
 }
