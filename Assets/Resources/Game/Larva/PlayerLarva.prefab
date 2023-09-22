@@ -570,8 +570,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240bb6c83dda92049941c061863db0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 11400000, guid: c7140159e9223364a915bdf5a632a779, type: 2}
-  _playerManager: {fileID: 11400000, guid: 45f88eda807574b4dbd633dfa1b8041e, type: 2}
+  _larvaProfile: {fileID: 11400000, guid: 651f6d432cfa86c4ab6070abb19bde95, type: 2}
+  _larvaManager: {fileID: 11400000, guid: 45f88eda807574b4dbd633dfa1b8041e, type: 2}
   _headTransform: {fileID: 3766414850506247584}
   _bodyNodeList:
   - {fileID: 3766414850459754209}

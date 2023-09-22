@@ -9,7 +9,7 @@ namespace Larva.Game.Core.Player
     public class PlayerMoveController : ObjectsDisposer
     {
         private Transform _transform;
-        private PlayerManager _playerManager;
+        private LarvaManager _playerManager;
         private List<Transform> _bodyNodeList;
         private float _speed;
         private float _bodyNodeDistance;
@@ -22,7 +22,7 @@ namespace Larva.Game.Core.Player
         private Vector3 _rightScreenBorder;
         private MovementPlane _currentMovementPlane;
 
-        public PlayerMoveController(Transform transform, List<Transform> bodyNodeList, PlayerManager playerManager)
+        public PlayerMoveController(Transform transform, List<Transform> bodyNodeList, LarvaManager playerManager)
         {
             _transform = transform;
             _bodyNodeList = bodyNodeList;
@@ -38,6 +38,7 @@ namespace Larva.Game.Core.Player
         protected override void OnDispose()
         {
             _playerManager.Direction.UnSubscribeOnChange(OnChangeDirection);
+            _transform = null;
             _bodyNodeList.Clear();
 
             base.OnDispose();
@@ -53,6 +54,9 @@ namespace Larva.Game.Core.Player
         }
         public void FixedExecute()
         {
+            if (!_transform)
+                return;
+
             Move(_transform.position + _transform.forward * _speed);
             BordersTeleport();
         }

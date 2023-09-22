@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 640eff58decf79049a5f964ef49ee4c4, type: 3}
-  m_Name: PlayerManager
+  m_Script: {fileID: 11500000, guid: 878a8ce86ff5b7e4d9dc6bdd9800d163, type: 3}
+  m_Name: LarvaProfile
   m_EditorClassIdentifier: 
-  <LarvaPath>k__BackingField: PlayerLarva
-  <BodyPath>k__BackingField: BodyPrefab
-  <Speed>k__BackingField: 0.05
-  <BodyNodeDistance>k__BackingField: 0.5
+  <HeadSkin>k__BackingField: {fileID: 2100000, guid: 412e299c8834eb34090cd1596b0601b4, type: 2}
+  <BodySkin>k__BackingField: {fileID: 2100000, guid: 149325b1e2ed9904eb45dba87fea8734, type: 2}

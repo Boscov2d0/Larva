@@ -7,7 +7,7 @@ namespace Larva.Game.Core
     public class EntryPoint : MonoBehaviour
     {
         [SerializeField] private GameManager _gameManager;
-        [SerializeField] private PlayerManager _playerManager;
+        [SerializeField] private LarvaManager _playerManager;
 
         private GameController _gameController;
         private MoveController _moveController;

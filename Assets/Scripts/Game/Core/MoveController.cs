@@ -7,9 +7,9 @@ namespace Larva.Game.Core
 {
     public class MoveController : ObjectsDisposer
     {
-        private PlayerManager _playerManager;
+        private LarvaManager _playerManager;
         public MoveController(){}
-        public MoveController(GameManager gameManager, PlayerManager playerManager)
+        public MoveController(GameManager gameManager, LarvaManager playerManager)
         {
             _playerManager = playerManager;
         }

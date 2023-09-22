@@ -4,11 +4,13 @@ using UnityEngine;
 
 namespace Larva.Game.Data
 {
-    [CreateAssetMenu(fileName = nameof(PlayerManager), menuName = "Managers/" + nameof(PlayerManager))]
-    public class PlayerManager : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(LarvaManager), menuName = "Managers/Game/LarvaManager")]
+    public class LarvaManager : ScriptableObject
     {
+        [field: SerializeField] public string ObjectsPath { get; private set; }
         [field: SerializeField] public string LarvaPath { get; private set; }
         [field: SerializeField] public string BodyPath { get; private set; }
+        [field: SerializeField] public string StarsPath { get; private set; }
         [field: SerializeField] public float Speed { get; private set; }
         [field: SerializeField] public float BodyNodeDistance { get; private set; }
 
