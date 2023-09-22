@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb314a75ca713d3479c5e85b2e826f2a, type: 3}
   m_Name: GameManager
   m_EditorClassIdentifier: 
+  <CountOfGoodFood>k__BackingField: 3
+  <CountOfBadFood>k__BackingField: 3
+  <CountOfObstacles>k__BackingField: 5
   Discription1: Path
   <PathForObjects>k__BackingField: Game/
   <GameAreaPath>k__BackingField: GameArea
   <DirectionalLight>k__BackingField: DirectionalLight
   <CameraPath>k__BackingField: Camera
+  UsedPositions: []

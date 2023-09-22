@@ -86,6 +86,7 @@ namespace Larva.Game.Core
         }
         private void GameOver()
         {
+            Debug.Log("GameOver");
             RecalculateFood();
             _camera.GetComponentInChildren<Animator>().enabled = true;
         }
