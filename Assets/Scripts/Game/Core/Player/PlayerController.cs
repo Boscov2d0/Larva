@@ -1,4 +1,5 @@
 using Larva.Data;
+using Larva.Game.Core.SpawnObjects;
 using Larva.Game.Data;
 using Larva.Game.Tools;
 using System.Collections.Generic;
@@ -70,19 +71,22 @@ namespace Larva.Game.Core.Player
         }
         public void OnCollisionEnter(Collision coll)
         {
-            string name = coll.transform.name;
-
-            switch (name)
+            if (coll.transform.TryGetComponent(out SpawnObjectDeleteController spawnObject)) 
             {
-                case "GoodFood":
-                    _larvaManager.State.Value = PlayerState.EatGoodFood;
-                    break;
-                case "BadFood":
-                    _larvaManager.State.Value = PlayerState.EatBadFood;
-                    break;
-                case "Obstacle":
-                    _larvaManager.State.Value = PlayerState.Death;
-                    break;
+                switch (spawnObject.ObjectType)
+                {
+                    case SpawnObjectsType.GoodLeaves:
+                        _larvaManager.State.Value = PlayerState.EatGoodFood;
+                        break;
+                    case SpawnObjectsType.BadLeaves:
+                        _larvaManager.State.Value = PlayerState.EatBadFood;
+                        break;
+                    case SpawnObjectsType.Obstacle:
+                        _larvaManager.State.Value = PlayerState.Death;
+                        break;
+                }
+
+                spawnObject.Delete();
             }
         }
     }

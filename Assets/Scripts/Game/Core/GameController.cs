@@ -1,4 +1,5 @@
 ﻿using Larva.Game.Core.Player;
+using Larva.Game.Core.SpawnObjects;
 using Larva.Game.Data;
 using Larva.Game.Tools;
 using Larva.Tools;
@@ -14,6 +15,7 @@ namespace Larva.Game.Core
 
         private Camera _camera;
         private MoveController _moveController;
+        private SpawnObjectsController _spawnObjectsController;
 
         public GameController(GameManager gameManager, LarvaManager larvaManager)
         {
@@ -32,6 +34,10 @@ namespace Larva.Game.Core
 #else
             _moveController = new InputKeyBoardController(_gameManager, larvaManager);
 #endif
+            AddController(_moveController);
+
+            _spawnObjectsController = new SpawnObjectsController(_gameManager);
+            AddController(_spawnObjectsController);
 
             _gameManager.GameState.SubscribeOnChange(OnGameStateChange);
             _gameManager.GameState.Value = GameState.Game;
@@ -44,6 +50,7 @@ namespace Larva.Game.Core
             _gameManager.GameState.UnSubscribeOnChange(OnGameStateChange);
 
             _moveController?.Dispose();
+            _spawnObjectsController?.Dispose();
 
             base.OnDispose();
         }
@@ -74,8 +81,19 @@ namespace Larva.Game.Core
         }
         private void OnLarvaStateChange() 
         {
-            if (_larvaManager.State.Value == PlayerState.Death)
-                _gameManager.GameState.Value = GameState.Lose;
+            switch (_larvaManager.State.Value) 
+            {
+                case PlayerState.EatGoodFood:
+                    _gameManager.CurrentCountOfGoodFood.Value--;
+                    _gameManager.Score.Value += _gameManager.IncreasePointsValue;
+                    break;
+                case PlayerState.EatBadFood:
+                    _gameManager.Score.Value -= _gameManager.IncreasePointsValue;
+                    break;
+                case PlayerState.Death:
+                    _gameManager.GameState.Value = GameState.Lose;
+                    break;
+            } 
         }
         private void GamePause(bool isPause)
         {
@@ -86,7 +104,6 @@ namespace Larva.Game.Core
         }
         private void GameOver()
         {
-            Debug.Log("GameOver");
             RecalculateFood();
             _camera.GetComponentInChildren<Animator>().enabled = true;
         }

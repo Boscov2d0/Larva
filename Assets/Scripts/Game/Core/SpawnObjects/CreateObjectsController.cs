@@ -21,6 +21,7 @@ namespace Larva.Game.Core.SpawnObjects
             _startCount = startCount;
             _freeObjects = new List<Transform>();
             _spawnObjectsPlacer = new SpawnObjectsPlacer(usedPositions);
+            AddController(_spawnObjectsPlacer);
 
             CreatePool(spawnObjectsType);
             GetObjectSpecies(spawnObjectsType);
