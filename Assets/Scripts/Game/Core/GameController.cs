@@ -104,9 +104,11 @@ namespace Larva.Game.Core
         }
         private void GameOver()
         {
+            RecalculateFood();
             _camera.GetComponentInChildren<Animator>().enabled = true;
         }
-        private void Restart() => SceneManager.LoadScene(Keys.SceneNameKeys.Game.ToString());
-        private void Exit() => SceneManager.LoadScene(Keys.SceneNameKeys.Menu.ToString());
+        private void RecalculateFood() { }
+        private void Restart() => SceneManager.LoadScene(0);
+        private void Exit() => SceneManager.LoadScene(0);
     }
 }
