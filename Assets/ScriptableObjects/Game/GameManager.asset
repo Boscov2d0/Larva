@@ -15,9 +15,9 @@ MonoBehaviour:
   <CountOfGoodFood>k__BackingField: 3
   <CountOfBadFood>k__BackingField: 3
   <CountOfObstacles>k__BackingField: 5
-  <IncreasePointsValue>k__BackingField: 5
   Discription1: Path
   <PathForObjects>k__BackingField: Game/
   <GameAreaPath>k__BackingField: GameArea
   <DirectionalLight>k__BackingField: DirectionalLight
   <CameraPath>k__BackingField: Camera
+  UsedPositions: []

@@ -1,14 +1,13 @@
 using Larva.Game.Data;
 using Larva.Game.Tools;
-using Larva.Tools;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Larva.Game.Core.SpawnObjects
 {
-    public class SpawnObjectsController : ObjectsDisposer
+    public class SpawnObjectsController : MonoBehaviour
     {
-        private readonly GameManager _gameManager;
+        [SerializeField] private GameManager _gameManager;
 
         private CreateObjectsController _goodFoodCreator;
         private CreateObjectsController _badFoodCreator;
@@ -16,33 +15,52 @@ namespace Larva.Game.Core.SpawnObjects
 
         private List<Vector3> _usedPositions = new List<Vector3>();
 
-        public SpawnObjectsController(GameManager gameManager)
-        {
-            _gameManager = gameManager;
+        private Ray _ray;
 
+        private void Start()
+        {
             _gameManager.CurrentCountOfGoodFood.Value = _gameManager.CountOfGoodFood;
             _gameManager.CurrentCountOfGoodFood.SubscribeOnChange(RecreateFood);
 
             CreateControllers();
         }
-        protected override void OnDispose()
+        private void OnDestroy()
         {
             _gameManager.CurrentCountOfGoodFood.UnSubscribeOnChange(RecreateFood);
 
             _goodFoodCreator?.Dispose();
             _badFoodCreator?.Dispose();
             _obstaclesCreator?.Dispose();
+        }
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            base.OnDispose();
+                if (Physics.Raycast(_ray, out RaycastHit hitInfo))
+                {
+                    if (hitInfo.collider.TryGetComponent(out SpawnObjectDeleteController spawnObject))
+                    {
+                        if (spawnObject.ObjectType == SpawnObjectsType.GoodLeaves)
+                        {
+                            spawnObject.Delete();
+                            _gameManager.CurrentCountOfGoodFood.Value--;
+                        }
+                        if (spawnObject.ObjectType == SpawnObjectsType.Obstacle)
+                        {
+                            spawnObject.Delete();
+                            _gameManager.GameState.Value = GameState.Lose;
+                        }
+                    }
+                }
+            }
         }
         private void CreateControllers()
         {
             _goodFoodCreator = new CreateObjectsController(_usedPositions, _gameManager.CountOfGoodFood, SpawnObjectsType.GoodLeaves);
-            AddController(_goodFoodCreator);
             _badFoodCreator = new CreateObjectsController(_usedPositions, _gameManager.CountOfBadFood, SpawnObjectsType.BadLeaves);
-            AddController(_badFoodCreator);
             _obstaclesCreator = new CreateObjectsController(_usedPositions, _gameManager.CountOfObstacles, SpawnObjectsType.Obstacle);
-            AddController(_obstaclesCreator);
         }
         private void RecreateFood()
         {
