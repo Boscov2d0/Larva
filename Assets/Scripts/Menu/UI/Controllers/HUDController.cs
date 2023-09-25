@@ -10,7 +10,7 @@ namespace Larva.Menu.UI.Controller
         private readonly UIManager _uiManager;
 
         private MainMenuUIController _mainMenuUIController;
-        private SettingsUIController _settingsPanelController;
+        private PCSettingsUIController _settingsPanelController;
 
         public HUDController(GameManager gameManager, UIManager uiManager)
         {
@@ -38,7 +38,11 @@ namespace Larva.Menu.UI.Controller
                     _mainMenuUIController = new MainMenuUIController(_gameManager, _uiManager);
                     break;
                 case GameState.Settings:
-                    _settingsPanelController = new SettingsUIController(_gameManager, _uiManager);
+#if UNITY_ANDROID && !UNITY_EDITOR
+                    _settingsPanelController = new PhoneSettingsUIController(_gameManager, _uiManager);
+#else
+                    _settingsPanelController = new PCSettingsUIController(_gameManager, _uiManager);
+#endif
                     AddController(_settingsPanelController);
                     break;
             }

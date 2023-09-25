@@ -7,6 +7,7 @@ namespace Larva.Menu.Data
     {
         [field: SerializeField] public string PathForUIObjects { get; private set; }
         [field: SerializeField] public string MainMenuCanvasPath { get; private set; }
-        [field: SerializeField] public string SettingsCanvasPath { get; private set; }
+        [field: SerializeField] public string PCSettingsCanvasPath { get; private set; }
+        [field: SerializeField] public string PhoneSettingsCanvasPath { get; private set; }
     }
 }
