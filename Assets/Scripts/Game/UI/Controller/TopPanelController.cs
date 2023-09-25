@@ -17,22 +17,15 @@ namespace Larva.Game.UI.Controller
 
             _topPanelView = ResourcesLoader.InstantiateAndGetObject<GameCanvaslView>(uiManager.PathForUIObjects + uiManager.GameCanvasPath);
             AddGameObject(_topPanelView.gameObject);
-
             _topPanelView.Initialized(PauseGame);
         }
-        protected override void OnDispose() 
+        protected override void OnDispose()
         {
             _gameManager.Score.UnSubscribeOnChange(OnChangeScore);
 
             base.OnDispose();
         }
-        private void OnChangeScore() 
-        {
-            _topPanelView.OnChangeScoreText(_gameManager.Score.Value);
-        }
-        private void PauseGame()
-        {
-            _gameManager.GameState.Value = GameState.Pause;
-        }
+        private void OnChangeScore() => _topPanelView.OnChangeScoreText(_gameManager.Score.Value);
+        private void PauseGame() => _gameManager.GameState.Value = GameState.Pause;
     }
 }

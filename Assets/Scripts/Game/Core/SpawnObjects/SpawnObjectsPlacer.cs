@@ -17,6 +17,8 @@ namespace Larva.Game.Core.SpawnObjects
         private Vector3 _leftScreenBorder;
         private Vector3 _rightScreenBorder;
 
+        private static int _valueOfEmergencyEndCreateOperation = 5000;
+
         public SpawnObjectsPlacer(List<Vector3>  usedPositions)
         {
             _usedPositions = usedPositions;
@@ -65,7 +67,7 @@ namespace Larva.Game.Core.SpawnObjects
                     spawnObject.transform.position = _curentPosition;
                     placed = true;
                 }
-                if(numberOfAttempts > 5000)
+                if(numberOfAttempts > _valueOfEmergencyEndCreateOperation)
                     placed = true;
             }
         }
