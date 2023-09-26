@@ -15,10 +15,10 @@ namespace Larva.Menu.Core
             _gameManager = gameManager;
 
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.ScenePath);
-            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLight);
+            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLightPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.MenuCameraPath);
-
             ResourcesLoader.InstantiateAndGetObject<GameObject>(_gameManager.PathForObjects + _gameManager.MenuLarvaPath);
+            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.AudioControllerPath);
 
             _gameManager.GameState.SubscribeOnChange(OnChangeGameState);
         }

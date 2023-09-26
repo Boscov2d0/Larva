@@ -9,9 +9,10 @@ namespace Larva.Menu.Data
     {
         [field: SerializeField] public string PathForObjects { get; private set; }
         [field: SerializeField] public string ScenePath { get; private set; }
-        [field: SerializeField] public string DirectionalLight { get; private set; }
+        [field: SerializeField] public string DirectionalLightPath { get; private set; }
         [field: SerializeField] public string MenuCameraPath { get; private set; }
         [field: SerializeField] public string MenuLarvaPath { get; private set; }
+        [field: SerializeField] public string AudioControllerPath { get; private set; }
 
         [field: SerializeField] public SubscriptionProperty<GameState> GameState = new SubscriptionProperty<GameState>();
     }

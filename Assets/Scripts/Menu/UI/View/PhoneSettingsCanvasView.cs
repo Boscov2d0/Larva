@@ -1,3 +1,4 @@
+using Larva.Menu.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ namespace Larva.Menu.UI.View
 {
     public class PhoneSettingsCanvasView : MonoBehaviour
     {
+        [SerializeField] private AudioManager _audioManager;
         [SerializeField] private Button _ruLanguageButton;
         [SerializeField] private Button _enLanguageButton;
         [SerializeField] private Button _zhLanguageButton;
@@ -37,6 +39,8 @@ namespace Larva.Menu.UI.View
             _soundSlider.onValueChanged.AddListener(_setSoundVolume);
             _musicSlider.onValueChanged.AddListener(_setMusicVolume);
             _backButton.onClick.AddListener(_back);
+
+            SetUI();
         }
         private void OnDestroy()
         {
@@ -46,6 +50,11 @@ namespace Larva.Menu.UI.View
             _soundSlider.onValueChanged.RemoveListener(_setSoundVolume);
             _musicSlider.onValueChanged.RemoveListener(_setMusicVolume);
             _backButton.onClick.RemoveListener(_back);
+        }
+        private void SetUI()
+        {
+            _musicSlider.value = _audioManager.MusicVolume;
+            _soundSlider.value = _audioManager.SoundsVolume;
         }
     }
 }

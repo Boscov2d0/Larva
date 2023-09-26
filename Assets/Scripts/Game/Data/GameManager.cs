@@ -1,6 +1,5 @@
 using Larva.Game.Tools;
 using Larva.Tools;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Larva.Game.Data
@@ -16,8 +15,9 @@ namespace Larva.Game.Data
         public string Discription1;
         [field: SerializeField] public string PathForObjects { get; private set; }
         [field: SerializeField] public string GameAreaPath { get; private set; }
-        [field: SerializeField] public string DirectionalLight { get; private set; }
+        [field: SerializeField] public string DirectionalLightPath { get; private set; }
         [field: SerializeField] public string CameraPath { get; private set; }
+        [field: SerializeField] public string AudioControllerPath { get; private set; }
 
         public SubscriptionProperty<GameState> GameState = new SubscriptionProperty<GameState>();
         public SubscriptionProperty<int> CurrentCountOfGoodFood = new SubscriptionProperty<int>();

@@ -1671,6 +1671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7124f471cf0f4478ae68bea18166bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioManager: {fileID: 11400000, guid: f5c4aac0aa3cd714f84f080d2e381224, type: 2}
   _ruLanguageButton: {fileID: 666530958}
   _enLanguageButton: {fileID: 672817609}
   _zhLanguageButton: {fileID: 1565511128}

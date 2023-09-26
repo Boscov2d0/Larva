@@ -13,10 +13,12 @@ namespace Larva.Game.Core.Player
         [SerializeField] private LarvaManager _larvaManager;
         [SerializeField] private Transform _headTransform;
         [SerializeField] private List<Transform> _bodyNodeList;
+        [SerializeField] private List<AudioSource> _eatSounds;
 
         private PlayerMoveController _playerMoveController;
         private PlayerDeathController _playerDeathController;
         private PlayerBodyController _playerBodyController;
+        private LarvaSoundController _larvaSoundController;
 
         private Vector3 _forward;
         private Ray _ray;
@@ -27,6 +29,7 @@ namespace Larva.Game.Core.Player
             _playerMoveController = new PlayerMoveController(_headTransform, _bodyNodeList, _larvaManager);
             _playerDeathController = new PlayerDeathController(_headTransform, _larvaManager);
             _playerBodyController = new PlayerBodyController(_larvaProfile, _bodyNodeList, _larvaManager);
+            _larvaSoundController = new LarvaSoundController(_larvaManager, _eatSounds);
 
             _larvaManager.State.SubscribeOnChange(OnChangeState);
             _larvaManager.State.Value = PlayerState.Null;
@@ -37,6 +40,7 @@ namespace Larva.Game.Core.Player
             _playerMoveController?.Dispose();
             _playerDeathController?.Dispose();
             _playerBodyController?.Dispose();
+            _larvaSoundController?.Dispose();
         }
         private void FixedUpdate()
         {
