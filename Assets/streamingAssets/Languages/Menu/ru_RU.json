@@ -1,0 +1,20 @@
+﻿{
+  "items": [
+    {
+      "key": "StartGame",
+      "value": "Играть"
+    },
+    {
+      "key": "LarvaHouse",
+      "value": "Дом гусеницы"
+    },
+    {
+      "key": "Settings",
+      "value": "Настройки"
+    },
+    {
+      "key": "Exit",
+      "value": "Выход"
+    }
+  ]
+}

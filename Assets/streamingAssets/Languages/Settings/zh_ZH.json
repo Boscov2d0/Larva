@@ -1,0 +1,80 @@
+﻿{
+  "items": [
+    {
+      "key": "Language",
+      "value": "语言"
+    },
+    {
+      "key": "Sounds",
+      "value": "声音"
+    },
+    {
+      "key": "Music",
+      "value": "音乐"
+    },
+    {
+      "key": "ScreenResolution",
+      "value": "分辨率"
+    },
+    {
+      "key": "Fullscreen",
+      "value": "全屏"
+    },
+    {
+      "key": "GameMode",
+      "value": "游戏模式"
+    },
+    {
+      "key": "Simple",
+      "value": "简单"
+    },
+    {
+      "key": "Real",
+      "value": "真实的"
+    },
+    {
+      "key": "ChooseFeedDay",
+      "value": "Exit"
+    },
+    {
+      "key": "Monday",
+      "value": "星期一"
+    },
+    {
+      "key": "Tuesday",
+      "value": "星期二"
+    },
+    {
+      "key": "Wednesday",
+      "value": "星期三"
+    },
+    {
+      "key": "Thursday",
+      "value": "星期四"
+    },
+    {
+      "key": "Friday",
+      "value": "星期五"
+    },
+    {
+      "key": "Saturday",
+      "value": "星期六"
+    },
+    {
+      "key": "Sunday",
+      "value": "星期日"
+    },
+    {
+      "key": "SimpleModeInformation",
+      "value": "你不要担心养活你的家人"
+    },
+    {
+      "key": "RealModeInformation",
+      "value": "每周在某一天，家庭的伙食费将被扣除"
+    },
+    {
+      "key": "Back",
+      "value": "返回"
+    }
+  ]
+}

@@ -8,11 +8,13 @@ namespace Larva.Menu.UI.Controller
 {
     public class PhoneSettingsUIController : ObjectsDisposer
     {
+        private readonly LocalizationManager _localizationManager;
         private readonly GameManager _gameManager;
         private readonly AudioManager _audioManager;
 
-        public PhoneSettingsUIController(GameManager gameManager, UIManager uiManager, AudioManager audioManager)
+        public PhoneSettingsUIController(LocalizationManager localizationManager, GameManager gameManager, UIManager uiManager, AudioManager audioManager)
         {
+            _localizationManager = localizationManager;
             _gameManager = gameManager;
             _audioManager = audioManager;
 
@@ -22,17 +24,17 @@ namespace Larva.Menu.UI.Controller
         }
         private void SetRuLanguage()
         {
-            Debug.Log("ru_RU language");
+            _localizationManager.Language.Value = LanguageKeys.ru_RU.ToString();
             _audioManager.State.Value = AudioStates.Button;
         }
         private void SetEnLanguage()
         {
-            Debug.Log("en_US language");
+            _localizationManager.Language.Value = LanguageKeys.en_US.ToString();
             _audioManager.State.Value = AudioStates.Button;
         }
         private void SetZhLanguage()
         {
-            Debug.Log("zh_ZH language");
+            _localizationManager.Language.Value = LanguageKeys.zh_ZH.ToString();
             _audioManager.State.Value = AudioStates.Button;
         }
         private void SetSoundVolume(float value)

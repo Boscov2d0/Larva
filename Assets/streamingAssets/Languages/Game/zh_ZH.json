@@ -1,0 +1,21 @@
+﻿{
+  "items": 
+  [
+    {
+      "key": "Continue",
+      "value": "继续"
+    },
+    {
+      "key": "Restart",
+      "value": "重新启动"
+    },
+    {
+      "key": "MainMenu",
+      "value": "菜单"
+    },
+    {
+      "key": "YouScore",
+      "value": "你得分"
+    }
+  ]
+}

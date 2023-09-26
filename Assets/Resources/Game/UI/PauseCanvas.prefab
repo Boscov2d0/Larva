@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbfc85a7f16e8504f8dd91680342739c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localizationManager: {fileID: 11400000, guid: 2540ede8775e5e24e89666cdbd2fa255, type: 2}
   _continueButton: {fileID: 6888174995917324993}
   _exitButton: {fileID: 6888174994413552223}
   _continueText: {fileID: 6888174994559893938}

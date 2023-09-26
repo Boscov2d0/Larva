@@ -5,19 +5,19 @@ using Larva.Tools;
 
 namespace Larva.Menu.UI.Controller
 {
-    public class MainMenuUIController : ObjectsDisposer
+    public class MenuUIController : ObjectsDisposer
     {
         private readonly GameManager _gameManager;
         private readonly AudioManager _audioManager;
 
-        public MainMenuUIController(GameManager gameManager, UIManager uiManager, AudioManager audioManager)
+        public MenuUIController(GameManager gameManager, UIManager uiManager, AudioManager audioManager)
         {
             _gameManager = gameManager;
             _audioManager = audioManager;
 
-            MainMenuCanvasView mainMenuCanvasView = ResourcesLoader.InstantiateAndGetObject<MainMenuCanvasView>(uiManager.PathForUIObjects + uiManager.MainMenuCanvasPath);
-            mainMenuCanvasView.Init(StartGame, OpenSettingsPanel, ExitGame);
-            AddGameObject(mainMenuCanvasView.gameObject);
+            MenuCanvasView menuCanvasView = ResourcesLoader.InstantiateAndGetObject<MenuCanvasView>(uiManager.PathForUIObjects + uiManager.MainMenuCanvasPath);
+            menuCanvasView.Init(StartGame, OpenSettingsPanel, ExitGame);
+            AddGameObject(menuCanvasView.gameObject);
         }
         private void StartGame()
         {

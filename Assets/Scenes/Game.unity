@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 009d71c74ac78924cb2652f5b809b225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localizationManager: {fileID: 11400000, guid: 2540ede8775e5e24e89666cdbd2fa255, type: 2}
+  _larvaProfile: {fileID: 11400000, guid: 651f6d432cfa86c4ab6070abb19bde95, type: 2}
   _gameManager: {fileID: 11400000, guid: c7140159e9223364a915bdf5a632a779, type: 2}
   _larvaManager: {fileID: 11400000, guid: 45f88eda807574b4dbd633dfa1b8041e, type: 2}
   _uiManager: {fileID: 11400000, guid: 7a7b2a76a4c12274ca951175f49b6b9b, type: 2}

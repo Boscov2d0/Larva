@@ -1,0 +1,21 @@
+﻿{
+  "items": 
+  [
+    {
+      "key": "StartGame",
+      "value": "开始游戏"
+    },
+    {
+      "key": "LarvaHouse",
+      "value": "卡特彼勒家"
+    },
+    {
+      "key": "Settings",
+      "value": "设置"
+    },
+    {
+      "key": "Exit",
+      "value": "出口"
+    }
+  ]
+}

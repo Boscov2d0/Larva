@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 6104647951791574304}
   - component: {fileID: 902670119382781028}
   - component: {fileID: 8322660762594342851}
-  - component: {fileID: 1532998957593755557}
+  - component: {fileID: 1964882197604009825}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1532998957593755557
+--- !u!114 &1964882197604009825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,12 +294,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3158049793967727684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731f0d30abead9d4bac8dd31c761db5b, type: 3}
+  m_Script: {fileID: 11500000, guid: ebb02e8632f8d644e98ab2b8d383e13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localizationManager: {fileID: 11400000, guid: 9cf093b66262dc64e96cf5cd721ed23d, type: 2}
   _startGameButton: {fileID: 4678417367529553826}
   _settingsButton: {fileID: 7119995344139855015}
   _exitGameButton: {fileID: 1702323888338937289}
+  _startGameText: {fileID: 8496752322966726253}
+  _settingsText: {fileID: 4048846400185887748}
+  _exitGameText: {fileID: 4217375150337065627}
 --- !u!1 &3203087967501885094
 GameObject:
   m_ObjectHideFlags: 0
