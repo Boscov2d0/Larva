@@ -2,7 +2,7 @@ namespace Larva.Menu.Tools
 {
     public enum GameState
     {
-        MainMenu,
+        Menu,
         Settings,
         Play,
         Exit

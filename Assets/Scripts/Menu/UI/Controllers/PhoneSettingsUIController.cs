@@ -23,6 +23,6 @@ namespace Larva.Menu.UI.Controller
         private void SetZhLanguage() => Debug.Log("zh_ZH language");
         private void SetSoundVolume(float value) => Debug.Log(value);
         private void SetMusicVolume(float value) => Debug.Log(value);
-        private void Back() => _gameManager.GameState.Value = GameState.MainMenu;
+        private void Back() => _gameManager.GameState.Value = GameState.Menu;
     }
 }

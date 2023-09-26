@@ -35,7 +35,7 @@ namespace Larva.Menu.UI.Controller
             Screen.SetResolution(_width, _height, Screen.fullScreen, _refreshRate);
         }
         private void SetFullscreen(bool flag) => Screen.fullScreen = flag;
-        private void Back() => _gameManager.GameState.Value = GameState.MainMenu;
+        private void Back() => _gameManager.GameState.Value = GameState.Menu;
         private void ParseDropdown(Dropdown screenResolutionDropdown)
         {
             char[] delimiterChars = { 'x', '@', 'H' };

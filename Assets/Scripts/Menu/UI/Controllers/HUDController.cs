@@ -18,7 +18,7 @@ namespace Larva.Menu.UI.Controller
             _uiManager = uiManager;
 
             _gameManager.GameState.SubscribeOnChange(OnChangeState);
-            _gameManager.GameState.Value = GameState.MainMenu;
+            _gameManager.GameState.Value = GameState.Menu;
         }
         protected override void OnDispose()
         {
@@ -34,7 +34,7 @@ namespace Larva.Menu.UI.Controller
 
             switch (_gameManager.GameState.Value)
             {
-                case GameState.MainMenu:
+                case GameState.Menu:
                     _mainMenuUIController = new MainMenuUIController(_gameManager, _uiManager);
                     break;
                 case GameState.Settings:

@@ -28,6 +28,7 @@ namespace Larva.Game.Core
             ResourcesLoader.InstantiateObject<LarvaView>(_larvaManager.ObjectsPath + _larvaManager.LarvaPath);
 
             _larvaManager.State.SubscribeOnChange(OnLarvaStateChange);
+            _gameManager.Score.Value = 0;
 
 #if UNITY_ANDROID && !UNITY_EDITOR
             _moveController = new InputTouchScreenController()
@@ -79,9 +80,9 @@ namespace Larva.Game.Core
                     break;
             }
         }
-        private void OnLarvaStateChange() 
+        private void OnLarvaStateChange()
         {
-            switch (_larvaManager.State.Value) 
+            switch (_larvaManager.State.Value)
             {
                 case PlayerState.EatGoodFood:
                     _gameManager.CurrentCountOfGoodFood.Value--;
@@ -93,7 +94,7 @@ namespace Larva.Game.Core
                 case PlayerState.Death:
                     _gameManager.GameState.Value = GameState.Lose;
                     break;
-            } 
+            }
         }
         private void GamePause(bool isPause)
         {
@@ -102,13 +103,8 @@ namespace Larva.Game.Core
             else
                 Time.timeScale = 1;
         }
-        private void GameOver()
-        {
-            RecalculateFood();
-            _camera.GetComponentInChildren<Animator>().enabled = true;
-        }
-        private void RecalculateFood() { }
-        private void Restart() => SceneManager.LoadScene(0);
-        private void Exit() => SceneManager.LoadScene(0);
+        private void GameOver() => _camera.GetComponentInChildren<Animator>().enabled = true;
+        private void Restart() => SceneManager.LoadScene(Keys.ScneneNameKeys.Game.ToString());
+        private void Exit() => SceneManager.LoadScene(Keys.ScneneNameKeys.Menu.ToString());
     }
 }

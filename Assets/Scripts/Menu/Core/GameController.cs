@@ -38,7 +38,7 @@ namespace Larva.Menu.Core
                     break;
             }
         }
-        private void Play() => SceneManager.LoadScene(0);
+        private void Play() => SceneManager.LoadScene(Keys.ScneneNameKeys.Game.ToString());
         private void Exit() => Application.Quit();
     }
 }
