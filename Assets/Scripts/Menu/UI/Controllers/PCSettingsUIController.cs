@@ -9,6 +9,7 @@ namespace Larva.Menu.UI.Controller
 {
     public class PCSettingsUIController : ObjectsDisposer
     {
+        private readonly LocalizationManager _localizationManager;
         private readonly GameManager _gameManager;
         private readonly AudioManager _audioManager;
         private readonly PCSettingsCanvasView _settingsCanvasView;
@@ -17,8 +18,9 @@ namespace Larva.Menu.UI.Controller
         private int _height;
         private int _refreshRate;
 
-        public PCSettingsUIController(GameManager gameManager, UIManager uiManager, AudioManager audioManager)
+        public PCSettingsUIController(LocalizationManager localizationManager, GameManager gameManager, UIManager uiManager, AudioManager audioManager)
         {
+            _localizationManager = localizationManager;
             _gameManager = gameManager;
             _audioManager = audioManager;
 
@@ -28,17 +30,17 @@ namespace Larva.Menu.UI.Controller
         }
         private void SetRuLanguage()
         {
-            Debug.Log("ru_RU language");
+            _localizationManager.Language.Value = LanguageKeys.ru_RU.ToString();
             _audioManager.State.Value = AudioStates.Button;
         }
         private void SetEnLanguage()
         {
-            Debug.Log("en_US language");
+            _localizationManager.Language.Value = LanguageKeys.en_US.ToString();
             _audioManager.State.Value = AudioStates.Button;
         }
         private void SetZhLanguage()
         {
-            Debug.Log("zh_ZH language");
+            _localizationManager.Language.Value = LanguageKeys.zh_ZH.ToString();
             _audioManager.State.Value = AudioStates.Button;
         }
         private void SetSoundVolume(float value)
@@ -82,5 +84,6 @@ namespace Larva.Menu.UI.Controller
             _height = int.Parse(resolutions[1]);
             _refreshRate = int.Parse(resolutions[2]);
         }
+
     }
 }

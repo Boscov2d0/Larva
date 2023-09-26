@@ -1,4 +1,6 @@
 using Larva.Menu.Data;
+using Larva.Menu.Tools;
+using Larva.Tools;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -7,6 +9,7 @@ namespace Larva.Menu.UI.View
 {
     public class PCSettingsCanvasView : MonoBehaviour
     {
+        [SerializeField] private LocalizationManager _localizationManager;
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private Button _ruLanguageButton;
         [SerializeField] private Button _enLanguageButton;
@@ -16,6 +19,13 @@ namespace Larva.Menu.UI.View
         [SerializeField] private Dropdown _screenResolutionDropdown;
         [SerializeField] private Toggle _fulscreenToggle;
         [SerializeField] private Button _backButton;
+
+        [SerializeField] private Text _languageText;
+        [SerializeField] private Text _soundText;
+        [SerializeField] private Text _musicText;
+        [SerializeField] private Text _screenResolutionText;
+        [SerializeField] private Text _fullscreenText;
+        [SerializeField] private Text _backText;
 
         private UnityAction _setRuLanguage;
         private UnityAction _setEnLanguage;
@@ -42,6 +52,8 @@ namespace Larva.Menu.UI.View
             _setFullscreen = setFullscreen;
             _back = back;
 
+            _localizationManager.Language.SubscribeOnChange(TranslateText);
+
             _ruLanguageButton.onClick.AddListener(_setRuLanguage);
             _enLanguageButton.onClick.AddListener(_setEnLanguage);
             _zhLanguageButton.onClick.AddListener(_setZhLanguage);
@@ -52,9 +64,12 @@ namespace Larva.Menu.UI.View
             _backButton.onClick.AddListener(_back);
 
             SetUI();
+            TranslateText();
         }
         private void OnDestroy()
         {
+            _localizationManager.Language.UnSubscribeOnChange(TranslateText);
+
             _ruLanguageButton.onClick.RemoveListener(_setRuLanguage);
             _enLanguageButton.onClick.RemoveListener(_setEnLanguage);
             _zhLanguageButton.onClick.RemoveListener(_setZhLanguage);
@@ -78,6 +93,15 @@ namespace Larva.Menu.UI.View
                 if (data.text == Screen.currentResolution.ToString())
                     _screenResolutionDropdown.value = i;
             }
+        }
+        private void TranslateText()
+        {
+            _languageText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.Language);
+            _soundText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.Sounds);
+            _musicText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.Music);
+            _screenResolutionText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.ScreenResolution);
+            _fullscreenText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.Fullscreen);
+            _backText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.Back);
         }
     }
 }

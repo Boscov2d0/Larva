@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2affb21cc9056429b33fa7eb76f33c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localizationManager: {fileID: 11400000, guid: 2540ede8775e5e24e89666cdbd2fa255, type: 2}
   _restartButton: {fileID: 5290706699463615086}
   _exitButton: {fileID: 5290706699348990431}
   _scoreText: {fileID: 5290706699128912886}

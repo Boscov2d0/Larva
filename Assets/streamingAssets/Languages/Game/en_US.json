@@ -1,0 +1,21 @@
+{
+  "items": 
+  [
+    {
+      "key": "Continue",
+      "value": "Continue"
+    },
+    {
+      "key": "Restart",
+      "value": "Restart"
+    },
+    {
+      "key": "MainMenu",
+      "value": "Main menu"
+    },
+    {
+      "key": "YouScore",
+      "value": "You score"
+    }
+  ]
+}

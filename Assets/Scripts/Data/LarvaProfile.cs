@@ -7,5 +7,7 @@ namespace Larva.Data
     {
         [field: SerializeField] public Material HeadSkin { get; set; }
         [field: SerializeField] public Material BodySkin { get; set; }
+        
+        [HideInInspector] public string Language;
     }
 }

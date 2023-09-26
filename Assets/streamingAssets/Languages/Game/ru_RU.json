@@ -1,0 +1,20 @@
+﻿{
+  "items": [
+    {
+      "key": "Continue",
+      "value": "Продолжить"
+    },
+    {
+      "key": "Restart",
+      "value": "Заново"
+    },
+    {
+      "key": "MainMenu",
+      "value": "В меню"
+    },
+    {
+      "key": "YouScore",
+      "value": "Ваш результат"
+    }
+  ]
+}

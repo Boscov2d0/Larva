@@ -1394,6 +1394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a85c4482f65d7a4798c8a3fb7f12875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localizationManager: {fileID: 11400000, guid: 9cf093b66262dc64e96cf5cd721ed23d, type: 2}
   _audioManager: {fileID: 11400000, guid: f5c4aac0aa3cd714f84f080d2e381224, type: 2}
   _ruLanguageButton: {fileID: 666530958}
   _enLanguageButton: {fileID: 672817609}
@@ -1401,6 +1402,11 @@ MonoBehaviour:
   _soundSlider: {fileID: 1317812994}
   _musicSlider: {fileID: 8153744414177819307}
   _backButton: {fileID: 3983740365543207788}
+  _languageText: {fileID: 9213342006592921984}
+  _soundText: {fileID: 4091149067384609974}
+  _musicText: {fileID: 2846420889770284990}
+  _musicInformationText: {fileID: 4996534671163440224}
+  _backText: {fileID: 3176081492501729418}
 --- !u!1 &3593297413830961133
 GameObject:
   m_ObjectHideFlags: 0

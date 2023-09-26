@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "key": "StartGame",
+      "value": "Start game"
+    },
+    {
+      "key": "LarvaHouse",
+      "value": "Larva house"
+    },
+    {
+      "key": "Settings",
+      "value": "Settings"
+    },
+    {
+      "key": "Exit",
+      "value": "Exit"
+    }
+  ]
+}
