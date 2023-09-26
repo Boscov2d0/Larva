@@ -8,6 +8,7 @@ namespace Larva.Menu.Core
     {
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private UIManager _uiManager;
+        [SerializeField] private AudioManager _audioManager;
 
         private GameController _gameController;
         private HUDController _HUDController;
@@ -15,7 +16,7 @@ namespace Larva.Menu.Core
         private void Start()
         {
             _gameController = new GameController(_gameManager);
-            _HUDController = new HUDController(_gameManager, _uiManager);
+            _HUDController = new HUDController(_gameManager, _uiManager, _audioManager);
         }
         private void OnDestroy()
         {

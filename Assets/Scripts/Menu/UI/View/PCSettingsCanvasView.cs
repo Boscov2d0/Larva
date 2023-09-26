@@ -1,3 +1,4 @@
+using Larva.Menu.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ namespace Larva.Menu.UI.View
 {
     public class PCSettingsCanvasView : MonoBehaviour
     {
+        [SerializeField] private AudioManager _audioManager;
         [SerializeField] private Button _ruLanguageButton;
         [SerializeField] private Button _enLanguageButton;
         [SerializeField] private Button _zhLanguageButton;
@@ -62,8 +64,11 @@ namespace Larva.Menu.UI.View
             _fulscreenToggle.onValueChanged.RemoveListener(_setFullscreen);
             _backButton.onClick.RemoveListener(_back);
         }
-        private void SetUI() 
+        private void SetUI()
         {
+            _musicSlider.value = _audioManager.MusicVolume;
+            _soundSlider.value = _audioManager.SoundsVolume;
+
             Dropdown.OptionData data;
 
             for (int i = 0; i < Screen.resolutions.Length; i++)

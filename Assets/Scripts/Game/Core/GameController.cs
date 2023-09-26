@@ -23,9 +23,10 @@ namespace Larva.Game.Core
             _larvaManager = larvaManager;
 
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.GameAreaPath);
-            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLight);
+            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLightPath);
             _camera = ResourcesLoader.InstantiateAndGetObject<Camera>(_gameManager.PathForObjects + _gameManager.CameraPath);
             ResourcesLoader.InstantiateObject<LarvaView>(_larvaManager.ObjectsPath + _larvaManager.LarvaPath);
+            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.AudioControllerPath);
 
             _larvaManager.State.SubscribeOnChange(OnLarvaStateChange);
             _gameManager.Score.Value = 0;

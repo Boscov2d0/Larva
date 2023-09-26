@@ -19,5 +19,6 @@ MonoBehaviour:
   Discription1: Path
   <PathForObjects>k__BackingField: Game/
   <GameAreaPath>k__BackingField: GameArea
-  <DirectionalLight>k__BackingField: DirectionalLight
+  <DirectionalLightPath>k__BackingField: DirectionalLight
   <CameraPath>k__BackingField: Camera
+  <AudioControllerPath>k__BackingField: AudioController
