@@ -219,11 +219,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07f786c299ea3a43a52a03e4fa6da8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _saveLoadManager: {fileID: 11400000, guid: b796a0e9c917ce74081eecd1a4e15964, type: 2}
   _localizationManager: {fileID: 11400000, guid: 9cf093b66262dc64e96cf5cd721ed23d, type: 2}
   _larvaProfile: {fileID: 11400000, guid: 651f6d432cfa86c4ab6070abb19bde95, type: 2}
   _gameManager: {fileID: 11400000, guid: be69a46b4a97e9c4b8974cab3fb17319, type: 2}
   _uiManager: {fileID: 11400000, guid: cd06a08dbb2520c4289ea4f11c693dac, type: 2}
   _audioManager: {fileID: 11400000, guid: f5c4aac0aa3cd714f84f080d2e381224, type: 2}
+  _videoManager: {fileID: 11400000, guid: 59198595301c94e4f8958c5497222b44, type: 2}
 --- !u!4 &946772306
 Transform:
   m_ObjectHideFlags: 0
