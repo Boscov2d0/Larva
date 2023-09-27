@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a167a4da8cfa3b143ae3bd1af649b05f, type: 3}
+  m_Name: SaveLoadManager
+  m_EditorClassIdentifier: 
+  <GameSettingsDataPath>k__BackingField: /Save/JSONGameSettingsData.json
+  GameSettingsData:
+    Language: ru_RU
+    SoundsVolume: 1
+    MusicVolume: 1
+    ScreenResolution: {x: 2560, y: 1440, z: 165}
+    Fullscreen: 0

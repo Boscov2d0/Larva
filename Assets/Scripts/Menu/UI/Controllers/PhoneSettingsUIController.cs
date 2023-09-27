@@ -8,12 +8,15 @@ namespace Larva.Menu.UI.Controller
 {
     public class PhoneSettingsUIController : ObjectsDisposer
     {
+        private readonly SaveLoadManager _saveLoadManager;
         private readonly LocalizationManager _localizationManager;
         private readonly GameManager _gameManager;
         private readonly AudioManager _audioManager;
 
-        public PhoneSettingsUIController(LocalizationManager localizationManager, GameManager gameManager, UIManager uiManager, AudioManager audioManager)
+        public PhoneSettingsUIController(SaveLoadManager saveLoadManager, LocalizationManager localizationManager, 
+                                         GameManager gameManager, UIManager uiManager, AudioManager audioManager)
         {
+            _saveLoadManager = saveLoadManager;
             _localizationManager = localizationManager;
             _gameManager = gameManager;
             _audioManager = audioManager;
@@ -55,6 +58,7 @@ namespace Larva.Menu.UI.Controller
         }
         private void Back()
         {
+            Saver.SaveGamePhoneSettingsData(_saveLoadManager, _localizationManager, _audioManager);
             _gameManager.GameState.Value = GameState.Menu;
             _audioManager.State.Value = AudioStates.ButtonApply;
         }

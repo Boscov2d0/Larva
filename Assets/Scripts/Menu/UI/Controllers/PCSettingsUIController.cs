@@ -9,20 +9,24 @@ namespace Larva.Menu.UI.Controller
 {
     public class PCSettingsUIController : ObjectsDisposer
     {
+        private readonly SaveLoadManager _saveLoadManager;
         private readonly LocalizationManager _localizationManager;
         private readonly GameManager _gameManager;
         private readonly AudioManager _audioManager;
+        private readonly VideoManager _videoManager;
         private readonly PCSettingsCanvasView _settingsCanvasView;
 
         private int _width;
         private int _height;
         private int _refreshRate;
 
-        public PCSettingsUIController(LocalizationManager localizationManager, GameManager gameManager, UIManager uiManager, AudioManager audioManager)
+        public PCSettingsUIController(SaveLoadManager saveLoadManager, LocalizationManager localizationManager, GameManager gameManager, UIManager uiManager, AudioManager audioManager, VideoManager videoManager)
         {
+            _saveLoadManager = saveLoadManager;
             _localizationManager = localizationManager;
             _gameManager = gameManager;
             _audioManager = audioManager;
+            _videoManager = videoManager;
 
             _settingsCanvasView = ResourcesLoader.InstantiateAndGetObject<PCSettingsCanvasView>(uiManager.PathForUIObjects + uiManager.PCSettingsCanvasPath);
             AddGameObject(_settingsCanvasView.gameObject);
@@ -72,6 +76,7 @@ namespace Larva.Menu.UI.Controller
         }
         private void Back()
         {
+            Saver.SaveGamePCSettingsData(_saveLoadManager, _localizationManager, _audioManager, _videoManager);
             _gameManager.GameState.Value = GameState.Menu;
             _audioManager.State.Value = AudioStates.ButtonApply;
         }
