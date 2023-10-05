@@ -22,8 +22,8 @@ namespace Larva.Menu.Core
         
         private void Start()
         {
-            _loadController = new LoadController(_localizationManager, _saveLoadManager, _audioManager, _videoManager);
-            _localizationController = new LocalizationController(_localizationManager, _larvaProfile);
+            _loadController = new LoadController(_saveLoadManager, _audioManager, _videoManager);
+            //_localizationController = new LocalizationController(_localizationManager, _larvaProfile);
             _gameController = new GameController(_gameManager, _videoManager);
             _HUDController = new HUDController(_saveLoadManager, _localizationManager, _gameManager, _uiManager, _audioManager, _videoManager);
         }

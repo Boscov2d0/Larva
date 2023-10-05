@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Larva.Menu.Tools
 {
@@ -7,26 +8,54 @@ namespace Larva.Menu.Tools
     {
         public static T Load(string path)
         {
-            string fullPath = Application.streamingAssetsPath + path;
-
+            string fullPath;
             T result;
+            string tempJSON = "";
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            fullPath = Application.persistentDataPath + path;
+
+            if (!Directory.Exists(fullPath))
+            {
+                FileInfo file = new FileInfo(fullPath);
+                file.Directory.Create();
+            }
 
             if (!File.Exists(fullPath))
             {
-                string FileJSON = JsonUtility.ToJson("");
-                File.WriteAllText(fullPath, FileJSON);
+                File.Create(fullPath).Close();
+                string fileJSON = JsonUtility.ToJson("7537");
+                File.WriteAllText(fullPath, fileJSON);
             }
 
-            string tempJSON = File.ReadAllText(fullPath);
+            UnityWebRequest reader = new(fullPath);
+            reader = UnityWebRequest.Get(fullPath);
+            reader.SendWebRequest();
+            tempJSON = reader.downloadHandler.text;
+#else
+            fullPath = Application.streamingAssetsPath + path;
+#endif
+            if (string.IsNullOrEmpty(tempJSON))
+                tempJSON = File.ReadAllText(fullPath);
+
             result = JsonUtility.FromJson<T>(tempJSON);
 
             return result;
         }
         public static void SaveData(T data, string path)
         {
-            string fullPath = Application.streamingAssetsPath + path;
-            string FileJSON = JsonUtility.ToJson(data);
-            File.WriteAllText(fullPath, FileJSON);
+            string fullPath;
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            if (Directory.Exists(Application.persistentDataPath))
+                fullPath = Application.persistentDataPath + path;
+            else
+                fullPath = Application.streamingAssetsPath + path;
+#else
+            fullPath = Application.streamingAssetsPath + path;
+#endif
+            string fileJSON = JsonUtility.ToJson(data);
+            File.WriteAllText(fullPath, fileJSON);
         }
     }
 }

@@ -51,7 +51,7 @@ namespace Larva.Menu.UI.View
             _backButton.onClick.AddListener(_back);
 
             SetUI();
-            TranslateText();
+            //TranslateText();
         }
         private void OnDestroy()
         {

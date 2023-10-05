@@ -76,7 +76,7 @@ namespace Larva.Menu.UI.Controller
         }
         private void Back()
         {
-            Saver.SaveGamePCSettingsData(_saveLoadManager, _localizationManager, _audioManager, _videoManager);
+            Saver.SaveGamePCSettingsData(_saveLoadManager, _audioManager, _videoManager);
             _gameManager.GameState.Value = GameState.Menu;
             _audioManager.State.Value = AudioStates.ButtonApply;
         }

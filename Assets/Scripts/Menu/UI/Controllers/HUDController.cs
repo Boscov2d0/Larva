@@ -14,10 +14,11 @@ namespace Larva.Menu.UI.Controller
         private readonly VideoManager _videoManager;
 
         private MenuUIController _mainMenuUIController;
-        private PCSettingsUIController _settingsPanelController;
+        private PhoneSettingsUIController _phoneSettingsUIController;
+        private PCSettingsUIController _pcSettingsUIController;
 
-        public HUDController(SaveLoadManager saveLoadManager, LocalizationManager localizationManager, 
-                             GameManager gameManager, UIManager uiManager, 
+        public HUDController(SaveLoadManager saveLoadManager, LocalizationManager localizationManager,
+                             GameManager gameManager, UIManager uiManager,
                              AudioManager audioManager, VideoManager videoManager)
         {
             _saveLoadManager = saveLoadManager;
@@ -49,18 +50,21 @@ namespace Larva.Menu.UI.Controller
                     break;
                 case GameState.Settings:
 #if UNITY_ANDROID && !UNITY_EDITOR
-                    _settingsPanelController = new PhoneSettingsUIController(_saveLoadManager, _localizationManager, _gameManager, _uiManager, _audioManager);
+                    _phoneSettingsUIController = new PhoneSettingsUIController(_saveLoadManager, _localizationManager, _gameManager, _uiManager, _audioManager);
+                    AddController(_phoneSettingsUIController);
 #else
-                    _settingsPanelController = new PCSettingsUIController(_saveLoadManager, _localizationManager, _gameManager, _uiManager, _audioManager, _videoManager);
+                    _pcSettingsUIController = new PCSettingsUIController(_saveLoadManager, _localizationManager, _gameManager, _uiManager, _audioManager, _videoManager);
+                    AddController(_pcSettingsUIController);
 #endif
-                    AddController(_settingsPanelController);
+
                     break;
             }
         }
         private void DisposeControllers()
         {
             _mainMenuUIController?.Dispose();
-            _settingsPanelController?.Dispose();
+            _phoneSettingsUIController?.Dispose();
+            _pcSettingsUIController?.Dispose();
         }
     }
 }

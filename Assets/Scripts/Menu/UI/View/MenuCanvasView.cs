@@ -33,7 +33,7 @@ namespace Larva.Menu.UI.View
             _settingsButton.onClick.AddListener(_openSettings);
             _exitGameButton.onClick.AddListener(_exitGame);
             
-            TranslateText();
+            //TranslateText();
         }
         private void OnDestroy()
         {
