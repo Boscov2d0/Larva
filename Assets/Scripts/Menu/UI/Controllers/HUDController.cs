@@ -6,19 +6,25 @@ namespace Larva.Menu.UI.Controller
 {
     public class HUDController : ObjectsDisposer
     {
+        private readonly SaveLoadManager _saveLoadManager;
         private readonly GameManager _gameManager;
         private readonly UIManager _uiManager;
         private readonly AudioManager _audioManager;
+        private readonly VideoManager _videoManager;
 
         private MenuUIController _mainMenuUIController;
         private PhoneSettingsUIController _phoneSettingsUIController;
         private PCSettingsUIController _pcSettingsUIController;
 
-        public HUDController(GameManager gameManager, UIManager uiManager, AudioManager audioManager)
+        public HUDController(SaveLoadManager saveLoadManager, 
+                             GameManager gameManager, UIManager uiManager, 
+                             AudioManager audioManager, VideoManager videoManager)
         {
+            _saveLoadManager = saveLoadManager;
             _gameManager = gameManager;
             _uiManager = uiManager;
             _audioManager = audioManager;
+            _videoManager = videoManager;
 
             _gameManager.GameState.SubscribeOnChange(OnChangeState);
             _gameManager.GameState.Value = GameState.Menu;

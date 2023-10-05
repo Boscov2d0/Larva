@@ -16,8 +16,10 @@ namespace Larva.Menu.UI.Controller
         private const int en = 1;
         private const int zh = 2;
 
-        public PhoneSettingsUIController(GameManager gameManager, UIManager uiManager, AudioManager audioManager)
+        public PhoneSettingsUIController(SaveLoadManager saveLoadManager, LocalizationManager localizationManager, 
+                                         GameManager gameManager, UIManager uiManager, AudioManager audioManager)
         {
+            _saveLoadManager = saveLoadManager;
             _gameManager = gameManager;
             _audioManager = audioManager;
 
@@ -58,6 +60,7 @@ namespace Larva.Menu.UI.Controller
         }
         private void Back()
         {
+            Saver.SaveGamePhoneSettingsData(_saveLoadManager, _localizationManager, _audioManager);
             _gameManager.GameState.Value = GameState.Menu;
             _audioManager.State.Value = AudioStates.ButtonApply;
         }
