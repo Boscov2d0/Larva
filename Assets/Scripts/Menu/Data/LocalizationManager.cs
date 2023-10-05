@@ -1,18 +1,17 @@
 using Larva.Tools;
 using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Tables;
 
-namespace Larva.Menu.Data
+namespace Larva.Data
 {
     [CreateAssetMenu(fileName = nameof(LocalizationManager), menuName = "Managers/Menu/LocalizationManager")]
     public class LocalizationManager : ScriptableObject
     {
-        [HideInInspector] public SubscriptionProperty<string> Language = new SubscriptionProperty<string>();
+        [HideInInspector] public Locale Language;
 
-        public Dictionary<string, string> LocalizedMenuText;
-        public Dictionary<string, string> LocalizedSettingsText;
-
-        [SerializeField] public string MenuTextsPath;
-        [SerializeField] public string SettingsTextsPath;
+        public SubscriptionProperty<StringTable> MenuTable = new SubscriptionProperty<StringTable>();
+        public SubscriptionProperty<StringTable> SettingsTable = new SubscriptionProperty<StringTable>();
+        public SubscriptionProperty<StringTable> GameTable = new SubscriptionProperty<StringTable>();
     }
 }

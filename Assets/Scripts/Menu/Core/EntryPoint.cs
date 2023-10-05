@@ -19,9 +19,9 @@ namespace Larva.Menu.Core
         
         private void Start()
         {
-            _localizationController = new LocalizationController(_localizationManager, _larvaProfile);
+            _localizationController = new LocalizationController(_localizationManager);
             _gameController = new GameController(_gameManager);
-            _HUDController = new HUDController(_localizationManager, _gameManager, _uiManager, _audioManager);
+            _HUDController = new HUDController(_gameManager, _uiManager, _audioManager);
         }
         private void OnDestroy()
         {

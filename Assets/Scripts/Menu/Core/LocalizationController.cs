@@ -1,92 +1,51 @@
-using System.IO;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Networking;
-using Larva.Tools;
-using Larva.Menu.Tools;
-using Larva.Menu.Data;
 using Larva.Data;
+using Larva.Tools;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
+using UnityEngine.Localization;
 
 namespace Larva.Menu.Core
 {
     public class LocalizationController : ObjectsDisposer
     {
         private readonly LocalizationManager _localizationManager;
-        private readonly LarvaProfile _larvaProfile;
 
-        public LocalizationController(LocalizationManager localizationManager, LarvaProfile larvaProfile)
+        public LocalizationController(LocalizationManager localizationManager)
         {
             _localizationManager = localizationManager;
-            _larvaProfile = larvaProfile;
 
-            _localizationManager.Language.SubscribeOnChange(LoadMainMenuLocalizedText);
-            _localizationManager.Language.SubscribeOnChange(LoadSettingsLocalizedText);
+            LocalizationSettings.SelectedLocaleChanged += OnChangedLocale;
 
-            SetLanguage();
-            _localizationManager.Language.SubscribeOnChange(SetLanguage);      
-
-            LoadMainMenuLocalizedText();
-            LoadSettingsLocalizedText();
+            GetTables();
         }
         protected override void OnDispose()
         {
-            _localizationManager.Language.UnSubscribeOnChange(LoadMainMenuLocalizedText);
-            _localizationManager.Language.UnSubscribeOnChange(LoadSettingsLocalizedText);
-
-            _localizationManager.Language.UnSubscribeOnChange(SetLanguage);
+            LocalizationSettings.SelectedLocaleChanged -= OnChangedLocale;
         }
-        private void SetLanguage()
+        private void OnChangedLocale(Locale locale)
         {
-            if (!string.IsNullOrEmpty(_localizationManager.Language.Value))
-            {
-                _larvaProfile.Language = _localizationManager.Language.Value;
-                return;
-            }
-
-            if (Application.systemLanguage == SystemLanguage.Russian || Application.systemLanguage == SystemLanguage.Ukrainian || Application.systemLanguage == SystemLanguage.Belarusian)
-                _localizationManager.Language.Value = LanguageKeys.ru_RU.ToString();
-            else if (Application.systemLanguage == SystemLanguage.Chinese || Application.systemLanguage == SystemLanguage.ChineseSimplified || Application.systemLanguage == SystemLanguage.ChineseTraditional)
-                _localizationManager.Language.Value = LanguageKeys.zh_ZH.ToString();
-            else
-                _localizationManager.Language.Value = LanguageKeys.en_US.ToString();
-
-            _larvaProfile.Language = _localizationManager.Language.Value;
+            GetTables();
         }
-        public void LoadMainMenuLocalizedText()
+        private void GetTables() 
         {
-            _localizationManager.LocalizedMenuText = new Dictionary<string, string>();
-            LoadLocalizedText(_localizationManager.LocalizedMenuText, _localizationManager.MenuTextsPath);
+            GetMenuTable();
+            GetSettingsTable();
+            GetGameTable();
         }
-        public void LoadSettingsLocalizedText()
+        private void GetMenuTable() 
         {
-            _localizationManager.LocalizedSettingsText = new Dictionary<string, string>();
-            LoadLocalizedText(_localizationManager.LocalizedSettingsText, _localizationManager.SettingsTextsPath);
+            StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable("Menu");
+            _localizationManager.MenuTable.Value = loadingOperation;
         }
-        public void LoadLocalizedText(Dictionary<string, string> text, string path)
+        private void GetSettingsTable()
         {
-            string dataAsJson;
-            string fullPath = Application.streamingAssetsPath + path + _localizationManager.Language.Value + ".json";
-
-            if (Application.platform == RuntimePlatform.Android)
-            {/*
-                WWW reader = new(path);
-                while (!reader.isDone) { }
-
-                dataAsJson = reader.text;
-                */
-                UnityWebRequest reader = new(fullPath);
-                while (!reader.isDone) { }
-
-                dataAsJson = reader.result.ToString();
-
-            }
-            else
-                dataAsJson = File.ReadAllText(fullPath);
-
-            LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
-
-            for (int i = 0; i < loadedData.items.Length; i++)
-                text.Add(loadedData.items[i].key, loadedData.items[i].value);
+            StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable("Settings");
+            _localizationManager.SettingsTable.Value = loadingOperation;
+        }
+        private void GetGameTable()
+        {
+            StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable("Game");
+            _localizationManager.GameTable.Value = loadingOperation;
         }
     }
 }

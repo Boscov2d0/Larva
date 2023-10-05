@@ -1,9 +1,9 @@
-using Larva.Game.Data;
-using Larva.Game.Tools;
-using Larva.Tools;
+using Larva.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+
+using LGTK = Larva.Tools.LocalizationTextKeys.LocalizationGameTextKeys;
 
 namespace Larva.Game.UI.View
 {
@@ -38,12 +38,12 @@ namespace Larva.Game.UI.View
         }
         private void TranslateText()
         {
-            _restartText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedGameText, LocalizationGameTextKeys.Restart);
-            _exitText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedGameText, LocalizationGameTextKeys.MainMenu);
+            _restartText.text = _localizationManager.GameTable.Value.GetEntry(LGTK.Restart.ToString())?.GetLocalizedString();
+            _exitText.text = _localizationManager.GameTable.Value.GetEntry(LGTK.Menu.ToString())?.GetLocalizedString();
         }
         private void ShowScore(int value) 
         {
-            _scoreText.text = $"Your score : {value}";
+            _scoreText.text = $"{_localizationManager.GameTable.Value.GetEntry(LGTK.YouScore.ToString())?.GetLocalizedString()} : {value}";
         }
     }
 }

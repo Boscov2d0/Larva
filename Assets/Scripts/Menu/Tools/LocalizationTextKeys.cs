@@ -1,8 +1,8 @@
-namespace Larva.Menu.Tools
+namespace Larva.Tools
 {
     public class LocalizationTextKeys
     {
-        public enum LocalizationMainMenuTextKeys
+        public enum LocalizationMenuTextKeys
         {
             StartGame,
             LarvaHouse,
@@ -16,20 +16,14 @@ namespace Larva.Menu.Tools
             Music,
             ScreenResolution,
             Fullscreen,
-            GameMode,
-            Simple,
-            Real,
-            ChooseFeedDay,
-            Monday,
-            Tuesday,
-            Wednesday,
-            Thursday,
-            Friday,
-            Saturday,
-            Sunday,
-            SimpleModeInformation,
-            RealModeInformation,
             Back
+        }
+        public enum LocalizationGameTextKeys
+        {
+            Continue,
+            Restart,
+            Menu,
+            YouScore
         }
     }
 }

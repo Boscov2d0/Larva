@@ -32,7 +32,7 @@ namespace Larva.Game.Core
             _gameManager.Score.Value = 0;
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-            _moveController = new InputTouchScreenController()
+            _moveController = new InputTouchScreenController();
 #else
             _moveController = new InputKeyBoardController(_gameManager, larvaManager);
 #endif
