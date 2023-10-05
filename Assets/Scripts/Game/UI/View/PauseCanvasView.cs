@@ -1,9 +1,9 @@
-using Larva.Game.Data;
-using Larva.Game.Tools;
-using Larva.Tools;
+using Larva.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+
+using LGTK = Larva.Tools.LocalizationTextKeys.LocalizationGameTextKeys;
 
 namespace Larva.Game.UI.View
 {
@@ -11,10 +11,10 @@ namespace Larva.Game.UI.View
     {
         [SerializeField] private LocalizationManager _localizationManager;
         [SerializeField] private Button _continueButton;
-        [SerializeField] private Button _exitButton;
+        [SerializeField] private Button _menuButton;
 
         [SerializeField] private Text _continueText;
-        [SerializeField] private Text _exitText;
+        [SerializeField] private Text _menuText;
 
         private UnityAction _continueVoid;
         private UnityAction _exitVoid;
@@ -25,19 +25,19 @@ namespace Larva.Game.UI.View
             _exitVoid = exit;
 
             _continueButton.onClick.AddListener(_continueVoid);
-            _exitButton.onClick.AddListener(_exitVoid);
+            _menuButton.onClick.AddListener(_exitVoid);
 
             TranslateText();
         }
         private void OnDestroy()
         {
             _continueButton.onClick.RemoveListener(_continueVoid);
-            _exitButton.onClick.RemoveListener(_exitVoid);
+            _menuButton.onClick.RemoveListener(_exitVoid);
         }
         private void TranslateText()
         {
-            _continueText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedGameText, LocalizationGameTextKeys.Continue);
-            _exitText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedGameText, LocalizationGameTextKeys.MainMenu);
+            _continueText.text = _localizationManager.GameTable.Value.GetEntry(LGTK.Continue.ToString())?.GetLocalizedString();
+            _menuText.text = _localizationManager.GameTable.Value.GetEntry(LGTK.Menu.ToString())?.GetLocalizedString();
         }
     }
 }

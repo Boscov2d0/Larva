@@ -33,8 +33,6 @@ namespace Larva.Game.Core
 
 #if UNITY_ANDROID && !UNITY_EDITOR
             _moveController = new InputTouchScreenController();
-#elif UNITY_IOS && !UNITY_EDITOR
-            _moveController = new InputTouchScreenController();
 #else
             _moveController = new InputKeyBoardController(_gameManager, larvaManager);
 #endif

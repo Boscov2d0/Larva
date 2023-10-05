@@ -1,9 +1,9 @@
-using Larva.Menu.Data;
-using Larva.Menu.Tools;
-using Larva.Tools;
+using Larva.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+
+using LMTK = Larva.Tools.LocalizationTextKeys.LocalizationMenuTextKeys;
 
 namespace Larva.Menu.UI.View
 {
@@ -32,8 +32,8 @@ namespace Larva.Menu.UI.View
             _startGameButton.onClick.AddListener(_startGame);
             _settingsButton.onClick.AddListener(_openSettings);
             _exitGameButton.onClick.AddListener(_exitGame);
-            
-            //TranslateText();
+
+            TranslateText();
         }
         private void OnDestroy()
         {
@@ -43,9 +43,9 @@ namespace Larva.Menu.UI.View
         }
         private void TranslateText()
         {
-            _startGameText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedMenuText, LocalizationTextKeys.LocalizationMainMenuTextKeys.StartGame);
-            _settingsText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedMenuText, LocalizationTextKeys.LocalizationMainMenuTextKeys.Settings);
-            _exitGameText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedMenuText, LocalizationTextKeys.LocalizationMainMenuTextKeys.Exit);
+            _startGameText.text = _localizationManager.MenuTable.Value.GetEntry(LMTK.StartGame.ToString())?.GetLocalizedString();
+            _settingsText.text = _localizationManager.MenuTable.Value.GetEntry(LMTK.Settings.ToString())?.GetLocalizedString();
+            _exitGameText.text = _localizationManager.MenuTable.Value.GetEntry(LMTK.Exit.ToString())?.GetLocalizedString();
         }
     }
 }
