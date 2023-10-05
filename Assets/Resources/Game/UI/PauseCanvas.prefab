@@ -116,11 +116,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbfc85a7f16e8504f8dd91680342739c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localizationManager: {fileID: 11400000, guid: 2540ede8775e5e24e89666cdbd2fa255, type: 2}
+  _localizationManager: {fileID: 11400000, guid: 9cf093b66262dc64e96cf5cd721ed23d, type: 2}
   _continueButton: {fileID: 6888174995917324993}
-  _exitButton: {fileID: 6888174994413552223}
+  _menuButton: {fileID: 6888174994413552223}
   _continueText: {fileID: 6888174994559893938}
-  _exitText: {fileID: 6888174996022985291}
+  _menuText: {fileID: 6888174996022985291}
 --- !u!1 &1113964413153316820
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 6888174994413552222}
   - component: {fileID: 6888174994413552223}
   m_Layer: 5
-  m_Name: ExitButton
+  m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,9 +1,10 @@
+using Larva.Data;
 using Larva.Menu.Data;
-using Larva.Menu.Tools;
-using Larva.Tools;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+
+using LSTK = Larva.Tools.LocalizationTextKeys.LocalizationSettingsTextKeys;
 
 namespace Larva.Menu.UI.View
 {
@@ -52,8 +53,6 @@ namespace Larva.Menu.UI.View
             _setFullscreen = setFullscreen;
             _back = back;
 
-            _localizationManager.Language.SubscribeOnChange(TranslateText);
-
             _ruLanguageButton.onClick.AddListener(_setRuLanguage);
             _enLanguageButton.onClick.AddListener(_setEnLanguage);
             _zhLanguageButton.onClick.AddListener(_setZhLanguage);
@@ -64,11 +63,13 @@ namespace Larva.Menu.UI.View
             _backButton.onClick.AddListener(_back);
 
             SetUI();
+
+            _localizationManager.SettingsTable.SubscribeOnChange(TranslateText);
             TranslateText();
         }
         private void OnDestroy()
         {
-            _localizationManager.Language.UnSubscribeOnChange(TranslateText);
+            _localizationManager.SettingsTable.UnSubscribeOnChange(TranslateText);
 
             _ruLanguageButton.onClick.RemoveListener(_setRuLanguage);
             _enLanguageButton.onClick.RemoveListener(_setEnLanguage);
@@ -96,12 +97,12 @@ namespace Larva.Menu.UI.View
         }
         private void TranslateText()
         {
-            _languageText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.Language);
-            _soundText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.Sounds);
-            _musicText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.Music);
-            _screenResolutionText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.ScreenResolution);
-            _fullscreenText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.Fullscreen);
-            _backText.text = Localizator.GetLocalizedValue(_localizationManager.LocalizedSettingsText, LocalizationTextKeys.LocalizationSettingsTextKeys.Back);
+            _languageText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.Language.ToString())?.GetLocalizedString();
+            _soundText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.Sounds.ToString())?.GetLocalizedString();
+            _musicText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.Music.ToString())?.GetLocalizedString();
+            _screenResolutionText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.ScreenResolution.ToString())?.GetLocalizedString();
+            _fullscreenText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.Fullscreen.ToString())?.GetLocalizedString();
+            _backText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.Back.ToString())?.GetLocalizedString();
         }
     }
 }
