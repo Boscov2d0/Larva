@@ -60,7 +60,7 @@ namespace Larva.Menu.UI.Controller
         }
         private void Back()
         {
-            Saver.SaveGamePhoneSettingsData(_saveLoadManager, _localizationManager, _audioManager);
+            Saver.SaveGamePhoneSettingsData(_saveLoadManager, _audioManager);
             _gameManager.GameState.Value = GameState.Menu;
             _audioManager.State.Value = AudioStates.ButtonApply;
         }

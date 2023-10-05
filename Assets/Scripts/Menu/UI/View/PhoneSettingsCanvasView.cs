@@ -50,7 +50,6 @@ namespace Larva.Menu.UI.View
             _backButton.onClick.AddListener(_back);
 
             SetUI();
-
             _localizationManager.SettingsTable.SubscribeOnChange(TranslateText);
             TranslateText();
         }

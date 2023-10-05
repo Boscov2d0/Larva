@@ -1,12 +1,12 @@
+using Larva.Data;
 using Larva.Menu.Data;
 
 namespace Larva.Menu.Tools
 {
     public static class Saver
     {
-        public static void SaveGamePCSettingsData(SaveLoadManager saveLoadManager, LocalizationManager localizationManager, AudioManager audioManager, VideoManager videoManager)
+        public static void SaveGamePCSettingsData(SaveLoadManager saveLoadManager, AudioManager audioManager, VideoManager videoManager)
         {
-            saveLoadManager.GameSettingsData.Language = localizationManager.Language.Value;
             saveLoadManager.GameSettingsData.SoundsVolume = audioManager.SoundsVolume;
             saveLoadManager.GameSettingsData.MusicVolume = audioManager.MusicVolume;
             saveLoadManager.GameSettingsData.ScreenResolution = videoManager.ScreenResolution;
@@ -14,9 +14,8 @@ namespace Larva.Menu.Tools
 
             JSONDataLoadSaver<StructsData.GameSettingsData>.SaveData(saveLoadManager.GameSettingsData, saveLoadManager.GameSettingsDataPath);
         }
-        public static void SaveGamePhoneSettingsData(SaveLoadManager saveLoadManager, LocalizationManager localizationManager, AudioManager audioManager)
+        public static void SaveGamePhoneSettingsData(SaveLoadManager saveLoadManager, AudioManager audioManager)
         {
-            saveLoadManager.GameSettingsData.Language = localizationManager.Language.Value;
             saveLoadManager.GameSettingsData.SoundsVolume = audioManager.SoundsVolume;
             saveLoadManager.GameSettingsData.MusicVolume = audioManager.MusicVolume;
 
