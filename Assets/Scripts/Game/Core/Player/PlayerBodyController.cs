@@ -1,4 +1,3 @@
-using Larva.Data;
 using Larva.Game.Data;
 using Larva.Game.Tools;
 using Larva.Tools;
@@ -9,6 +8,8 @@ namespace Larva.Game.Core.Player
 {
     public class PlayerBodyController : ObjectsDisposer
     {
+        private const string _nameOfPool = "PoolOfBody";
+
         private LarvaManager _larvaManager;
         private List<Transform> _bodyNodeList;
         private List<Transform> _freeObjects;
@@ -16,19 +17,18 @@ namespace Larva.Game.Core.Player
         private Transform _body;
         private Transform _bodyPrefab;
 
-        public PlayerBodyController(LarvaProfile profileManager, List<Transform> bodyNodeList, LarvaManager larvaManager)
+        public PlayerBodyController(List<Transform> bodyNodeList, LarvaManager larvaManager)
         {
             _larvaManager = larvaManager;
             _bodyNodeList = bodyNodeList;
 
-            _poolOfBody = new GameObject("PoolOfBody").transform;
+            _poolOfBody = new GameObject(_nameOfPool).transform;
             _poolOfBody.transform.position = new Vector3(100, 0, 0);
             _freeObjects = new List<Transform>();
 
             _larvaManager.State.SubscribeOnChange(OnChangeState);
 
             _bodyPrefab = ResourcesLoader.InstantiateAndGetObject<Transform>(_larvaManager.ObjectsPath + _larvaManager.BodyPath, _poolOfBody);
-            _bodyPrefab.GetComponentInChildren<Renderer>().material = profileManager.BodySkin;
         }
         protected override void OnDispose() 
         {
@@ -42,10 +42,10 @@ namespace Larva.Game.Core.Player
         {
             switch (_larvaManager.State.Value) 
             {
-                case PlayerState.EatGoodFood:
+                case LarvaState.EatGoodFood:
                     GrouBody();
                     break;
-                case PlayerState.EatBadFood:
+                case LarvaState.EatBadFood:
                     LoseBody();
                     break;
             }
@@ -74,7 +74,7 @@ namespace Larva.Game.Core.Player
             }
             else
             {
-                _larvaManager.State.Value = PlayerState.Death;
+                _larvaManager.State.Value = LarvaState.Death;
             }
         }
     }

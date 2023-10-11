@@ -7,6 +7,8 @@ namespace Larva.Game.Data
     [CreateAssetMenu(fileName = nameof(GameManager), menuName = "Managers/Game/GameManager")]
     public class GameManager : ScriptableObject
     {
+        [field: SerializeField] public bool PlayHellowAnimation { get; set; }
+        [field: SerializeField] public Vector3 StartPosition { get; private set; }
         [field: SerializeField] public int CountOfGoodFood { get; private set; }
         [field: SerializeField] public int CountOfBadFood { get; private set; }
         [field: SerializeField] public int CountOfObstacles { get; private set; }
@@ -14,6 +16,7 @@ namespace Larva.Game.Data
         [TextArea(1, 1)]
         public string Discription1;
         [field: SerializeField] public string PathForObjects { get; private set; }
+        [field: SerializeField] public string LoadingPath { get; private set; }
         [field: SerializeField] public string GameAreaPath { get; private set; }
         [field: SerializeField] public string DirectionalLightPath { get; private set; }
         [field: SerializeField] public string CameraPath { get; private set; }

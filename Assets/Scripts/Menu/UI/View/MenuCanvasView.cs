@@ -23,7 +23,7 @@ namespace Larva.Menu.UI.View
         private UnityAction _openSettings;
         private UnityAction _exitGame;
 
-        public void Init(UnityAction startGame, UnityAction openSettings, UnityAction exitGame)
+        public void Initialize(UnityAction startGame, UnityAction openSettings, UnityAction exitGame)
         {
             _startGame = startGame;
             _openSettings = openSettings;
@@ -33,10 +33,13 @@ namespace Larva.Menu.UI.View
             _settingsButton.onClick.AddListener(_openSettings);
             _exitGameButton.onClick.AddListener(_exitGame);
 
+            _localizationManager.MenuTable.SubscribeOnChange(TranslateText);
             TranslateText();
         }
         private void OnDestroy()
         {
+            _localizationManager.MenuTable.UnSubscribeOnChange(TranslateText);
+
             _startGameButton.onClick.RemoveListener(_startGame);
             _settingsButton.onClick.RemoveListener(_openSettings);
             _exitGameButton.onClick.RemoveListener(_exitGame);

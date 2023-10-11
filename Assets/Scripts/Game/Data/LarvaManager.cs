@@ -14,8 +14,8 @@ namespace Larva.Game.Data
         [field: SerializeField] public float Speed { get; private set; }
         [field: SerializeField] public float BodyNodeDistance { get; private set; }
 
-        [HideInInspector] public MovementPlane MovementPlane { get; set; }
+        [HideInInspector] public MovementPlane MovementPlane;
         [HideInInspector] public SubscriptionProperty<Vector3> Direction = new SubscriptionProperty<Vector3>();
-        [HideInInspector] public SubscriptionProperty<PlayerState> State = new SubscriptionProperty<PlayerState>();
+        [HideInInspector] public SubscriptionProperty<LarvaState> State = new SubscriptionProperty<LarvaState>();
     }
 }

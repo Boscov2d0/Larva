@@ -17,6 +17,8 @@ namespace Larva.Menu.Core
             LocalizationSettings.SelectedLocaleChanged += OnChangedLocale;
 
             GetTables();
+
+            LocalizationSettings.SelectedLocale = _localizationManager.Language;
         }
         protected override void OnDispose()
         {
@@ -30,22 +32,16 @@ namespace Larva.Menu.Core
         {
             GetMenuTable();
             GetSettingsTable();
-            GetGameTable();
         }
         private void GetMenuTable() 
         {
-            StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable("Menu");
+            StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable(Keys.TabelsNameKeys.Menu.ToString());
             _localizationManager.MenuTable.Value = loadingOperation;
         }
         private void GetSettingsTable()
         {
-            StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable("Settings");
+            StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable(Keys.TabelsNameKeys.Settings.ToString());
             _localizationManager.SettingsTable.Value = loadingOperation;
-        }
-        private void GetGameTable()
-        {
-            StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable("Game");
-            _localizationManager.GameTable.Value = loadingOperation;
         }
     }
 }

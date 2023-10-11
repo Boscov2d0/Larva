@@ -1,3 +1,4 @@
+using Larva.Game.Data;
 using UnityEngine;
 
 namespace Larva.Game.Core
@@ -7,6 +8,8 @@ namespace Larva.Game.Core
         private Touch _touch;
         private Vector2 _startTouchposition;
         private Vector2 _endTouchposition;
+
+        public InputTouchScreenController(LarvaManager larvaManager) : base(larvaManager) { }
 
         public override void Execute()
         {

@@ -7,32 +7,32 @@ namespace Larva.Game.Core
 {
     public class MoveController : ObjectsDisposer
     {
-        private LarvaManager _playerManager;
+        private LarvaManager _larvaManager;
         public MoveController(){}
-        public MoveController(GameManager gameManager, LarvaManager playerManager)
+        public MoveController(LarvaManager larvaManager)
         {
-            _playerManager = playerManager;
+            _larvaManager = larvaManager;
         }
-        public virtual void Execute() { }
+        public virtual void Execute() {}
         public void TurnLeft()
         {
-            _playerManager.MovementPlane = MovementPlane.Horizontal;
-            _playerManager.Direction.Value = new Vector3(0, 90, 0);
+            _larvaManager.MovementPlane = MovementPlane.Horizontal;
+            _larvaManager.Direction.Value = new Vector3(0, 90, 0);
         }
         public void TurnRight()
         {
-            _playerManager.MovementPlane = MovementPlane.Horizontal;
-            _playerManager.Direction.Value = new Vector3(0, -90, 0);
+            _larvaManager.MovementPlane = MovementPlane.Horizontal;
+            _larvaManager.Direction.Value = new Vector3(0, -90, 0);
         }
         public void TurnUp()
         {
-            _playerManager.MovementPlane = MovementPlane.Vertical;
-            _playerManager.Direction.Value = new Vector3(0, 180, 0);
+            _larvaManager.MovementPlane = MovementPlane.Vertical;
+            _larvaManager.Direction.Value = new Vector3(0, 180, 0);
         }
         public void TurnDown()
         {
-            _playerManager.MovementPlane = MovementPlane.Vertical;
-            _playerManager.Direction.Value = new Vector3(0, 0, 0);
+            _larvaManager.MovementPlane = MovementPlane.Vertical;
+            _larvaManager.Direction.Value = new Vector3(0, 0, 0);
         }
     }
 }

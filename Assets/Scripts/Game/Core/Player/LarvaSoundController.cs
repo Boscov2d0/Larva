@@ -27,10 +27,10 @@ namespace Larva.Game.Core
         {
             switch (_larvaManager.State.Value)
             {
-                case PlayerState.EatGoodFood:
+                case LarvaState.EatGoodFood:
                     _eatSounds[Random.Range(0, _eatSounds.Count)].Play();
                     break;
-                case PlayerState.EatBadFood:
+                case LarvaState.EatBadFood:
                     _eatSounds[Random.Range(0, _eatSounds.Count)].Play();
                     break;
             }

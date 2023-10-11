@@ -1,68 +1,30 @@
+using Larva.Data;
 using Larva.Menu.Data;
 using Larva.Menu.Tools;
 using Larva.Menu.UI.View;
 using Larva.Tools;
-using UnityEngine;
-using UnityEngine.Localization.Settings;
 
 namespace Larva.Menu.UI.Controller
 {
-    public class PhoneSettingsUIController : ObjectsDisposer
+    public class PhoneSettingsUIController : SettingsUIController
     {
-        private readonly GameManager _gameManager;
-        private readonly AudioManager _audioManager;
+        private readonly SaveLoadManager _saveLoadManager;
 
-        private const int ru = 0;
-        private const int en = 1;
-        private const int zh = 2;
-
-        public PhoneSettingsUIController(SaveLoadManager saveLoadManager, LocalizationManager localizationManager, 
-                                         GameManager gameManager, UIManager uiManager, AudioManager audioManager)
+        public PhoneSettingsUIController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager, 
+                                         GameManager gameManager, UIManager uiManager, 
+                                         AudioManager audioManager) : base(localizationManager, gameManager, audioManager)
         {
             _saveLoadManager = saveLoadManager;
-            _gameManager = gameManager;
-            _audioManager = audioManager;
 
             PhoneSettingsCanvasView settingsCanvasView = ResourcesLoader.InstantiateAndGetObject<PhoneSettingsCanvasView>(uiManager.PathForUIObjects + uiManager.PhoneSettingsCanvasPath);
             AddGameObject(settingsCanvasView.gameObject);
-            settingsCanvasView.Init(SetRuLanguage, SetEnLanguage, SetZhLanguage, SetSoundVolume, SetMusicVolume, Back);
+            settingsCanvasView.Initialize(SetRuLanguage, SetEnLanguage, SetZhLanguage, SetSoundVolume, SetMusicVolume, Back);
         }
-        private void SetRuLanguage()
+        protected override void Back()
         {
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[ru];
-            _audioManager.State.Value = AudioStates.Button;
-        }
-        private void SetEnLanguage()
-        {
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[en];
-            _audioManager.State.Value = AudioStates.Button;
-        }
-        private void SetZhLanguage()
-        {
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[zh];
-            _audioManager.State.Value = AudioStates.Button;
-        }
-        private void SetSoundVolume(float value)
-        {
-            _audioManager.SoundsVolume = value;
-            _audioManager.AudioMixer.SetFloat(AudioKeys.Sound.ToString(), Mathf.Log10(value) * 20);
+            Saver.SaveGamePhoneSettingsData(_localizationManager, _saveLoadManager, _audioManager);
 
-            if (value == 0)
-                _audioManager.AudioMixer.SetFloat(AudioKeys.Sound.ToString(), -80);
-        }
-        private void SetMusicVolume(float value)
-        {
-            _audioManager.MusicVolume = value;
-            _audioManager.AudioMixer.SetFloat(AudioKeys.Music.ToString(), Mathf.Log10(value) * 20);
-
-            if (value == 0)
-                _audioManager.AudioMixer.SetFloat(AudioKeys.Music.ToString(), -80);
-        }
-        private void Back()
-        {
-            Saver.SaveGamePhoneSettingsData(_saveLoadManager, _audioManager);
-            _gameManager.GameState.Value = GameState.Menu;
-            _audioManager.State.Value = AudioStates.ButtonApply;
+            base.Back();
         }
     }
 }

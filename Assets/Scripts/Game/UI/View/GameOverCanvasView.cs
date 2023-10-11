@@ -20,7 +20,7 @@ namespace Larva.Game.UI.View
         private UnityAction _restartVoid;
         private UnityAction _exitVoid;
 
-        public void Initialized(UnityAction restart, UnityAction exit, int score)
+        public void Initialize(UnityAction restart, UnityAction exit, int score)
         {
             _restartVoid = restart;
             _exitVoid = exit;
@@ -28,22 +28,18 @@ namespace Larva.Game.UI.View
             _restartButton.onClick.AddListener(_restartVoid);
             _exitButton.onClick.AddListener(_exitVoid);
 
-            TranslateText();
-            ShowScore(score);
+            TranslateText(score);
         }
         private void OnDestroy()
         {
             _restartButton.onClick.RemoveListener(_restartVoid);
             _exitButton.onClick.RemoveListener(_exitVoid);
         }
-        private void TranslateText()
-        {
-            _restartText.text = _localizationManager.GameTable.Value.GetEntry(LGTK.Restart.ToString())?.GetLocalizedString();
-            _exitText.text = _localizationManager.GameTable.Value.GetEntry(LGTK.Menu.ToString())?.GetLocalizedString();
-        }
-        private void ShowScore(int value) 
+        private void TranslateText(int value)
         {
             _scoreText.text = $"{_localizationManager.GameTable.Value.GetEntry(LGTK.YouScore.ToString())?.GetLocalizedString()} : {value}";
+            _restartText.text = _localizationManager.GameTable.Value.GetEntry(LGTK.Restart.ToString())?.GetLocalizedString();
+            _exitText.text = _localizationManager.GameTable.Value.GetEntry(LGTK.Menu.ToString())?.GetLocalizedString();
         }
     }
 }

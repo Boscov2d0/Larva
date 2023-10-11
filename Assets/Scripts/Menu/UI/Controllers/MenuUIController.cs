@@ -1,3 +1,4 @@
+using Larva.Data;
 using Larva.Menu.Data;
 using Larva.Menu.Tools;
 using Larva.Menu.UI.View;
@@ -16,23 +17,23 @@ namespace Larva.Menu.UI.Controller
             _audioManager = audioManager;
 
             MenuCanvasView menuCanvasView = ResourcesLoader.InstantiateAndGetObject<MenuCanvasView>(uiManager.PathForUIObjects + uiManager.MainMenuCanvasPath);
-            menuCanvasView.Init(StartGame, OpenSettingsPanel, ExitGame);
+            menuCanvasView.Initialize(StartGame, OpenSettingsPanel, ExitGame);
             AddGameObject(menuCanvasView.gameObject);
         }
         private void StartGame()
         {
             _gameManager.GameState.Value = GameState.Play;
-            _audioManager.State.Value = AudioStates.ButtonApply;
+            _audioManager.State.Value = AudioKeys.AudioStates.ButtonApply;
         }
         private void OpenSettingsPanel()
         {
             _gameManager.GameState.Value = GameState.Settings;
-            _audioManager.State.Value = AudioStates.Button;
+            _audioManager.State.Value = AudioKeys.AudioStates.Button;
         }
         private void ExitGame()
         {
             _gameManager.GameState.Value = GameState.Exit;
-            _audioManager.State.Value = AudioStates.ButtonCancel;
+            _audioManager.State.Value = AudioKeys.AudioStates.ButtonCancel;
         }
     }
 }

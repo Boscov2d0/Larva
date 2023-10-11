@@ -1,4 +1,3 @@
-using Larva.Data;
 using Larva.Game.Core.SpawnObjects;
 using Larva.Game.Data;
 using Larva.Game.Tools;
@@ -9,7 +8,6 @@ namespace Larva.Game.Core.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private LarvaProfile _larvaProfile;
         [SerializeField] private LarvaManager _larvaManager;
         [SerializeField] private Transform _headTransform;
         [SerializeField] private List<Transform> _bodyNodeList;
@@ -26,13 +24,8 @@ namespace Larva.Game.Core.Player
 
         private void Start()
         {
-            _playerMoveController = new PlayerMoveController(_headTransform, _bodyNodeList, _larvaManager);
-            _playerDeathController = new PlayerDeathController(_headTransform, _larvaManager);
-            _playerBodyController = new PlayerBodyController(_larvaProfile, _bodyNodeList, _larvaManager);
-            _larvaSoundController = new LarvaSoundController(_larvaManager, _eatSounds);
-
             _larvaManager.State.SubscribeOnChange(OnChangeState);
-            _larvaManager.State.Value = PlayerState.Null;
+            OnChangeState();
         }
         private void OnDestroy()
         {
@@ -44,7 +37,7 @@ namespace Larva.Game.Core.Player
         }
         private void FixedUpdate()
         {
-            if (_larvaManager.State.Value == PlayerState.Death)
+            if (_larvaManager.State.Value == LarvaState.Death)
                 return;
 
             _playerMoveController?.FixedExecute();
@@ -54,11 +47,21 @@ namespace Larva.Game.Core.Player
         {
             switch (_larvaManager.State.Value)
             {
-                case PlayerState.Death:
+                case LarvaState.Play:
+                    CreateControllers();
+                    break;
+                case LarvaState.Death:
                     _playerMoveController?.Dispose();
-                    _playerDeathController.Death();
+                    _playerDeathController?.Death();
                     break;
             }
+        }
+        private void CreateControllers() 
+        {
+            _playerMoveController = new PlayerMoveController(_headTransform, _bodyNodeList, _larvaManager);
+            _playerDeathController = new PlayerDeathController(_headTransform, _larvaManager);
+            _playerBodyController = new PlayerBodyController(_bodyNodeList, _larvaManager);
+            _larvaSoundController = new LarvaSoundController(_larvaManager, _eatSounds);
         }
         private void CheckIntersectionBodyByRay()
         {
@@ -69,7 +72,7 @@ namespace Larva.Game.Core.Player
             {
                 if (_hit.collider.tag == "Player")
                 {
-                    _larvaManager.State.Value = PlayerState.Death;
+                    _larvaManager.State.Value = LarvaState.Death;
                 }
             }
         }
@@ -80,13 +83,13 @@ namespace Larva.Game.Core.Player
                 switch (spawnObject.ObjectType)
                 {
                     case SpawnObjectsType.GoodLeaves:
-                        _larvaManager.State.Value = PlayerState.EatGoodFood;
+                        _larvaManager.State.Value = LarvaState.EatGoodFood;
                         break;
                     case SpawnObjectsType.BadLeaves:
-                        _larvaManager.State.Value = PlayerState.EatBadFood;
+                        _larvaManager.State.Value = LarvaState.EatBadFood;
                         break;
                     case SpawnObjectsType.Obstacle:
-                        _larvaManager.State.Value = PlayerState.Death;
+                        _larvaManager.State.Value = LarvaState.Death;
                         break;
                 }
 

@@ -31,7 +31,7 @@ namespace Larva.Menu.UI.View
         private UnityAction<float> _setMusicVolume;
         private UnityAction _back;
 
-        public void Init(UnityAction setRuLanguage, UnityAction setEnLanguage, UnityAction setZhLanguage,
+        public void Initialize(UnityAction setRuLanguage, UnityAction setEnLanguage, UnityAction setZhLanguage,
                  UnityAction<float> setSoundVolume, UnityAction<float> setMusicVolume,
                  UnityAction back)
         {

@@ -51,7 +51,8 @@ namespace Larva.Game.Core.SpawnObjects
             {
                 int obstaclesHave = 0;
 
-                _curentPosition = new Vector3((int)Random.Range(_leftScreenBorder.x, _rightScreenBorder.x), 0, (int)Random.Range(_bottomScreenBorder.z, _topScreenBorder.z));
+                _curentPosition = new Vector3((int)Random.Range(_leftScreenBorder.x, _rightScreenBorder.x), 0, 
+                                              (int)Random.Range(_bottomScreenBorder.z, _topScreenBorder.z));
 
                 for (int i = 0; i < _usedPositions.Count; i++)
                 {

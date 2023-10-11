@@ -16,11 +16,10 @@ namespace Larva.Menu.Core
             _videoManager = videoManager;
 
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.ScenePath);
-            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLightPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.MenuCameraPath);
             ResourcesLoader.InstantiateAndGetObject<GameObject>(_gameManager.PathForObjects + _gameManager.MenuLarvaPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.AudioControllerPath);
-
+            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLightPath);
             SetVideoSettings();
 
             _gameManager.GameState.SubscribeOnChange(OnChangeGameState);
@@ -38,7 +37,7 @@ namespace Larva.Menu.Core
             {
                 _videoManager.ScreenResolution.x = Screen.currentResolution.width;
                 _videoManager.ScreenResolution.y = Screen.currentResolution.height;
-                _videoManager.Fullscreen = Screen.fullScreen;
+                _videoManager.Fullscreen = true;
                 _videoManager.ScreenResolution.z = Screen.currentResolution.refreshRate;
             }
             Screen.SetResolution((int)_videoManager.ScreenResolution.x, (int)_videoManager.ScreenResolution.y, _videoManager.Fullscreen, (int)_videoManager.ScreenResolution.z);

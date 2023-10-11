@@ -8,7 +8,7 @@ namespace Larva.Game.Core
     {
         private GameManager _gameManager;
 
-        public InputKeyBoardController(GameManager gameManager, LarvaManager playerManager) : base(gameManager, playerManager)
+        public InputKeyBoardController(GameManager gameManager, LarvaManager larvaManager) : base(larvaManager)
         {
             _gameManager = gameManager;
         }

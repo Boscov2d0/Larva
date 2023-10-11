@@ -19,7 +19,7 @@ namespace Larva.Game.UI.View
         private UnityAction _continueVoid;
         private UnityAction _exitVoid;
 
-        public void Initialized(UnityAction continueVoid, UnityAction exit)
+        public void Initialize(UnityAction continueVoid, UnityAction exit)
         {
             _continueVoid = continueVoid;
             _exitVoid = exit;

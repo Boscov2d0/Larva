@@ -3,12 +3,15 @@ using Larva.Tools;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 using Random = UnityEngine.Random;
 
 namespace Larva.Game.Core.SpawnObjects
 {
     public class CreateObjectsController : ObjectsDisposer
     {
+        private const string _prefabPath = "Game/SpawnObjects/";
+
         private int _startCount;
         private GameObject _object;
         private GameObject _prefab;
@@ -60,7 +63,7 @@ namespace Larva.Game.Core.SpawnObjects
         {
             for (int i = 0; i < _startCount; i++)
             {
-                _prefab = Resources.Load("Game/SpawnObjects/" + GetObjectSubspecies<T>()) as GameObject;
+                _prefab = Resources.Load(_prefabPath + GetObjectSubspecies<T>()) as GameObject;
 
                 if (_freeObjects.Count == 0)
                 {

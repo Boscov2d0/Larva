@@ -11,7 +11,7 @@ namespace Larva.Game.UI.View
 
         private UnityAction _pauseVoid;
 
-        public void Initialized(UnityAction pause)
+        public void Initialize(UnityAction pause)
         {
             _pauseVoid = pause;
             _pauseButton.onClick.AddListener(_pauseVoid);

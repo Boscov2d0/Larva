@@ -7,5 +7,11 @@ namespace Larva.Tools
             Menu,
             Game
         }
+        public enum TabelsNameKeys
+        {
+            Menu,
+            Settings,
+            Game
+        }
     }
 }

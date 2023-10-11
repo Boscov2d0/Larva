@@ -12,38 +12,62 @@ namespace Larva.Game.Core
     {
         private readonly GameManager _gameManager;
         private readonly LarvaManager _larvaManager;
-
+        
+        private LarvaView _larva;
         private Camera _camera;
+
+        private PreStartController _preStartController;
         private MoveController _moveController;
         private SpawnObjectsController _spawnObjectsController;
 
-        public GameController(GameManager gameManager, LarvaManager larvaManager)
+        public GameController(GameManager gameManager, LarvaManager larvaManager, PreStartManager preStartManager)
         {
             _gameManager = gameManager;
             _larvaManager = larvaManager;
 
-            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.GameAreaPath);
+            _gameManager.GameState.Value = GameState.Null;
+
+            CreateLarva();
+
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLightPath);
-            _camera = ResourcesLoader.InstantiateAndGetObject<Camera>(_gameManager.PathForObjects + _gameManager.CameraPath);
-            ResourcesLoader.InstantiateObject<LarvaView>(_larvaManager.ObjectsPath + _larvaManager.LarvaPath);
+            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.GameAreaPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.AudioControllerPath);
 
-            _larvaManager.State.SubscribeOnChange(OnLarvaStateChange);
-            _gameManager.Score.Value = 0;
+            _gameManager.GameState.SubscribeOnChange(OnGameStateChange);
 
-#if UNITY_ANDROID && !UNITY_EDITOR
-            _moveController = new InputTouchScreenController();
-#else
-            _moveController = new InputKeyBoardController(_gameManager, larvaManager);
-#endif
+            if (_gameManager.PlayHellowAnimation)
+                _preStartController = new PreStartController(_gameManager, preStartManager, _larva);
+            else
+                _gameManager.GameState.Value = GameState.PreGame;
+        }
+        private void CreateLarva() 
+        {
+            _larva = ResourcesLoader.InstantiateAndGetObject<LarvaView>(_larvaManager.ObjectsPath + _larvaManager.LarvaPath);
+            _larva.gameObject.transform.position = _gameManager.StartPosition;
+            _larvaManager.State.SubscribeOnChange(OnLarvaStateChange);
+            
+//#if UNITY_ANDROID && !UNITY_EDITOR
+            _moveController = new InputTouchScreenController(_larvaManager);
+/*#else
+            _moveController = new InputKeyBoardController(_gameManager, _larvaManager);
+#endif*/
             AddController(_moveController);
+        }
+        private void Initialize()
+        {
+            _preStartController?.Dispose();
+
+            _camera = ResourcesLoader.InstantiateAndGetObject<Camera>(_gameManager.PathForObjects + _gameManager.CameraPath);
+
+            _gameManager.GameState.Value = GameState.Game;
+            _gameManager.CurrentCountOfGoodFood.Value = _gameManager.CountOfGoodFood;
+            _gameManager.Score.Value = 0;
 
             _spawnObjectsController = new SpawnObjectsController(_gameManager);
             AddController(_spawnObjectsController);
 
-            _gameManager.GameState.SubscribeOnChange(OnGameStateChange);
-            _gameManager.GameState.Value = GameState.Game;
-            _gameManager.Score.Value = 0;
+           _larva.Animator.enabled = false;
+            _larvaManager.State.Value = LarvaState.Play;
         }
 
         protected override void OnDispose()
@@ -60,10 +84,17 @@ namespace Larva.Game.Core
         {
             _moveController?.Execute();
         }
+        public void FixedExecute() 
+        {
+            _preStartController?.FixedExecute();
+        }
         private void OnGameStateChange()
         {
             switch (_gameManager.GameState.Value)
             {
+                case GameState.PreGame:
+                    Initialize();
+                    break;
                 case GameState.Game:
                     GamePause(false);
                     break;
@@ -85,14 +116,14 @@ namespace Larva.Game.Core
         {
             switch (_larvaManager.State.Value)
             {
-                case PlayerState.EatGoodFood:
+                case LarvaState.EatGoodFood:
                     _gameManager.CurrentCountOfGoodFood.Value--;
                     _gameManager.Score.Value += _gameManager.IncreasePointsValue;
                     break;
-                case PlayerState.EatBadFood:
+                case LarvaState.EatBadFood:
                     _gameManager.Score.Value -= _gameManager.IncreasePointsValue;
                     break;
-                case PlayerState.Death:
+                case LarvaState.Death:
                     _gameManager.GameState.Value = GameState.Lose;
                     break;
             }
@@ -106,6 +137,10 @@ namespace Larva.Game.Core
         }
         private void GameOver() => _camera.GetComponentInChildren<Animator>().enabled = true;
         private void Restart() => SceneManager.LoadScene(Keys.ScneneNameKeys.Game.ToString());
-        private void Exit() => SceneManager.LoadScene(Keys.ScneneNameKeys.Menu.ToString());
+        private void Exit()
+        {
+            GamePause(false);
+            SceneManager.LoadScene(Keys.ScneneNameKeys.Menu.ToString());
+        }
     }
 }

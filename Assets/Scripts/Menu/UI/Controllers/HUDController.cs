@@ -1,3 +1,4 @@
+using Larva.Data;
 using Larva.Menu.Data;
 using Larva.Menu.Tools;
 using Larva.Tools;
@@ -6,6 +7,7 @@ namespace Larva.Menu.UI.Controller
 {
     public class HUDController : ObjectsDisposer
     {
+        private readonly LocalizationManager _localizationManager;
         private readonly SaveLoadManager _saveLoadManager;
         private readonly GameManager _gameManager;
         private readonly UIManager _uiManager;
@@ -13,13 +15,13 @@ namespace Larva.Menu.UI.Controller
         private readonly VideoManager _videoManager;
 
         private MenuUIController _mainMenuUIController;
-        private PhoneSettingsUIController _phoneSettingsUIController;
-        private PCSettingsUIController _pcSettingsUIController;
+        private SettingsUIController _settingsUIController;
 
-        public HUDController(SaveLoadManager saveLoadManager, 
+        public HUDController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager, 
                              GameManager gameManager, UIManager uiManager, 
                              AudioManager audioManager, VideoManager videoManager)
         {
+            _localizationManager = localizationManager;
             _saveLoadManager = saveLoadManager;
             _gameManager = gameManager;
             _uiManager = uiManager;
@@ -47,21 +49,21 @@ namespace Larva.Menu.UI.Controller
                     _mainMenuUIController = new MenuUIController(_gameManager, _uiManager, _audioManager);
                     break;
                 case GameState.Settings:
-#if UNITY_ANDROID && !UNITY_EDITOR
-                    _phoneSettingsUIController = new PhoneSettingsUIController(_gameManager, _uiManager, _audioManager);
-                    AddController(_phoneSettingsUIController);
+#if UNITY_ANDROID || UNITY_WEBGL && !UNITY_EDITOR
+                    _settingsUIController = new PhoneSettingsUIController(_localizationManager, _saveLoadManager, _gameManager, _uiManager, _audioManager);
 #else
-                    _pcSettingsUIController = new PCSettingsUIController(_gameManager, _uiManager, _audioManager);
-                    AddController(_pcSettingsUIController);
+                    _settingsUIController = new PCSettingsUIController(_localizationManager, _saveLoadManager, 
+                                                                       _gameManager, _uiManager, 
+                                                                       _audioManager, _videoManager);
 #endif
+                    AddController(_settingsUIController);
                     break;
             }
         }
         private void DisposeControllers()
         {
             _mainMenuUIController?.Dispose();
-            _phoneSettingsUIController?.Dispose();
-            _pcSettingsUIController?.Dispose();
+           _settingsUIController?.Dispose();
         }
     }
 }

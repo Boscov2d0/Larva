@@ -5,8 +5,6 @@ namespace Larva.Game.Core.Player
 {
     public class LarvaView : MonoBehaviour
     {
-        [field: SerializeField] public Renderer Head { get; private set; }
-        [field: SerializeField] public Renderer Hand { get; private set; }
-        [field: SerializeField] public List<Renderer> Body { get; private set; }
+        [field: SerializeField] public Animator Animator { get; private set; }
     }
 }

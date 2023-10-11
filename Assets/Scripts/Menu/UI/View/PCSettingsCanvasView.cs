@@ -12,6 +12,7 @@ namespace Larva.Menu.UI.View
     {
         [SerializeField] private LocalizationManager _localizationManager;
         [SerializeField] private AudioManager _audioManager;
+        [SerializeField] private VideoManager _videoManager;
         [SerializeField] private Button _ruLanguageButton;
         [SerializeField] private Button _enLanguageButton;
         [SerializeField] private Button _zhLanguageButton;
@@ -39,7 +40,7 @@ namespace Larva.Menu.UI.View
 
         public Dropdown ScreenResolutionDropdown { get { return _screenResolutionDropdown; } private set { } }
 
-        public void Init(UnityAction setRuLanguage, UnityAction setEnLanguage, UnityAction setZhLanguage,
+        public void Initialize(UnityAction setRuLanguage, UnityAction setEnLanguage, UnityAction setZhLanguage,
                          UnityAction<float> setSoundVolume, UnityAction<float> setMusicVolume,
                          UnityAction<int> setScreenResolution, UnityAction<bool> setFullscreen,
                          UnityAction back)
@@ -93,6 +94,7 @@ namespace Larva.Menu.UI.View
                 if (data.text == Screen.currentResolution.ToString())
                     _screenResolutionDropdown.value = i;
             }
+            _fulscreenToggle.isOn = _videoManager.Fullscreen;
         }
         private void TranslateText()
         {
