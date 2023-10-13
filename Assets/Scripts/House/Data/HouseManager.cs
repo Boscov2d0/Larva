@@ -16,7 +16,15 @@ namespace Larva.House.Data
 
         [Space]
         [TextArea(1, 1)]
-        public string Discription4;
+        public string Discription2;
+        [HideInInspector] public bool AllBuilded;
+        [field: SerializeField] public RoomManager Bedroom { get; private set; }
+        [field: SerializeField] public RoomManager ChildrenRoom { get; private set; }
+        [field: SerializeField] public RoomManager Kitchen { get; private set; }
+
+        [Space]
+        [TextArea(1, 1)]
+        public string Discription3;
         [field: SerializeField] public SubscriptionProperty<int> CountOfFood = new SubscriptionProperty<int>();
         [field: SerializeField] public List<PotManager> PotManagers { get; private set; }
         [field: SerializeField] public List<Material> PotMaterials { get; private set; }
@@ -29,6 +37,9 @@ namespace Larva.House.Data
 
         [field: SerializeField] public Vector3 OutSideCameraPosition { get; private set; }
         [field: SerializeField] public Vector3 MainHallCameraPosition { get; private set; }
+        [field: SerializeField] public Vector3 BedroomCameraPosition { get; private set; }
+        [field: SerializeField] public Vector3 ChildrenRoomCameraPosition { get; private set; }
+        [field: SerializeField] public Vector3 KitchenCameraPosition { get; private set; }
         [field: SerializeField] public float CameraMoveSpeed { get; private set; }
-}
+    }
 }

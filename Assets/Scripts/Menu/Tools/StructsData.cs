@@ -20,6 +20,9 @@ namespace Larva.Tools
         {
             public int CountOfFood;
             public List<PotData> Pots;
+            public bool BedroomIsActive;
+            public bool ChildrenRoomIsActive;
+            public bool KitcheIsActive;
         }
         [Serializable]
         public struct PotData

@@ -19,6 +19,42 @@ MonoBehaviour:
     m_Key: Outside
     m_Metadata:
       m_Items: []
+  - m_Id: 340902133657600
+    m_Key: MainHall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340980785246208
+    m_Key: Bedroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341029372063744
+    m_Key: ChildrenRoom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341086783696896
+    m_Key: Kitchen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341255751233536
+    m_Key: NotBuilt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341313821372416
+    m_Key: BuiltFor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341484269498368
+    m_Key: Built
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341528993361920
+    m_Key: NotEnought
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341744849022976
+    m_Key: HavetBedroom
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

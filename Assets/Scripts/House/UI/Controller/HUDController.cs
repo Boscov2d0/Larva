@@ -1,7 +1,7 @@
-using Larva.Tools;
 using Larva.Data;
-using Larva.House.Tools;
 using Larva.House.Data;
+using Larva.House.Tools;
+using Larva.Tools;
 
 namespace Larva.House.UI.Controller
 {
@@ -12,6 +12,9 @@ namespace Larva.House.UI.Controller
         private readonly AudioManager _audioManager;
 
         private MainHallUIController _mainHallUIController;
+        private BedroomUIController _bedroomUIController;
+        private ChildrenRoomUIController _childrenRoomUIController;
+        private KitchenUIController _kitchenUIController;
 
         public HUDController(HouseManager houseManager, UIManager uiManager, AudioManager audioManager)
         {
@@ -39,11 +42,26 @@ namespace Larva.House.UI.Controller
                     _mainHallUIController = new MainHallUIController(_houseManager, _uiManager, _audioManager);
                     AddController(_mainHallUIController);
                     break;
+                case HouseState.Bedroom:
+                    _bedroomUIController = new BedroomUIController(_houseManager, _uiManager, _audioManager);
+                    AddController(_bedroomUIController);
+                    break;
+                case HouseState.ChildrenRoom:
+                    _childrenRoomUIController = new ChildrenRoomUIController(_houseManager, _uiManager, _audioManager);
+                    AddController(_childrenRoomUIController);
+                    break;
+                case HouseState.Kitchen:
+                    _kitchenUIController = new KitchenUIController(_houseManager, _uiManager, _audioManager);
+                    AddController(_kitchenUIController);
+                    break;
             }
         }
         private void DisposeControllers()
         {
             _mainHallUIController?.Dispose();
+            _bedroomUIController?.Dispose();
+            _childrenRoomUIController?.Dispose();
+            _kitchenUIController?.Dispose();
         }
     }
 }

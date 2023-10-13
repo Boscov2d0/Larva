@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-using LSTK = Larva.Tools.LocalizationTextKeys.LocalizationSettingsTextKeys;
+using static Larva.Tools.LocalizationTextKeys.LocalizationSettingsTextKeys;
 
 namespace Larva.Menu.UI.View
 {
@@ -98,12 +98,12 @@ namespace Larva.Menu.UI.View
         }
         private void TranslateText()
         {
-            _languageText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.Language.ToString())?.GetLocalizedString();
-            _soundText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.Sounds.ToString())?.GetLocalizedString();
-            _musicText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.Music.ToString())?.GetLocalizedString();
-            _screenResolutionText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.ScreenResolution.ToString())?.GetLocalizedString();
-            _fullscreenText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.Fullscreen.ToString())?.GetLocalizedString();
-            _backText.text = _localizationManager.SettingsTable.Value.GetEntry(LSTK.Back.ToString())?.GetLocalizedString();
+            _languageText.text = _localizationManager.SettingsTable.Value.GetEntry(Language.ToString())?.GetLocalizedString();
+            _soundText.text = _localizationManager.SettingsTable.Value.GetEntry(Sounds.ToString())?.GetLocalizedString();
+            _musicText.text = _localizationManager.SettingsTable.Value.GetEntry(Music.ToString())?.GetLocalizedString();
+            _screenResolutionText.text = _localizationManager.SettingsTable.Value.GetEntry(ScreenResolution.ToString())?.GetLocalizedString();
+            _fullscreenText.text = _localizationManager.SettingsTable.Value.GetEntry(Fullscreen.ToString())?.GetLocalizedString();
+            _backText.text = _localizationManager.SettingsTable.Value.GetEntry(Back.ToString())?.GetLocalizedString();
         }
     }
 }

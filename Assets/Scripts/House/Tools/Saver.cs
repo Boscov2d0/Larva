@@ -24,6 +24,11 @@ namespace Larva.House.Tools
                 pot.Capacity = houseManager.PotManagers[i].Capacity;
                 saveLoadManager.HouseData.Pots.Add(pot);
             }
+
+            saveLoadManager.HouseData.BedroomIsActive = houseManager.Bedroom.IsActive;
+            saveLoadManager.HouseData.ChildrenRoomIsActive = houseManager.ChildrenRoom.IsActive;
+            saveLoadManager.HouseData.KitcheIsActive = houseManager.Kitchen.IsActive;
+
             JSONDataLoadSaver<StructsData.HouseData>.SaveData(saveLoadManager.HouseData, saveLoadManager.HouseDataPath);
         }
     }

@@ -6,6 +6,8 @@ using Larva.Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
+using static Larva.Tools.AudioKeys;
+
 namespace Larva.Menu.UI.Controller
 {
     public class PCSettingsUIController : SettingsUIController
@@ -33,13 +35,13 @@ namespace Larva.Menu.UI.Controller
         {
             ParseDropdown(_settingsCanvasView.ScreenResolutionDropdown);
             Screen.SetResolution(_width, _height, Screen.fullScreen, _refreshRate);
-            _audioManager.State.Value = AudioKeys.AudioStates.Button;
+            _audioManager.State.Value = AudioStates.Button;
         }
         private void SetFullscreen(bool flag)
         {
             Screen.fullScreen = flag;
             _videoManager.Fullscreen = flag;
-            _audioManager.State.Value = AudioKeys.AudioStates.Button;
+            _audioManager.State.Value = AudioStates.Button;
         }
         private void ParseDropdown(Dropdown screenResolutionDropdown)
         {

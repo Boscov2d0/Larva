@@ -16,7 +16,12 @@ MonoBehaviour:
   <PathForObjects>k__BackingField: House/
   <PotPath>k__BackingField: FoodPot
   <StoragePath>k__BackingField: Storage
-  Discription4: 
+  Discription2: 
+  AllBuilded: 0
+  <Bedroom>k__BackingField: {fileID: 11400000, guid: 6e2d2a36f4932e748ac98bbc1dc38648, type: 2}
+  <ChildrenRoom>k__BackingField: {fileID: 11400000, guid: 5b6e7cc0bd2a3af4f8ec2214e64aab55, type: 2}
+  <Kitchen>k__BackingField: {fileID: 11400000, guid: d2d32a5704230fb4ea7a9110ee7d3d00, type: 2}
+  Discription3: 
   <PotManagers>k__BackingField:
   - {fileID: 11400000, guid: 0dc941753dfe05d4391556f88225e478, type: 2}
   - {fileID: 11400000, guid: 5f0069fbf75627a459006f704c26d3fc, type: 2}
@@ -60,4 +65,7 @@ MonoBehaviour:
   <CountOfStorage>k__BackingField: 2
   <OutSideCameraPosition>k__BackingField: {x: 0, y: 1.5, z: 0}
   <MainHallCameraPosition>k__BackingField: {x: 0, y: -3, z: 0}
+  <BedroomCameraPosition>k__BackingField: {x: 8.5, y: -3, z: 0}
+  <ChildrenRoomCameraPosition>k__BackingField: {x: 17, y: -3, z: 0}
+  <KitchenCameraPosition>k__BackingField: {x: -8.5, y: -3, z: 0}
   <CameraMoveSpeed>k__BackingField: 7

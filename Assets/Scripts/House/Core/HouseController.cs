@@ -5,7 +5,7 @@ using Larva.Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
-using LHTK = Larva.Tools.LocalizationTextKeys.LocalizationHouseTextKeys;
+using static Larva.Tools.LocalizationTextKeys.LocalizationHouseTextKeys;
 
 namespace Larva.House.Core
 {
@@ -20,20 +20,23 @@ namespace Larva.House.Core
         [SerializeField] private AudioManager _audioManager;
 
         [SerializeField] private Text _outside3dText;
+        [SerializeField] private Text _kitchen3dText;
+        [SerializeField] private Text _bedroomInManiHall3dText;
+        [SerializeField] private Text _mainHallInBedroom3dText;
+        [SerializeField] private Text _childrenRoom3dText;
+        [SerializeField] private Text _bedroomInChildrenRoom3dText;
+        [SerializeField] private Text _mainHallInKitchen3dText;
 
         private LoadController _loadController;
-        private HUDController _hudController;
         private CameraController _cameraController;
+        private HouseRoomsUpgradesController _houseRoomsUpgradesController;
+        private HUDController _hudController;
 
         private void Start()
         {
-            SetRoomsNameText();
-
             ResourcesLoader.InstantiateObject<Storage>(_houseManager.PathForObjects + _houseManager.StoragePath);
 
-            _loadController = new LoadController(_saveLoadManager, _houseManager);
-            _hudController = new HUDController(_houseManager, _uiManager, _audioManager);
-            _cameraController = new CameraController(_houseManager);
+            CreateControllers();
             
             _houseManager.HouseState.SubscribeOnChange(onStateChange);
 
@@ -41,17 +44,40 @@ namespace Larva.House.Core
             _larvaProfile.Food.Value = 0;
             if (_houseManager.CountOfFood.Value > _houseManager.PotCapacity * _houseManager.StorageCapacity * _houseManager.CountOfStorage)
                 _houseManager.CountOfFood.Value = _houseManager.PotCapacity * _houseManager.StorageCapacity * _houseManager.CountOfStorage;
+
+
+            _localizationManager.HouseTable.SubscribeOnChange(SetRoomsNameText);
+            SetRoomsNameText();
         }
         private void OnDestroy()
         {
             _houseManager.HouseState.UnSubscribeOnChange(onStateChange);
+            _localizationManager.MenuTable.UnSubscribeOnChange(SetRoomsNameText);
 
+            _loadController?.Dispose();
             _hudController?.Dispose();
             _cameraController?.Dispose();
+            _houseRoomsUpgradesController?.Dispose();
+        }
+        private void CreateControllers() 
+        {
+            _loadController = new LoadController(_saveLoadManager, _houseManager);
+            _cameraController = new CameraController(_houseManager);
+
+            if (!_houseManager.AllBuilded)
+                _houseRoomsUpgradesController = new HouseRoomsUpgradesController(_saveLoadManager, _localizationManager, _houseManager, _uiManager, _audioManager);
+
+            _hudController = new HUDController(_houseManager, _uiManager, _audioManager);
         }
         private void SetRoomsNameText()
         {
-            _outside3dText.text = _localizationManager.MenuTable.Value.GetEntry(LHTK.Outside.ToString())?.GetLocalizedString();
+            _outside3dText.text = _localizationManager.HouseTable.Value.GetEntry(Outside.ToString())?.GetLocalizedString();
+            _kitchen3dText.text = _localizationManager.HouseTable.Value.GetEntry(Kitchen.ToString())?.GetLocalizedString();
+            _bedroomInManiHall3dText.text = _localizationManager.HouseTable.Value.GetEntry(Bedroom.ToString())?.GetLocalizedString();
+            _mainHallInBedroom3dText.text = _localizationManager.HouseTable.Value.GetEntry(MainHall.ToString())?.GetLocalizedString();
+            _childrenRoom3dText.text = _localizationManager.HouseTable.Value.GetEntry(ChildrenRoom.ToString())?.GetLocalizedString();
+            _bedroomInChildrenRoom3dText.text = _localizationManager.HouseTable.Value.GetEntry(Bedroom.ToString())?.GetLocalizedString();
+            _mainHallInKitchen3dText.text = _localizationManager.HouseTable.Value.GetEntry(MainHall.ToString())?.GetLocalizedString();
         }
         private void FixedUpdate()
         {
@@ -66,9 +92,6 @@ namespace Larva.House.Core
                     break;
             }
         }
-        public void EnterToHouse()
-        {
-            _houseManager.HouseState.Value = Tools.HouseState.MainHall;
-        }
+        public void EnterToHouse() => _houseManager.HouseState.Value = Tools.HouseState.MainHall;
     }
 }

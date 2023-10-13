@@ -5,6 +5,8 @@ using Larva.Tools;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
+using static Larva.Tools.AudioKeys;
+
 namespace Larva.Menu.UI.Controller
 {
     public class SettingsUIController : ObjectsDisposer
@@ -29,40 +31,40 @@ namespace Larva.Menu.UI.Controller
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[ru];
             _localizationManager.Language = LocalizationSettings.AvailableLocales.Locales[ru];
-            _audioManager.State.Value = AudioKeys.AudioStates.Button;
+            _audioManager.State.Value = AudioStates.Button;
         }
         protected void SetEnLanguage()
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[en];
             _localizationManager.Language = LocalizationSettings.AvailableLocales.Locales[en];
-            _audioManager.State.Value = AudioKeys.AudioStates.Button;
+            _audioManager.State.Value = AudioStates.Button;
         }
         protected void SetZhLanguage()
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[zh];
             _localizationManager.Language = LocalizationSettings.AvailableLocales.Locales[zh];
-            _audioManager.State.Value = AudioKeys.AudioStates.Button;
+            _audioManager.State.Value = AudioStates.Button;
         }
         protected void SetSoundVolume(float value)
         {
             _audioManager.SoundsVolume = value;
-            _audioManager.AudioMixer.SetFloat(AudioKeys.MixerGroups.Sound.ToString(), Mathf.Log10(value) * 20);
+            _audioManager.AudioMixer.SetFloat(MixerGroups.Sound.ToString(), Mathf.Log10(value) * 20);
 
             if (value == 0)
-                _audioManager.AudioMixer.SetFloat(AudioKeys.MixerGroups.Sound.ToString(), -80);
+                _audioManager.AudioMixer.SetFloat(MixerGroups.Sound.ToString(), -80);
         }
         protected void SetMusicVolume(float value)
         {
             _audioManager.MusicVolume = value;
-            _audioManager.AudioMixer.SetFloat(AudioKeys.MixerGroups.Music.ToString(), Mathf.Log10(value) * 20);
+            _audioManager.AudioMixer.SetFloat(MixerGroups.Music.ToString(), Mathf.Log10(value) * 20);
 
             if (value == 0)
-                _audioManager.AudioMixer.SetFloat(AudioKeys.MixerGroups.Music.ToString(), -80);
+                _audioManager.AudioMixer.SetFloat(MixerGroups.Music.ToString(), -80);
         }
         protected virtual void Back()
         {
             _gameManager.GameState.Value = GameState.Menu;
-            _audioManager.State.Value = AudioKeys.AudioStates.ButtonApply;
+            _audioManager.State.Value = AudioStates.ButtonApply;
         }
     }
 }

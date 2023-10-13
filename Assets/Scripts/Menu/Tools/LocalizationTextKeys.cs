@@ -22,12 +22,21 @@ namespace Larva.Tools
         {
             Continue,
             Restart,
-            Menu,
+            MainMenu,
             YouScore
         }
         public enum LocalizationHouseTextKeys 
         {
-            Outside
+            Outside,
+            MainHall,
+            Bedroom,
+            ChildrenRoom,
+            Kitchen,
+            NotBuilt,
+            BuiltFor,
+            Built,
+            HavetBedroom,
+            NotEnought
         }
     }
 }

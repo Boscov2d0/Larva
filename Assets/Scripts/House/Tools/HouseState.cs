@@ -4,6 +4,9 @@ namespace Larva.House.Tools
     {
         Null,
         OutSideMenu,
-        MainHall
+        MainHall,
+        Kitchen,
+        Bedroom,
+        ChildrenRoom
     }
 }

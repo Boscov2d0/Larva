@@ -22,6 +22,42 @@ MonoBehaviour:
     m_Localized: Outside
     m_Metadata:
       m_Items: []
+  - m_Id: 340902133657600
+    m_Localized: Main hall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340980785246208
+    m_Localized: Bedroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341029372063744
+    m_Localized: Children room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341086783696896
+    m_Localized: Kitchen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341255751233536
+    m_Localized: Not built!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341313821372416
+    m_Localized: Build for
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341484269498368
+    m_Localized: Build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341528993361920
+    m_Localized: Not enought
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341744849022976
+    m_Localized: HavetBedroom
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

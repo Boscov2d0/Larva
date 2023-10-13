@@ -1,7 +1,7 @@
-using UnityEngine;
-using Larva.Tools;
 using Larva.House.Data;
 using Larva.House.Tools;
+using Larva.Tools;
+using UnityEngine;
 
 namespace Larva.House.Core
 {
@@ -46,6 +46,15 @@ namespace Larva.House.Core
                     break;
                 case HouseState.MainHall:
                     SetCameraPositionsPoint(_houseManager.MainHallCameraPosition);
+                    break;
+                case HouseState.Bedroom:
+                    SetCameraPositionsPoint(_houseManager.BedroomCameraPosition);
+                    break;
+                case HouseState.ChildrenRoom:
+                    SetCameraPositionsPoint(_houseManager.ChildrenRoomCameraPosition);
+                    break;
+                case HouseState.Kitchen:
+                    SetCameraPositionsPoint(_houseManager.KitchenCameraPosition);
                     break;
             }
         }

@@ -5,6 +5,8 @@ using Larva.Tools;
 using System.Collections.Generic;
 using UnityEngine;
 
+using static Larva.Tools.AudioKeys;
+
 namespace Larva.Game.Core
 {
     public class AudioController : MonoBehaviour
@@ -61,13 +63,13 @@ namespace Larva.Game.Core
         {
             switch (_audioManager.State.Value)
             {
-                case AudioKeys.AudioStates.Button:
+                case AudioStates.Button:
                     PLayButtonSound();
                     break;
-                case AudioKeys.AudioStates.ButtonApply:
+                case AudioStates.ButtonApply:
                     PLayButtonApplySound();
                     break;
-                case AudioKeys.AudioStates.ButtonCancel:
+                case AudioStates.ButtonCancel:
                     PLayButtonCancelSound();
                     break;
             }

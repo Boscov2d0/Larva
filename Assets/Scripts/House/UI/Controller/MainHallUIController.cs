@@ -1,9 +1,10 @@
 using Larva.Data;
-using Larva.House.Core;
 using Larva.House.Data;
 using Larva.House.Tools;
 using Larva.House.UI.View;
 using Larva.Tools;
+
+using static Larva.Tools.AudioKeys;
 
 namespace Larva.House.UI.Controller
 {
@@ -19,12 +20,22 @@ namespace Larva.House.UI.Controller
 
             MainHallCanvasView mainHallCanvasView = ResourcesLoader.InstantiateAndGetObject<MainHallCanvasView>(uiManager.PathForUIObjects + uiManager.MainHallCanvasPath);
             AddGameObject(mainHallCanvasView.gameObject);
-            mainHallCanvasView.Initialize(GoOutSide);
+            mainHallCanvasView.Initialize(GoOutSide, GoToBedroom, OpenKitchenPanel);
         }
         private void GoOutSide()
         {
             _houseManager.HouseState.Value = HouseState.OutSideMenu;
-            _audioManager.State.Value = AudioKeys.AudioStates.Button;
+            _audioManager.State.Value = AudioStates.Button;
+        }
+        private void GoToBedroom()
+        {
+            _houseManager.HouseState.Value = HouseState.Bedroom;
+            _audioManager.State.Value = AudioStates.Button;
+        }
+        private void OpenKitchenPanel()
+        {
+            _houseManager.HouseState.Value = HouseState.Kitchen;
+            _audioManager.State.Value = AudioStates.Button;
         }
     }
 }

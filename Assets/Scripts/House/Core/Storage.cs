@@ -28,6 +28,7 @@ namespace Larva.House.Core
         {
             _countOfFood = _houseManager.CountOfFood.Value;
 
+            _houseManager.CountOfFood.SubscribeOnChange(ReduceFood);
             _houseManager.CountOfFood.SubscribeOnChange(SetFoodCountText);
 
             CountPotsNumber();
@@ -41,6 +42,7 @@ namespace Larva.House.Core
             _storagePlaces.Clear();
             _potsList.Clear();
 
+            _houseManager.CountOfFood.UnSubscribeOnChange(ReduceFood);
             _houseManager.CountOfFood.UnSubscribeOnChange(SetFoodCountText);
         }
         private void CountPotsNumber()
@@ -119,6 +121,29 @@ namespace Larva.House.Core
             }
 
             DisplayFoodCountText(storage1CountOfFood, storage2CountOfFood);
+        }
+        public void ReduceFood()
+        {
+            int countOfReduceFood = _countOfFood - _houseManager.CountOfFood.Value;
+
+            for (; countOfReduceFood > 0;)
+            {
+                if (_houseManager.PotManagers[_lastPot].Capacity > countOfReduceFood)
+                {
+                    _houseManager.PotManagers[_lastPot].Capacity -= countOfReduceFood;
+                    countOfReduceFood = 0;
+                }
+                else
+                {
+                    countOfReduceFood -= _houseManager.PotManagers[_lastPot].Capacity;
+                    _houseManager.PotManagers[_lastPot].Capacity = 0;
+                    _houseManager.PotManagers[_lastPot].IsActive = false;
+                    GameObject.Destroy(_potsList[_lastPot].gameObject);
+                    _countOfPot--;
+                    _lastPot = _countOfPot - 1;
+                }
+            }
+            _countOfFood = _houseManager.CountOfFood.Value;
         }
         private void DisplayFoodCountText(int storage1FoodCount, int storage2FoodCount)
         {

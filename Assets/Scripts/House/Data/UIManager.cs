@@ -7,5 +7,9 @@ namespace Larva.House.Data
     {
         [field: SerializeField] public string PathForUIObjects { get; private set; }
         [field: SerializeField] public string MainHallCanvasPath { get; private set; }
+        [field: SerializeField] public string BedroomCanvasPath { get; private set; }
+        [field: SerializeField] public string ChildrenRoomCanvasPath { get; private set; }
+        [field: SerializeField] public string KitchenCanvasPath { get; private set; }
+        [field: SerializeField] public string AddRoomCanvasPath { get; private set; }
     }
 }

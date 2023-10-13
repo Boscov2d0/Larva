@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-using LGTK = Larva.Tools.LocalizationTextKeys.LocalizationGameTextKeys;
+using static Larva.Tools.LocalizationTextKeys.LocalizationGameTextKeys;
 
 namespace Larva.Game.UI.View
 {
@@ -37,9 +37,9 @@ namespace Larva.Game.UI.View
         }
         private void TranslateText(int value)
         {
-            _scoreText.text = $"{_localizationManager.GameTable.Value.GetEntry(LGTK.YouScore.ToString())?.GetLocalizedString()} : {value}";
-            _restartText.text = _localizationManager.GameTable.Value.GetEntry(LGTK.Restart.ToString())?.GetLocalizedString();
-            _exitText.text = _localizationManager.GameTable.Value.GetEntry(LGTK.Menu.ToString())?.GetLocalizedString();
+            _scoreText.text = $"{_localizationManager.GameTable.Value.GetEntry(YouScore.ToString())?.GetLocalizedString()} : {value}";
+            _restartText.text = _localizationManager.GameTable.Value.GetEntry(Restart.ToString())?.GetLocalizedString();
+            _exitText.text = _localizationManager.GameTable.Value.GetEntry(MainMenu.ToString())?.GetLocalizedString();
         }
     }
 }

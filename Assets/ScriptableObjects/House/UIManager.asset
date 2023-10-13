@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PathForUIObjects>k__BackingField: House/UI/
   <MainHallCanvasPath>k__BackingField: MainHallCanvas
+  <BedroomCanvasPath>k__BackingField: BedroomCanvas
+  <ChildrenRoomCanvasPath>k__BackingField: ChildrenRoomCanvas
+  <KitchenCanvasPath>k__BackingField: KitchenCanvas
+  <AddRoomCanvasPath>k__BackingField: AddRoomCanvas

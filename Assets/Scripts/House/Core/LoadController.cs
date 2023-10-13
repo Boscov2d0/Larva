@@ -33,6 +33,10 @@ namespace Larva.House.Core
                 _houseManager.PotManagers[i].IsActive = _saveLoadManager.HouseData.Pots[i].IsActive;
                 _houseManager.PotManagers[i].Capacity = _saveLoadManager.HouseData.Pots[i].Capacity;
             }
+
+            _houseManager.Bedroom.IsActive = _saveLoadManager.HouseData.BedroomIsActive;
+            _houseManager.ChildrenRoom.IsActive = _saveLoadManager.HouseData.ChildrenRoomIsActive;
+            _houseManager.Kitchen.IsActive = _saveLoadManager.HouseData.KitcheIsActive;
         }
     }
 }

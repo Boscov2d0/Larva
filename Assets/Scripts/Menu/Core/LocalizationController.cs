@@ -47,7 +47,7 @@ namespace Larva.Menu.Core
         private void GetHouseTable()
         {
             StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable(Keys.TabelsNameKeys.House.ToString());
-            _localizationManager.SettingsTable.Value = loadingOperation;
+            _localizationManager.HouseTable.Value = loadingOperation;
         }
     }
 }

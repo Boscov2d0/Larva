@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-using LMTK = Larva.Tools.LocalizationTextKeys.LocalizationMenuTextKeys;
+using static Larva.Tools.LocalizationTextKeys.LocalizationMenuTextKeys;
 
 namespace Larva.Menu.UI.View
 {
@@ -52,10 +52,10 @@ namespace Larva.Menu.UI.View
         }
         private void TranslateText()
         {
-            _startGameText.text = _localizationManager.MenuTable.Value.GetEntry(LMTK.StartGame.ToString())?.GetLocalizedString();
-            _houseText.text = _localizationManager.MenuTable.Value.GetEntry(LMTK.LarvaHouse.ToString())?.GetLocalizedString();
-            _settingsText.text = _localizationManager.MenuTable.Value.GetEntry(LMTK.Settings.ToString())?.GetLocalizedString();
-            _exitGameText.text = _localizationManager.MenuTable.Value.GetEntry(LMTK.Exit.ToString())?.GetLocalizedString();
+            _startGameText.text = _localizationManager.MenuTable.Value.GetEntry(StartGame.ToString())?.GetLocalizedString();
+            _houseText.text = _localizationManager.MenuTable.Value.GetEntry(LarvaHouse.ToString())?.GetLocalizedString();
+            _settingsText.text = _localizationManager.MenuTable.Value.GetEntry(Settings.ToString())?.GetLocalizedString();
+            _exitGameText.text = _localizationManager.MenuTable.Value.GetEntry(Exit.ToString())?.GetLocalizedString();
         }
     }
 }
