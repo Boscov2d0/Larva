@@ -34,6 +34,8 @@ namespace Larva.House.Core
 
         private void Start()
         {
+            _houseManager.MenuLarva = _gameManager.MenuLarva;
+
             ResourcesLoader.InstantiateObject<Storage>(_houseManager.PathForObjects + _houseManager.StoragePath);
 
             CreateControllers();
@@ -67,7 +69,7 @@ namespace Larva.House.Core
             if (!_houseManager.AllBuilded)
                 _houseRoomsUpgradesController = new HouseRoomsUpgradesController(_saveLoadManager, _localizationManager, _houseManager, _uiManager, _audioManager);
 
-            _hudController = new HUDController(_houseManager, _uiManager, _audioManager);
+            _hudController = new HUDController(_saveLoadManager, _houseManager, _uiManager, _audioManager, _larvaProfile);
         }
         private void SetRoomsNameText()
         {

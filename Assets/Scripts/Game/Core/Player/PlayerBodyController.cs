@@ -62,6 +62,7 @@ namespace Larva.Game.Core.Player
             }
 
             _bodyNodeList.Add(_body.transform);
+            _body.GetComponent<Renderer>().material = _larvaManager.BodySkin;
             _body = null;
         }
         private void LoseBody()
@@ -73,9 +74,7 @@ namespace Larva.Game.Core.Player
                 _bodyNodeList.Remove(_bodyNodeList[_bodyNodeList.Count - 1]);
             }
             else
-            {
                 _larvaManager.State.Value = LarvaState.Death;
-            }
         }
     }
 }

@@ -7,5 +7,7 @@ namespace Larva.Data
     public class LarvaProfile : ScriptableObject
     {
         [HideInInspector] public SubscriptionProperty<int> Food = new SubscriptionProperty<int>();
+        [field: SerializeField] public Material HeadSkin { get; set; }
+        [field: SerializeField] public Material BodySkin { get; set; }
     }
 }

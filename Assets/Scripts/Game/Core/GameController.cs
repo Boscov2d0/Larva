@@ -45,7 +45,14 @@ namespace Larva.Game.Core
         }
         private void CreateLarva()
         {
+            _larvaManager.BodySkin = _larvaProfile.BodySkin;
             _larva = ResourcesLoader.InstantiateAndGetObject<LarvaView>(_larvaManager.ObjectsPath + _larvaManager.LarvaPath);
+            _larva.Head.material = _larvaProfile.HeadSkin;
+            _larva.Hand.material = _larvaProfile.BodySkin;
+            for (int i = 0; i < _larva.Body.Count; i++)
+            {
+                _larva.Body[i].material = _larvaProfile.BodySkin;
+            }
             _larva.gameObject.transform.position = _gameManager.StartPosition;
             _larvaManager.State.SubscribeOnChange(OnLarvaStateChange);
 

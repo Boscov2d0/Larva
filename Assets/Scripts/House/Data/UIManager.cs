@@ -11,5 +11,6 @@ namespace Larva.House.Data
         [field: SerializeField] public string ChildrenRoomCanvasPath { get; private set; }
         [field: SerializeField] public string KitchenCanvasPath { get; private set; }
         [field: SerializeField] public string AddRoomCanvasPath { get; private set; }
+        [field: SerializeField] public string WardrobeCanvasPath { get; private set; }
     }
 }

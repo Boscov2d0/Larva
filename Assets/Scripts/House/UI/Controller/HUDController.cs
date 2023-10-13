@@ -2,25 +2,31 @@ using Larva.Data;
 using Larva.House.Data;
 using Larva.House.Tools;
 using Larva.Tools;
+using UnityEngine;
 
 namespace Larva.House.UI.Controller
 {
     public class HUDController : ObjectsDisposer
     {
+        private readonly SaveLoadManager _saveLoadManager;
         private readonly HouseManager _houseManager;
         private readonly UIManager _uiManager;
         private readonly AudioManager _audioManager;
+        private readonly LarvaProfile _larvaProfile;
 
         private MainHallUIController _mainHallUIController;
         private BedroomUIController _bedroomUIController;
         private ChildrenRoomUIController _childrenRoomUIController;
         private KitchenUIController _kitchenUIController;
+        private WardrobeUIController _wardrobeUIController;
 
-        public HUDController(HouseManager houseManager, UIManager uiManager, AudioManager audioManager)
+        public HUDController(SaveLoadManager saveLoadManager, HouseManager houseManager, UIManager uiManager, AudioManager audioManager, LarvaProfile larvaProfile)
         {
+            _saveLoadManager = saveLoadManager;
             _houseManager = houseManager;
             _uiManager = uiManager;
             _audioManager = audioManager;
+            _larvaProfile = larvaProfile;
 
             _houseManager.HouseState.SubscribeOnChange(OnChangeState);
         }
@@ -53,6 +59,11 @@ namespace Larva.House.UI.Controller
                 case HouseState.Kitchen:
                     _kitchenUIController = new KitchenUIController(_houseManager, _uiManager, _audioManager);
                     AddController(_kitchenUIController);
+                    break;
+                case HouseState.Wardrobe:
+                    _wardrobeUIController = new WardrobeUIController(_saveLoadManager, _larvaProfile, 
+                                                                     _houseManager, _uiManager, _audioManager);
+                    AddController(_wardrobeUIController);
                     break;
             }
         }

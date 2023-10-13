@@ -1,3 +1,4 @@
+using Larva.Core;
 using Larva.Menu.Tools;
 using Larva.Tools;
 using UnityEngine;
@@ -17,5 +18,6 @@ namespace Larva.Menu.Data
         [field: SerializeField] public string LarvaHousePath { get; private set; }
 
         [field: SerializeField] public SubscriptionProperty<GameState> GameState = new SubscriptionProperty<GameState>();
+        [HideInInspector] public LarvaView MenuLarva { get; set; }
     }
 }

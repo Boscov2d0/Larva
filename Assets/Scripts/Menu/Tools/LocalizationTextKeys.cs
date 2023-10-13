@@ -36,7 +36,18 @@ namespace Larva.Tools
             BuiltFor,
             Built,
             HavetBedroom,
-            NotEnought
+            NotEnought,
+            Head,
+            Body,
+            ChangeSkin,
+            Close
+        }
+        public enum LocalizationWardrobeTextKeys
+        {
+            Head,
+            Body,
+            ChangeSkin,
+            Close
         }
     }
 }

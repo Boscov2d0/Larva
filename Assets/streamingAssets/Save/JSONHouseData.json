@@ -1,1 +1,1 @@
-{"CountOfFood":15,"Pots":[{"BodyIndex":1,"Material":{"instanceID":23548},"IsActive":true,"Capacity":15}],"BedroomIsActive":false,"ChildrenRoomIsActive":false,"KitcheIsActive":false}
+{"CountOfFood":11,"Pots":[{"BodyIndex":1,"Material":{"instanceID":23548},"IsActive":true,"Capacity":11}],"BedroomIsActive":true,"ChildrenRoomIsActive":false,"KitcheIsActive":false}

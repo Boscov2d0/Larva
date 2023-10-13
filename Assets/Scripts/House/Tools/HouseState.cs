@@ -7,6 +7,7 @@ namespace Larva.House.Tools
         MainHall,
         Kitchen,
         Bedroom,
-        ChildrenRoom
+        ChildrenRoom,
+        Wardrobe
     }
 }

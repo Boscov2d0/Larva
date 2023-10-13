@@ -22,9 +22,9 @@ namespace Larva.Menu.Core
 
         private void Start()
         {
-            _loadController = new LoadController(_localizationManager, _saveLoadManager, _audioManager, _videoManager);
+            _loadController = new LoadController(_localizationManager, _saveLoadManager, _audioManager, _videoManager, _larvaProfile);
             _localizationController = new LocalizationController(_localizationManager);
-            _gameController = new GameController(_gameManager, _videoManager);
+            _gameController = new GameController(_gameManager, _videoManager, _larvaProfile);
             _HUDController = new HUDController(_localizationManager, _saveLoadManager, _gameManager, _uiManager, _audioManager, _videoManager);
         }
         private void OnDestroy()

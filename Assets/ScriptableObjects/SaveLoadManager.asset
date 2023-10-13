@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <GameSettingsDataPath>k__BackingField: /Save/JSONGameSettingsData.json
   <HouseDataPath>k__BackingField: /Save/JSONHouseData.json
+  <LarvaDataPath>k__BackingField: /Save/JSONLarvaData.json
   GameSettingsData:
     Language: {fileID: 1878396052936828838, guid: a2632a0b6be7ea643aace1ca693d1a40, type: 3}
     SoundsVolume: 1
     MusicVolume: 1
     ScreenResolution: {x: 2560, y: 1440, z: 165}
     Fullscreen: 1
+  LarvaData:
+    HeadSkin: {fileID: 0}
+    BodySkin: {fileID: 0}

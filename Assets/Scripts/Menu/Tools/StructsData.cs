@@ -32,5 +32,11 @@ namespace Larva.Tools
             public bool IsActive;
             public int Capacity;
         }
+        [Serializable]
+        public struct LarvaData
+        {
+            public Material HeadSkin;
+            public Material BodySkin;
+        }
     }
 }

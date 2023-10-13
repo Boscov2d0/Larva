@@ -31,5 +31,12 @@ namespace Larva.House.Tools
 
             JSONDataLoadSaver<StructsData.HouseData>.SaveData(saveLoadManager.HouseData, saveLoadManager.HouseDataPath);
         }
+        public static void SaveLarvaData(SaveLoadManager saveLoadManager, LarvaProfile larvaProfile)
+        {
+            saveLoadManager.LarvaData.HeadSkin = larvaProfile.HeadSkin;
+            saveLoadManager.LarvaData.BodySkin = larvaProfile.BodySkin;
+
+            JSONDataLoadSaver<StructsData.LarvaData>.SaveData(saveLoadManager.LarvaData, saveLoadManager.LarvaDataPath);
+        }
     }
 }

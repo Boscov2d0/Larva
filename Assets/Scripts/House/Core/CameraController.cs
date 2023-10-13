@@ -22,7 +22,7 @@ namespace Larva.House.Core
 
             _houseManager.HouseState.SubscribeOnChange(OnStateChange);
 
-            //_houseManager.MenuLarva.transform.SetParent(_camera.transform);
+            _houseManager.MenuLarva.transform.SetParent(_camera.transform);
 
             OnStateChange();
         }
