@@ -1,9 +1,9 @@
 using Larva.Data;
 using Larva.Menu.Data;
-using Larva.Menu.Tools;
 using Larva.Tools;
+using System.Collections.Generic;
 
-namespace Larva
+namespace Larva.Menu.Core
 {
     public class LoadController : ObjectsDisposer
     {
@@ -12,12 +12,15 @@ namespace Larva
         private readonly AudioManager _audioManager;
         private readonly VideoManager _videoManager;
 
-        public LoadController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager, AudioManager audioManager, VideoManager videoManager)
+        public LoadController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager, 
+                              AudioManager audioManager, VideoManager videoManager)
         {
             _localizationManager = localizationManager;
             _saveLoadManager = saveLoadManager;
             _audioManager = audioManager;
             _videoManager = videoManager;
+
+            _saveLoadManager.HouseData.Pots = new List<StructsData.PotData>();
 
             LoadGameSettingsData();
         }

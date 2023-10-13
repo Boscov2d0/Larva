@@ -1,3 +1,4 @@
+using Larva.House.Core;
 using Larva.Menu.Data;
 using Larva.Menu.Tools;
 using Larva.Tools;
@@ -10,16 +11,23 @@ namespace Larva.Menu.Core
     {
         private readonly GameManager _gameManager;
         private readonly VideoManager _videoManager;
+
+        private HouseController _house;
+
         public GameController(GameManager gameManager, VideoManager videoManager)
         {
             _gameManager = gameManager;
             _videoManager = videoManager;
 
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.ScenePath);
-            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.MenuCameraPath);
-            ResourcesLoader.InstantiateAndGetObject<GameObject>(_gameManager.PathForObjects + _gameManager.MenuLarvaPath);
+            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.MenuLarvaPath);
+            ResourcesLoader.InstantiateObject<Camera>(_gameManager.PathForObjects + _gameManager.MenuCameraPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.AudioControllerPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLightPath);
+
+            _house = ResourcesLoader.InstantiateAndGetObject<HouseController>(_gameManager.LarvaHousePath);
+            AddGameObject(_house.gameObject);
+
             SetVideoSettings();
 
             _gameManager.GameState.SubscribeOnChange(OnChangeGameState);
@@ -47,6 +55,9 @@ namespace Larva.Menu.Core
         {
             switch (_gameManager.GameState.Value)
             {
+                case GameState.LarvaHouse:
+                    _house.EnterToHouse();
+                    break;
                 case GameState.Play:
                     Play();
                     break;

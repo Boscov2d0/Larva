@@ -30,6 +30,10 @@ MonoBehaviour:
     m_Localized: Exit
     m_Metadata:
       m_Items: []
+  - m_Id: 3619259868803072
+    m_Localized: Larva house
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

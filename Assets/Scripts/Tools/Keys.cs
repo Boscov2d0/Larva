@@ -10,6 +10,7 @@ namespace Larva.Tools
         public enum TabelsNameKeys
         {
             Menu,
+            House,
             Settings,
             Game
         }

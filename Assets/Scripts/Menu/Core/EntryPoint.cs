@@ -13,6 +13,7 @@ namespace Larva.Menu.Core
         [SerializeField] private UIManager _uiManager;
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private VideoManager _videoManager;
+        [SerializeField] private LarvaProfile _larvaProfile;
 
         private LoadController _loadController;
         private LocalizationController _localizationController;

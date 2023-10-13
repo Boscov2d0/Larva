@@ -25,5 +25,9 @@ namespace Larva.Tools
             Menu,
             YouScore
         }
+        public enum LocalizationHouseTextKeys 
+        {
+            Outside
+        }
     }
 }

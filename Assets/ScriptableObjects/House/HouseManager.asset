@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7888020d89f7e14a962ab3bcdb176b8, type: 3}
+  m_Name: HouseManager
+  m_EditorClassIdentifier: 
+  Discription1: 
+  <PathForObjects>k__BackingField: House/
+  <PotPath>k__BackingField: FoodPot
+  <StoragePath>k__BackingField: Storage
+  Discription4: 
+  <PotManagers>k__BackingField:
+  - {fileID: 11400000, guid: 0dc941753dfe05d4391556f88225e478, type: 2}
+  - {fileID: 11400000, guid: 5f0069fbf75627a459006f704c26d3fc, type: 2}
+  - {fileID: 11400000, guid: feeb70cd55ccc9e4c9e2545b079c879b, type: 2}
+  - {fileID: 11400000, guid: efb18214ce78e3a4fbc1528ae654463d, type: 2}
+  - {fileID: 11400000, guid: f918578213f57934b9878816ff615f00, type: 2}
+  - {fileID: 11400000, guid: e011d874afedbc842b7a026a8c2f39b7, type: 2}
+  - {fileID: 11400000, guid: 7f5ec72a1b84eb143aada8433bd323a3, type: 2}
+  - {fileID: 11400000, guid: 52fc771581990914e8d5eabb7e711337, type: 2}
+  - {fileID: 11400000, guid: 50e25f9bb8a586b4cb3faf709eb71778, type: 2}
+  - {fileID: 11400000, guid: c1b59b1650af9b8418e3c367bda6f79c, type: 2}
+  - {fileID: 11400000, guid: afd27f3e01f843040abe8824126f1176, type: 2}
+  - {fileID: 11400000, guid: 213c3186f543a66429ee21c7da44b480, type: 2}
+  - {fileID: 11400000, guid: f67c868da9722d241816b7e018e65811, type: 2}
+  - {fileID: 11400000, guid: 73542c2c1da81b746a5069f61a3c3df6, type: 2}
+  - {fileID: 11400000, guid: 918527ca18c60ed448f19455d09632dd, type: 2}
+  - {fileID: 11400000, guid: 37a2c82266f5842439865d3130bd0c03, type: 2}
+  - {fileID: 11400000, guid: 9e8c8e55a13c08a419c60764dc77ed51, type: 2}
+  - {fileID: 11400000, guid: 74a67d6be483adf48bdb2a7a3605713b, type: 2}
+  - {fileID: 11400000, guid: 80a34b3866df6af4ea58c4d01c783d22, type: 2}
+  - {fileID: 11400000, guid: 6639cffae97593c4093e7945c321c590, type: 2}
+  - {fileID: 11400000, guid: c99eb24fc3ae25048bd582c5c839d783, type: 2}
+  - {fileID: 11400000, guid: 6f1468842f4688d44b7f00e1cb6173f9, type: 2}
+  - {fileID: 11400000, guid: bc9011b7db7f54a4aa85ddd18fa64bc6, type: 2}
+  - {fileID: 11400000, guid: 1096d82dae2a6fe41806f0710eb8a576, type: 2}
+  - {fileID: 11400000, guid: 11c24c2d3e4ab0649b9f83e950dfb40c, type: 2}
+  - {fileID: 11400000, guid: 2dbc44a4f68996a468564fbbe529cdce, type: 2}
+  - {fileID: 11400000, guid: e0a116bbf11e11243bd00c51094f7469, type: 2}
+  - {fileID: 11400000, guid: 41bede62d54801c4eb327a7278e27d80, type: 2}
+  - {fileID: 11400000, guid: f51d2da3ec1c8a849aa1f24f24500495, type: 2}
+  - {fileID: 11400000, guid: aa0a70e2ef7f27946a534a5a7a979270, type: 2}
+  - {fileID: 11400000, guid: bf045bc7313c09044b9ac5538f5f9ff1, type: 2}
+  - {fileID: 11400000, guid: ccee3748bd6e6d24e981355f6a64681e, type: 2}
+  <PotMaterials>k__BackingField:
+  - {fileID: 2100000, guid: 8d5fbac39ff10ea46b20aba2ca3a767a, type: 2}
+  - {fileID: 2100000, guid: bbd846d4227b42b40b4383db0113c45f, type: 2}
+  - {fileID: 2100000, guid: 7c74259aed7a4fa43aa32eb8a2d8f4f5, type: 2}
+  - {fileID: 2100000, guid: eff9ba154665dca4d8809e8a7e68c0c6, type: 2}
+  <PotCapacity>k__BackingField: 50
+  <StorageCapacity>k__BackingField: 16
+  <CountOfStorage>k__BackingField: 2
+  <OutSideCameraPosition>k__BackingField: {x: 0, y: 1.5, z: 0}
+  <MainHallCameraPosition>k__BackingField: {x: 0, y: -3, z: 0}
+  <CameraMoveSpeed>k__BackingField: 7

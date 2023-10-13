@@ -29,6 +29,10 @@ MonoBehaviour:
     m_Address: Assets/Languages/Game Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 3211cdd1d2051844c8bf5f6229900ab2
+    m_Address: Assets/Languages/Tables/House Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: b06b2927fe575bf4497a2e2168e55b56, type: 2}
   m_SchemaSet:
