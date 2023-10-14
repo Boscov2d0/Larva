@@ -46,11 +46,11 @@ namespace Larva.Game.Core
             _larva.gameObject.transform.position = _gameManager.StartPosition;
             _larvaManager.State.SubscribeOnChange(OnLarvaStateChange);
             
-//#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
             _moveController = new InputTouchScreenController(_larvaManager);
-/*#else
+#else
             _moveController = new InputKeyBoardController(_gameManager, _larvaManager);
-#endif*/
+#endif
             AddController(_moveController);
         }
         private void Initialize()
