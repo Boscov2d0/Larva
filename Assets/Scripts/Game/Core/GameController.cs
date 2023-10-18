@@ -1,4 +1,5 @@
-﻿using Larva.Game.Core.Player;
+﻿using Larva.Data;
+using Larva.Game.Core.Player;
 using Larva.Game.Core.SpawnObjects;
 using Larva.Game.Data;
 using Larva.Game.Tools;
@@ -10,9 +11,10 @@ namespace Larva.Game.Core
 {
     public class GameController : ObjectsDisposer
     {
+        private readonly LarvaProfile _larvaProfile;
         private readonly GameManager _gameManager;
         private readonly LarvaManager _larvaManager;
-        
+
         private LarvaView _larva;
         private Camera _camera;
 
@@ -20,8 +22,9 @@ namespace Larva.Game.Core
         private MoveController _moveController;
         private SpawnObjectsController _spawnObjectsController;
 
-        public GameController(GameManager gameManager, LarvaManager larvaManager, PreStartManager preStartManager)
+        public GameController(LarvaProfile larvaProfile, GameManager gameManager, LarvaManager larvaManager, PreStartManager preStartManager)
         {
+            _larvaProfile = larvaProfile;
             _gameManager = gameManager;
             _larvaManager = larvaManager;
 
@@ -40,12 +43,19 @@ namespace Larva.Game.Core
             else
                 _gameManager.GameState.Value = GameState.PreGame;
         }
-        private void CreateLarva() 
+        private void CreateLarva()
         {
+            _larvaManager.BodySkin = _larvaProfile.BodySkin;
             _larva = ResourcesLoader.InstantiateAndGetObject<LarvaView>(_larvaManager.ObjectsPath + _larvaManager.LarvaPath);
+            _larva.Head.material = _larvaProfile.HeadSkin;
+            _larva.Hand.material = _larvaProfile.BodySkin;
+            for (int i = 0; i < _larva.Body.Count; i++)
+            {
+                _larva.Body[i].material = _larvaProfile.BodySkin;
+            }
             _larva.gameObject.transform.position = _gameManager.StartPosition;
             _larvaManager.State.SubscribeOnChange(OnLarvaStateChange);
-            
+
 #if UNITY_ANDROID && !UNITY_EDITOR
             _moveController = new InputTouchScreenController(_larvaManager);
 #else
@@ -66,7 +76,7 @@ namespace Larva.Game.Core
             _spawnObjectsController = new SpawnObjectsController(_gameManager);
             AddController(_spawnObjectsController);
 
-           _larva.Animator.enabled = false;
+            _larva.Animator.enabled = false;
             _larvaManager.State.Value = LarvaState.Play;
         }
 
@@ -84,7 +94,7 @@ namespace Larva.Game.Core
         {
             _moveController?.Execute();
         }
-        public void FixedExecute() 
+        public void FixedExecute()
         {
             _preStartController?.FixedExecute();
         }
@@ -135,7 +145,13 @@ namespace Larva.Game.Core
             else
                 Time.timeScale = 1;
         }
-        private void GameOver() => _camera.GetComponentInChildren<Animator>().enabled = true;
+        private void GameOver()
+        {
+            _camera.GetComponentInChildren<Animator>().enabled = true;
+            RecalculateFood();
+        }
+        private void RecalculateFood() => _larvaProfile.Food.Value = _gameManager.Score.Value / 10;
+
         private void Restart() => SceneManager.LoadScene(Keys.ScneneNameKeys.Game.ToString());
         private void Exit()
         {

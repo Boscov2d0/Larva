@@ -16,5 +16,7 @@ MonoBehaviour:
   <ScenePath>k__BackingField: Scene
   <DirectionalLightPath>k__BackingField: DirectionalLight
   <MenuCameraPath>k__BackingField: MenuCamera
+  <HouseCameraPath>k__BackingField: House/HouseCamera
   <MenuLarvaPath>k__BackingField: MenuLarva
   <AudioControllerPath>k__BackingField: AudioController
+  <LarvaHousePath>k__BackingField: House/LarvaHouse

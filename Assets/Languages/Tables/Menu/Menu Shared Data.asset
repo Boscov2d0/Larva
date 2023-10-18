@@ -19,6 +19,10 @@ MonoBehaviour:
     m_Key: StartGame
     m_Metadata:
       m_Items: []
+  - m_Id: 3619259868803072
+    m_Key: LarvaHouse
+    m_Metadata:
+      m_Items: []
   - m_Id: 361418118688768
     m_Key: Settings
     m_Metadata:

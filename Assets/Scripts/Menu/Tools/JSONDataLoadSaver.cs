@@ -2,7 +2,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Larva.Menu.Tools
+namespace Larva.Tools
 {
     public static class JSONDataLoadSaver<T>
     {

@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: House Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: House
+  m_TableCollectionNameGuidString: 3211cdd1d2051844c8bf5f6229900ab2
+  m_Entries:
+  - m_Id: 11648921600
+    m_Key: Outside
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340902133657600
+    m_Key: MainHall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340980785246208
+    m_Key: Bedroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341029372063744
+    m_Key: ChildrenRoom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341086783696896
+    m_Key: Kitchen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341255751233536
+    m_Key: NotBuilt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341313821372416
+    m_Key: BuiltFor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341484269498368
+    m_Key: Built
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341528993361920
+    m_Key: NotEnought
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341744849022976
+    m_Key: HavetBedroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785444066586624
+    m_Key: HavetKitchen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420146234814464
+    m_Key: Head
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420153734230016
+    m_Key: Body
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420185904541696
+    m_Key: ChangeSkin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420187397713920
+    m_Key: Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785607925460992
+    m_Key: Partner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785626229403648
+    m_Key: Child
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785644810170368
+    m_Key: Add
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785661235064832
+    m_Key: For
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785677014036480
+    m_Key: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785692532961280
+    m_Key: HavetPartner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 787616724447232
+    m_Key: FamilyEat
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5610313332028866563
+  references:
+    version: 2
+    RefIds:
+    - rid: 5610313332028866563
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1697093885922

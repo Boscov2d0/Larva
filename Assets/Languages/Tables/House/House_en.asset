@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: House_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 3211cdd1d2051844c8bf5f6229900ab2, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 11648921600
+    m_Localized: Outside
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340902133657600
+    m_Localized: Main hall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340980785246208
+    m_Localized: Bedroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341029372063744
+    m_Localized: Children room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341086783696896
+    m_Localized: Kitchen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341255751233536
+    m_Localized: Not built!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341313821372416
+    m_Localized: Build for
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341484269498368
+    m_Localized: Build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341528993361920
+    m_Localized: Not enought
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341744849022976
+    m_Localized: You have not bedroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420146234814464
+    m_Localized: Head
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420153734230016
+    m_Localized: Body
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420187397713920
+    m_Localized: Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420185904541696
+    m_Localized: Change skin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785607925460992
+    m_Localized: partner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785626229403648
+    m_Localized: child
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785644810170368
+    m_Localized: Add
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785661235064832
+    m_Localized: for
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785677014036480
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785692532961280
+    m_Localized: HavetPartner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 787616724447232
+    m_Localized: Family eats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785444066586624
+    m_Localized: You have not kitchen
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

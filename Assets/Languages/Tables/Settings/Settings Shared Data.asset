@@ -39,6 +39,70 @@ MonoBehaviour:
     m_Key: Back
     m_Metadata:
       m_Items: []
+  - m_Id: 4755105120546816
+    m_Key: GamePanel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755130131181568
+    m_Key: AudioPanel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755154202292224
+    m_Key: VideoPanel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4756197057261568
+    m_Key: GameMode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755175568076800
+    m_Key: SimpleMode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755233348808704
+    m_Key: RealMode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755317159391232
+    m_Key: SimpleModeInformation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755348524396544
+    m_Key: RealModeInformation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4757240314884096
+    m_Key: ChooseFeedDay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755374663299072
+    m_Key: Monday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755384243089408
+    m_Key: Tuesday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755401485873152
+    m_Key: Wednesday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755418317615104
+    m_Key: Thursday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755441596002304
+    m_Key: Friday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755456779382784
+    m_Key: Saturday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755471660773376
+    m_Key: Sunday
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

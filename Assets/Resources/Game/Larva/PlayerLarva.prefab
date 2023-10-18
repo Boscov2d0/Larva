@@ -493,6 +493,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: -1749705812191430601}
+  <Head>k__BackingField: {fileID: 3766414850506247587}
+  <Hand>k__BackingField: {fileID: 3766414849293058004}
+  <Body>k__BackingField:
+  - {fileID: 3766414850459754208}
+  - {fileID: 3766414848896020564}
 --- !u!1 &3766414850459754214
 GameObject:
   m_ObjectHideFlags: 0

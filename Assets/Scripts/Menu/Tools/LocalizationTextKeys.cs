@@ -16,14 +16,62 @@ namespace Larva.Tools
             Music,
             ScreenResolution,
             Fullscreen,
-            Back
+            Back,
+            GamePanel,
+            AudioPanel,
+            VideoPanel,
+            GameMode,
+            SimpleMode,
+            RealMode,
+            SimpleModeInformation,
+            RealModeInformation,
+            ChooseFeedDay,
+            Monday,
+            Tuesday,
+            Wednesday,
+            Thursday,
+            Friday,
+            Saturday,
+            Sunday
         }
         public enum LocalizationGameTextKeys
         {
             Continue,
             Restart,
-            Menu,
+            MainMenu,
             YouScore
+        }
+        public enum LocalizationHouseTextKeys
+        {
+            Outside,
+            MainHall,
+            Bedroom,
+            ChildrenRoom,
+            Kitchen,
+            NotBuilt,
+            BuiltFor,
+            Built,
+            HavetBedroom,
+            HavetKitchen,
+            NotEnought,
+            Head,
+            Body,
+            ChangeSkin,
+            Close,
+            Partner,
+            Child,
+            Add,
+            For,
+            Cancel,
+            HavetPartner,
+            FamilyEat
+        }
+        public enum LocalizationWardrobeTextKeys
+        {
+            Head,
+            Body,
+            ChangeSkin,
+            Close
         }
     }
 }

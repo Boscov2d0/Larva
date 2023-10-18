@@ -1,9 +1,9 @@
 using Larva.Data;
 using Larva.Menu.Data;
-using Larva.Menu.Tools;
 using Larva.Tools;
+using System.Collections.Generic;
 
-namespace Larva
+namespace Larva.Menu.Core
 {
     public class LoadController : ObjectsDisposer
     {
@@ -11,15 +11,21 @@ namespace Larva
         private readonly SaveLoadManager _saveLoadManager;
         private readonly AudioManager _audioManager;
         private readonly VideoManager _videoManager;
+        private readonly LarvaProfile _larvaProfile;
 
-        public LoadController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager, AudioManager audioManager, VideoManager videoManager)
+        public LoadController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager, 
+                              AudioManager audioManager, VideoManager videoManager, LarvaProfile larvaProfile)
         {
             _localizationManager = localizationManager;
             _saveLoadManager = saveLoadManager;
             _audioManager = audioManager;
             _videoManager = videoManager;
+            _larvaProfile = larvaProfile;
+
+            _saveLoadManager.HouseData.Pots = new List<StructsData.PotData>();
 
             LoadGameSettingsData();
+            LoadLarvaData();
         }
         private void LoadGameSettingsData()
         {
@@ -30,6 +36,13 @@ namespace Larva
             _audioManager.MusicVolume = _saveLoadManager.GameSettingsData.MusicVolume;
             _videoManager.ScreenResolution = _saveLoadManager.GameSettingsData.ScreenResolution;
             _videoManager.Fullscreen = _saveLoadManager.GameSettingsData.Fullscreen;
+        }
+        private void LoadLarvaData()
+        {
+            _saveLoadManager.LarvaData = JSONDataLoadSaver<StructsData.LarvaData>.Load(_saveLoadManager.LarvaDataPath);
+
+            _larvaProfile.HeadSkin = _saveLoadManager.LarvaData.HeadSkin;
+            _larvaProfile.BodySkin = _saveLoadManager.LarvaData.BodySkin;
         }
     }
 }

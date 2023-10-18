@@ -4,6 +4,8 @@ using Larva.Game.Tools;
 using Larva.Game.UI.View;
 using Larva.Tools;
 
+using static Larva.Tools.AudioKeys;
+
 namespace Larva.Game.UI.Controller
 {
     public class TopPanelController : ObjectsDisposer
@@ -35,7 +37,7 @@ namespace Larva.Game.UI.Controller
         private void PauseGame()
         {
             _gameManager.GameState.Value = GameState.Pause;
-            _audioManager.State.Value = AudioKeys.AudioStates.Button;
+            _audioManager.State.Value = AudioStates.Button;
         }
     }
 }
