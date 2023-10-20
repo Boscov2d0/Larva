@@ -11,29 +11,35 @@ namespace Larva.Menu.UI.View
     {
         [SerializeField] private LocalizationManager _localizationManager;
         [SerializeField] private Button _startGameButton;
+        [SerializeField] private Button _instructionButton;
         [SerializeField] private Button _houseButton;
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _exitGameButton;
 
 
         [SerializeField] private Text _startGameText;
+        [SerializeField] private Text _instructionText;
         [SerializeField] private Text _houseText;
         [SerializeField] private Text _settingsText;
         [SerializeField] private Text _exitGameText;
 
         private UnityAction _startGame;
+        private UnityAction _openInstruction;
         private UnityAction _house;
         private UnityAction _openSettings;
         private UnityAction _exitGame;
 
-        public void Initialize(UnityAction startGame, UnityAction house, UnityAction openSettings, UnityAction exitGame)
+        public void Initialize(UnityAction startGame, UnityAction openInstruction, 
+                               UnityAction house, UnityAction openSettings, UnityAction exitGame)
         {
             _startGame = startGame;
+            _openInstruction = openInstruction;
             _house = house;
             _openSettings = openSettings;
             _exitGame = exitGame;
 
             _startGameButton.onClick.AddListener(_startGame);
+            _instructionButton.onClick.AddListener(_openInstruction);
             _houseButton.onClick.AddListener(_house);
             _settingsButton.onClick.AddListener(_openSettings);
             _exitGameButton.onClick.AddListener(_exitGame);
@@ -46,6 +52,7 @@ namespace Larva.Menu.UI.View
             _localizationManager.MenuTable.UnSubscribeOnChange(TranslateText);
 
             _startGameButton.onClick.RemoveListener(_startGame);
+            _instructionButton.onClick.RemoveListener(_openInstruction);
             _houseButton.onClick.RemoveListener(_house);
             _settingsButton.onClick.RemoveListener(_openSettings);
             _exitGameButton.onClick.RemoveListener(_exitGame);
@@ -53,6 +60,7 @@ namespace Larva.Menu.UI.View
         private void TranslateText()
         {
             _startGameText.text = _localizationManager.MenuTable.Value.GetEntry(StartGame.ToString())?.GetLocalizedString();
+            _instructionText.text = _localizationManager.MenuTable.Value.GetEntry(HowPlay.ToString())?.GetLocalizedString();
             _houseText.text = _localizationManager.MenuTable.Value.GetEntry(LarvaHouse.ToString())?.GetLocalizedString();
             _settingsText.text = _localizationManager.MenuTable.Value.GetEntry(Settings.ToString())?.GetLocalizedString();
             _exitGameText.text = _localizationManager.MenuTable.Value.GetEntry(Exit.ToString())?.GetLocalizedString();

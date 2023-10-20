@@ -2,10 +2,13 @@
 using Larva.Game.Core.Player;
 using Larva.Game.Core.SpawnObjects;
 using Larva.Game.Data;
-using Larva.Game.Tools;
 using Larva.Tools;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+using static Larva.Game.Tools.States;
+using static Larva.Tools.Keys;
 
 namespace Larva.Game.Core
 {
@@ -30,9 +33,9 @@ namespace Larva.Game.Core
 
             _gameManager.GameState.Value = GameState.Null;
 
+            SetDirectionLight();
             CreateLarva();
-
-            ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLightPath);
+            
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.GameAreaPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.AudioControllerPath);
 
@@ -42,6 +45,31 @@ namespace Larva.Game.Core
                 _preStartController = new PreStartController(_gameManager, preStartManager, _larva);
             else
                 _gameManager.GameState.Value = GameState.PreGame;
+        }
+        private void SetDirectionLight()
+        {
+            Debug.Log(_larvaProfile.DayTime);
+            switch (_larvaProfile.DayTime)
+            {
+                case DayTime.Auto:
+                    DateTime time = DateTime.Now;
+                    if ((time.Hour >= 7 && time.Minute >= 0) && (time.Hour <= 16 && time.Minute >= 0))
+                        ResourcesLoader.InstantiateObject<Light>(_gameManager.PathForObjects + _gameManager.DayDirectionalLightPath);
+                    else if ((time.Hour >= 17 && time.Minute >= 0) && (time.Hour <= 22 && time.Minute >= 0))
+                        ResourcesLoader.InstantiateObject<Light>(_gameManager.PathForObjects + _gameManager.EveningDirectionalLightPath);
+                    else
+                        ResourcesLoader.InstantiateObject<Light>(_gameManager.PathForObjects + _gameManager.NightDirectionalLightPath);
+                    break;
+                case DayTime.Day:
+                    ResourcesLoader.InstantiateObject<Light>(_gameManager.PathForObjects + _gameManager.DayDirectionalLightPath);
+                    break;
+                case DayTime.Evening:
+                    ResourcesLoader.InstantiateObject<Light>(_gameManager.PathForObjects + _gameManager.EveningDirectionalLightPath);
+                    break;
+                case DayTime.Night:
+                     ResourcesLoader.InstantiateObject<Light>(_gameManager.PathForObjects + _gameManager.NightDirectionalLightPath);
+                    break;
+            }
         }
         private void CreateLarva()
         {

@@ -54,7 +54,7 @@ namespace Larva.Game.Core
         }
         private void OnGameStateChange()
         {
-            if (_gameManager.GameState.Value == GameState.Lose)
+            if (_gameManager.GameState.Value == States.GameState.Lose)
             {
                 _gameOverSound.Play();
             }

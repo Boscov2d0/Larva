@@ -3,6 +3,7 @@ using Larva.House.Data;
 using Larva.House.Tools;
 using Larva.House.UI.Controller;
 using Larva.Tools;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ using UnityEngine.UI;
 using static Larva.House.Tools.HouseState;
 using static Larva.Tools.Keys;
 using static Larva.Tools.LocalizationTextKeys.LocalizationHouseTextKeys;
+using Random = UnityEngine.Random;
 
 namespace Larva.House.Core
 {
@@ -34,11 +36,11 @@ namespace Larva.House.Core
 
         private LoadController _loadController;
         private CameraController _cameraController;
-        private HouseRoomsUpgradesController _houseRoomsUpgradesController;
-        private HouseFamilyUpgradesController _houseFamilyUpgradesController;
         private HUDController _hudController;
+        private TouchScreenMoveCameraController _touchScreenMoveCameraController;
         private FoodFamilyController _foodFamilyController;
 
+        private Light _pointLight;
         private PartnerView _partner;
         private List<ChildView> _childrens = new List<ChildView>();
 
@@ -48,12 +50,16 @@ namespace Larva.House.Core
 
             ResourcesLoader.InstantiateObject<Storage>(_houseManager.PathForObjects + _houseManager.StoragePath);
 
+            _gameManager.DayTime.SubscribeOnChange(SetLight);
+
             CreateControllers();
-            SetLarvaSkin();
 
             _houseManager.RoomState.SubscribeOnChange(OnRoomStateChange);
             _houseManager.ActionState.SubscribeOnChange(OnActionStateChange);
             _houseManager.SaveLoadState.SubscribeOnChange(SaveData);
+
+            SetLight();
+            SetLarvaSkin();
 
             _houseManager.CountOfFood.Value += _larvaProfile.Food.Value;
             _larvaProfile.Food.Value = 0;
@@ -63,13 +69,14 @@ namespace Larva.House.Core
             for (int i = 0; i < _houseManager.ChildrensPositions.Count; i++)
                 _houseManager.ChildrensPositions[i].IsHave = false;
 
-            InstantiateChild();
+            _houseManager.ActionState.Value = ActionState.InstantiateChild;
 
             _localizationManager.HouseTable.SubscribeOnChange(SetRoomsNameText);
             SetRoomsNameText();
         }
         private void OnDestroy()
         {
+            _gameManager.DayTime.UnSubscribeOnChange(SetLight);
             _houseManager.RoomState.UnSubscribeOnChange(OnRoomStateChange);
             _houseManager.ActionState.UnSubscribeOnChange(OnActionStateChange);
             _localizationManager.HouseTable.UnSubscribeOnChange(SetRoomsNameText);
@@ -78,8 +85,7 @@ namespace Larva.House.Core
             _loadController?.Dispose();
             _hudController?.Dispose();
             _cameraController?.Dispose();
-            _houseRoomsUpgradesController?.Dispose();
-            _houseFamilyUpgradesController?.Dispose();
+            _touchScreenMoveCameraController?.Dispose();
 
             _childrens.Clear();
         }
@@ -88,13 +94,10 @@ namespace Larva.House.Core
             _loadController = new LoadController(_saveLoadManager, _houseManager);
             _cameraController = new CameraController(_houseManager);
 
-            if (!_houseManager.AllBuilded)
-                _houseRoomsUpgradesController = new HouseRoomsUpgradesController(_saveLoadManager, _localizationManager, _houseManager, _uiManager, _audioManager);
-
-            if (_houseManager.CountOfChildren < 4)
-                _houseFamilyUpgradesController = new HouseFamilyUpgradesController(_localizationManager, _houseManager, _uiManager, _audioManager);
-
-            _hudController = new HUDController(_saveLoadManager, _houseManager, _uiManager, _audioManager, _larvaProfile);
+#if UNITY_ANDROID && !UNITY_EDITOR
+            _touchScreenMoveCameraController = new TouchScreenMoveCameraController(_houseManager);
+#endif
+            _hudController = new HUDController(_saveLoadManager, _localizationManager, _houseManager, _uiManager, _audioManager, _larvaProfile);
 
             if (_houseManager.GameMode == GameMode.Real)
             {
@@ -102,15 +105,38 @@ namespace Larva.House.Core
                 _foodFamilyController.Initialize();
             }
         }
+        private void SetLight()
+        {
+            Destroy(_pointLight?.gameObject);
 
-        public void SetLarvaSkin()
+            switch (_gameManager.DayTime.Value)
+            {
+                case DayTime.Auto:
+                    DateTime time = DateTime.Now;
+                    if ((time.Hour >= 7 && time.Minute > 0) && (time.Hour <= 16 && time.Minute > 0))
+                        _pointLight = ResourcesLoader.InstantiateAndGetObject<Light>(_houseManager.PathForObjects + _houseManager.DaySpotLightPath);
+                    else if ((time.Hour >= 17 && time.Minute > 0) && (time.Hour <= 22 && time.Minute > 0))
+                        _pointLight = ResourcesLoader.InstantiateAndGetObject<Light>(_houseManager.PathForObjects + _houseManager.EveningSpotLightPath);
+                    else
+                        _pointLight = ResourcesLoader.InstantiateAndGetObject<Light>(_houseManager.PathForObjects + _houseManager.NightSpotLightPath);
+                    break;
+                case DayTime.Day:
+                    _pointLight = ResourcesLoader.InstantiateAndGetObject<Light>(_houseManager.PathForObjects + _houseManager.DaySpotLightPath);
+                    break;
+                case DayTime.Evening:
+                    _pointLight = ResourcesLoader.InstantiateAndGetObject<Light>(_houseManager.PathForObjects + _houseManager.EveningSpotLightPath);
+                    break;
+                case DayTime.Night:
+                    _pointLight = ResourcesLoader.InstantiateAndGetObject<Light>(_houseManager.PathForObjects + _houseManager.NightSpotLightPath);
+                    break;
+            }
+        }
+        private void SetLarvaSkin()
         {
             if (_larvaProfile.HeadSkin == null)
             {
                 _larvaProfile.HeadSkin = _houseManager.HeadMaterial[Random.Range(0, _houseManager.HeadMaterial.Count)];
                 _larvaProfile.BodySkin = _houseManager.BodyMaterial[Random.Range(0, _houseManager.BodyMaterial.Count)];
-                _houseManager.SaveLoadState.Value = SaveState.SaveLarvaData;
-                SaveData();
             }
 
             _houseManager.MenuLarva.Head.material = _larvaProfile.HeadSkin;
@@ -119,6 +145,14 @@ namespace Larva.House.Core
             {
                 _houseManager.MenuLarva.Body[i].material = _larvaProfile.BodySkin;
             }
+
+            if (_houseManager.MenuLarva.Head.material == null || _houseManager.MenuLarva.Head.material.name == "Default-Material (Instance)")
+            {
+                _larvaProfile.HeadSkin = _houseManager.HeadMaterial[Random.Range(0, _houseManager.HeadMaterial.Count)];
+                _larvaProfile.BodySkin = _houseManager.BodyMaterial[Random.Range(0, _houseManager.BodyMaterial.Count)];
+                SetLarvaSkin();
+            }
+            _houseManager.SaveLoadState.Value = SaveState.SaveLarvaData;
         }
         private void SetRoomsNameText()
         {
@@ -132,7 +166,11 @@ namespace Larva.House.Core
         }
         private void Update()
         {
-            _houseFamilyUpgradesController?.Execute();
+            _hudController?.Execute();
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            _touchScreenMoveCameraController?.Execute();
+#endif
         }
         private void FixedUpdate()
         {

@@ -2,6 +2,8 @@ using Larva.House.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
+using static Larva.Tools.Keys;
+
 namespace Larva.House.Core
 {
     public class ChildView : MonoBehaviour
@@ -21,9 +23,26 @@ namespace Larva.House.Core
         }
         private void SetSkin()
         {
+            if (_houseManager.ChildrensProfile[_index].HeadMaterial == null)
+            {
+                _houseManager.ChildrensProfile[_index].HeadMaterial = _houseManager.HeadMaterial[Random.Range(0, _houseManager.HeadMaterial.Count)];
+                _houseManager.ChildrensProfile[_index].BodyMaterial = _houseManager.BodyMaterial[Random.Range(0, _houseManager.BodyMaterial.Count)];
+            }
+
             _head.material = _houseManager.ChildrensProfile[_index].HeadMaterial;
             for (int i = 0; i < _body.Count; i++)
                 _body[i].material = _houseManager.ChildrensProfile[_index].BodyMaterial;
+            
+            if (_head.material == null || _head.material.name == "Default-Material (Instance)")
+            {
+                _head.material = _houseManager.HeadMaterial[Random.Range(0, _houseManager.HeadMaterial.Count)];
+                _head.material = _houseManager.BodyMaterial[Random.Range(0, _houseManager.BodyMaterial.Count)];
+
+                _houseManager.ChildrensProfile[_index].HeadMaterial = _head.material;
+                _houseManager.ChildrensProfile[_index].BodyMaterial = _body[0].material;
+            }
+
+            _houseManager.SaveLoadState.Value = SaveState.SaveLarvaData;
         }
         private void Place()
         {

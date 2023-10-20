@@ -1,4 +1,5 @@
 using Larva.House.Data;
+using Larva.Tools;
 using UnityEngine;
 
 namespace Larva.House.Core
@@ -22,10 +23,8 @@ namespace Larva.House.Core
             if (_houseManager.ChildrenRoom.IsActive)
             {
                 _houseManager.ChildrenID = _id;
-                Debug.Log(_houseManager.ChildrenID);
                 _countOfChildren = _houseManager.CountOfChildren;
                 _houseManager.AddChild = true;
-                //State.AddChild
                 _houseManager.RoomState.Value = _houseManager.RoomState.Value;
             }
         }
@@ -43,6 +42,7 @@ namespace Larva.House.Core
             {
                 _ghostBody.SetActive(false);
                 _normalBody.SetActive(true);
+                _houseManager.SaveLoadState.Value = Keys.SaveState.SaveHouseData;
                 Destroy(gameObject);
             }
         }

@@ -26,5 +26,12 @@ namespace Larva.Tools
             SaveSettingsData,
             SaveHouseData
         }
+        public enum DayTime
+        {
+            Auto,
+            Day,
+            Evening,
+            Night
+        }
     }
 }

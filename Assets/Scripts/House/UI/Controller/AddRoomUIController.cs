@@ -12,16 +12,15 @@ namespace Larva.House.UI.Controller
 {
     public class AddRoomUIController : ObjectsDisposer
     {
-        private readonly SaveLoadManager _saveLoadManager;
         private readonly LocalizationManager _localizationManager;
         private readonly HouseManager _houseManager;
         private readonly AudioManager _audioManager;
         private readonly AddRoomCanvasView _addRoomCanvasView;
+
         private RoomManager _room;
 
-        public AddRoomUIController(SaveLoadManager saveLoadManager, LocalizationManager localizationManager, HouseManager houseManager, UIManager uiManager, AudioManager audioManager, RoomManager room)
+        public AddRoomUIController(LocalizationManager localizationManager, HouseManager houseManager, UIManager uiManager, AudioManager audioManager, RoomManager room)
         {
-            _saveLoadManager = saveLoadManager;
             _localizationManager = localizationManager;
             _houseManager = houseManager;
             _audioManager = audioManager;

@@ -1,8 +1,9 @@
 using Larva.Game.Data;
-using Larva.Game.Tools;
 using Larva.Tools;
 using System.Collections.Generic;
 using UnityEngine;
+
+using static Larva.Game.Tools.States;
 
 namespace Larva.Game.Core.Player
 {

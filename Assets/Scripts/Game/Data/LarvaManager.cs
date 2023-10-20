@@ -16,7 +16,7 @@ namespace Larva.Game.Data
 
         [HideInInspector] public MovementPlane MovementPlane;
         [HideInInspector] public SubscriptionProperty<Vector3> Direction = new SubscriptionProperty<Vector3>();
-        [HideInInspector] public SubscriptionProperty<LarvaState> State = new SubscriptionProperty<LarvaState>();
+        [HideInInspector] public SubscriptionProperty<States.LarvaState> State = new SubscriptionProperty<States.LarvaState>();
         [HideInInspector] public Material BodySkin { get; set; }
     }
 }

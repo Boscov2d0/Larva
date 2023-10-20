@@ -1,4 +1,5 @@
 using Larva.Data;
+using Larva.Menu.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ namespace Larva.Menu.UI.View
     public class PhoneSettingsCanvasView : MonoBehaviour
     {
         [SerializeField] private LocalizationManager _localizationManager;
+        [SerializeField] private GameManager _gameManager;
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private House.Data.HouseManager _houseManager;
 
@@ -21,6 +23,7 @@ namespace Larva.Menu.UI.View
         [SerializeField] private Button _simpleModeButton;
         [SerializeField] private Button _realModeButton;
         [SerializeField] private Dropdown _dayOfFeedingDropdown;
+        [SerializeField] private Dropdown _timeOfDayDropdown;
         [SerializeField] private Button _backButton;
 
         [SerializeField] private Text _languageText;
@@ -32,6 +35,7 @@ namespace Larva.Menu.UI.View
         [SerializeField] private Text _simpleModeInformationText;
         [SerializeField] private Text _realModeInformationText;
         [SerializeField] private Text _chooseFeedingDayText;
+        [SerializeField] private Text _timeOfDayText;
         [SerializeField] private Text _backText;
 
         private UnityAction _setRuLanguage;
@@ -42,12 +46,13 @@ namespace Larva.Menu.UI.View
         private UnityAction _simpleMode;
         private UnityAction _realMode;
         private UnityAction<int> _setDayOfFeed;
+        private UnityAction<int> _setTimeOfDay;
         private UnityAction _back;
 
         public void Initialize(UnityAction setRuLanguage, UnityAction setEnLanguage, UnityAction setZhLanguage,
                                UnityAction<float> setSoundVolume, UnityAction<float> setMusicVolume,
                                UnityAction simpleMode, UnityAction realMode, UnityAction<int> setDayOfFeed,
-                               UnityAction back)
+                               UnityAction<int> setTimeOfDay, UnityAction back)
         {
             _setRuLanguage = setRuLanguage;
             _setEnLanguage = setEnLanguage;
@@ -57,6 +62,7 @@ namespace Larva.Menu.UI.View
             _simpleMode = simpleMode;
             _realMode = realMode;
             _setDayOfFeed = setDayOfFeed;
+            _setTimeOfDay = setTimeOfDay;
             _back = back;
 
             _ruLanguageButton.onClick.AddListener(_setRuLanguage);
@@ -67,6 +73,7 @@ namespace Larva.Menu.UI.View
             _simpleModeButton.onClick.AddListener(_simpleMode);
             _realModeButton.onClick.AddListener(_realMode);
             _dayOfFeedingDropdown.onValueChanged.AddListener(_setDayOfFeed);
+            _timeOfDayDropdown.onValueChanged.AddListener(_setTimeOfDay);
             _backButton.onClick.AddListener(_back);
 
             SetUI();
@@ -85,6 +92,7 @@ namespace Larva.Menu.UI.View
             _simpleModeButton.onClick.RemoveListener(_simpleMode);
             _realModeButton.onClick.RemoveListener(_realMode);
             _dayOfFeedingDropdown.onValueChanged.RemoveListener(_setDayOfFeed);
+            _timeOfDayDropdown.onValueChanged.RemoveListener(_setTimeOfDay);
             _backButton.onClick.RemoveListener(_back);
         }
         private void SetUI()
@@ -92,6 +100,7 @@ namespace Larva.Menu.UI.View
             _musicSlider.value = _audioManager.MusicVolume;
             _soundSlider.value = _audioManager.SoundsVolume;
             _dayOfFeedingDropdown.value = (int)_houseManager.DayForGiveFood;
+            _timeOfDayDropdown.value = (int)_gameManager.DayTime.Value;
         }
         private void TranslateText()
         {
@@ -111,8 +120,14 @@ namespace Larva.Menu.UI.View
             _dayOfFeedingDropdown.options[4].text = _localizationManager.SettingsTable.Value.GetEntry(Friday.ToString())?.GetLocalizedString();
             _dayOfFeedingDropdown.options[5].text = _localizationManager.SettingsTable.Value.GetEntry(Saturday.ToString())?.GetLocalizedString();
             _dayOfFeedingDropdown.options[6].text = _localizationManager.SettingsTable.Value.GetEntry(Sunday.ToString())?.GetLocalizedString();
-
             _dayOfFeedingDropdown.captionText.text = _dayOfFeedingDropdown.options[_dayOfFeedingDropdown.value].text;
+
+            _timeOfDayText.text = _localizationManager.SettingsTable.Value.GetEntry(DayTime.ToString())?.GetLocalizedString();
+            _timeOfDayDropdown.options[0].text = _localizationManager.SettingsTable.Value.GetEntry(Auto.ToString())?.GetLocalizedString();
+            _timeOfDayDropdown.options[1].text = _localizationManager.SettingsTable.Value.GetEntry(Day.ToString())?.GetLocalizedString();
+            _timeOfDayDropdown.options[2].text = _localizationManager.SettingsTable.Value.GetEntry(Evening.ToString())?.GetLocalizedString();
+            _timeOfDayDropdown.options[3].text = _localizationManager.SettingsTable.Value.GetEntry(Night.ToString())?.GetLocalizedString();
+            _timeOfDayDropdown.captionText.text = _timeOfDayDropdown.options[_timeOfDayDropdown.value].text;
 
             _backText.text = _localizationManager.SettingsTable.Value.GetEntry(Back.ToString())?.GetLocalizedString();
         }

@@ -23,10 +23,10 @@ namespace Larva.Menu.Core
 
         private void Start()
         {
-            _larvaProfile.Food.Value = 10;
-            _loadController = new LoadController(_localizationManager, _saveLoadManager, _audioManager, _videoManager, _larvaProfile);
+            _loadController = new LoadController(_localizationManager, _saveLoadManager,
+                                                 _gameManager, _audioManager, _videoManager, _larvaProfile);
             _localizationController = new LocalizationController(_localizationManager);
-            _gameController = new GameController(_gameManager, _videoManager);
+            _gameController = new GameController(_larvaProfile, _gameManager, _videoManager);
             _HUDController = new HUDController(_localizationManager, _saveLoadManager, 
                                                _gameManager, _uiManager, 
                                                _audioManager, _videoManager,

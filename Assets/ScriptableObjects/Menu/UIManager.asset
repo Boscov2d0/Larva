@@ -16,3 +16,4 @@ MonoBehaviour:
   <MainMenuCanvasPath>k__BackingField: MainMenuCanvas
   <PCSettingsCanvasPath>k__BackingField: PCSettingsCanvas
   <PhoneSettingsCanvasPath>k__BackingField: PhoneSettingsCanvas
+  <GameInstructionCanvasPath>k__BackingField: GameInstructionCanvas

@@ -36,7 +36,7 @@ namespace Larva.Game.UI.Controller
         private void OnChangeScore() => _topPanelView.OnChangeScoreText(_gameManager.Score.Value);
         private void PauseGame()
         {
-            _gameManager.GameState.Value = GameState.Pause;
+            _gameManager.GameState.Value = States.GameState.Pause;
             _audioManager.State.Value = AudioStates.Button;
         }
     }

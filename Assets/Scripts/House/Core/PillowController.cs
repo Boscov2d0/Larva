@@ -13,6 +13,7 @@ namespace Larva.House.Core
         private Ray raycast;
         private RaycastHit raycastHit;
         private Pillow _pillow;
+        private int _countOfChildren;
 
         public PillowController(HouseManager houseManager)
         {
@@ -20,7 +21,10 @@ namespace Larva.House.Core
         }
         public void Execute() 
         {
-            if (_houseManager.RoomState.Value == RoomState.ChildrenRoom && !_houseManager.AddChild)
+            if (_houseManager.RoomState.Value != RoomState.ChildrenRoom)
+                return;
+
+            if (!_houseManager.AddChild)
             {
                 raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(raycast, out raycastHit))
@@ -29,6 +33,7 @@ namespace Larva.House.Core
                     {
                         if (raycastHit.collider.TryGetComponent(out Pillow pillow))
                         {
+                            _countOfChildren = _houseManager.CountOfChildren;
                             _pillow = pillow;
                             _pillow.AddMember();
                         }
@@ -38,6 +43,9 @@ namespace Larva.House.Core
 
             if (_pillow != null)
                 _pillow?.SetState();
+
+            if (_countOfChildren == _houseManager.CountOfChildren && !_houseManager.AddChild)
+                _pillow = null;
         }
     }
 }

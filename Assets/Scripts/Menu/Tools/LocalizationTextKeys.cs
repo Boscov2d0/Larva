@@ -5,9 +5,18 @@ namespace Larva.Tools
         public enum LocalizationMenuTextKeys
         {
             StartGame,
+            HowPlay,
             LarvaHouse,
             Settings,
             Exit
+        }
+        public enum LocalizationInstructionsTextKeys
+        {
+            Instructions,
+            GoodLeafs,
+            BadLeafs,
+            Obstacles,
+            Back
         }
         public enum LocalizationSettingsTextKeys
         {
@@ -32,7 +41,12 @@ namespace Larva.Tools
             Thursday,
             Friday,
             Saturday,
-            Sunday
+            Sunday,
+            DayTime,
+            Auto,
+            Day,
+            Evening,
+            Night
         }
         public enum LocalizationGameTextKeys
         {

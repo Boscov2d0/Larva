@@ -14,7 +14,6 @@ namespace Larva.House.UI.Controller
 {
     public class WardrobeUIController : ObjectsDisposer
     {
-        private readonly SaveLoadManager _saveLoadManager;
         private readonly LarvaProfile _larvaProfile;
         private readonly HouseManager _houseManager;
         private readonly AudioManager _audioManager;
@@ -23,9 +22,9 @@ namespace Larva.House.UI.Controller
         private Renderer _larvaHead;
         private List<Renderer> _larvaBody = new List<Renderer>();
 
-        public WardrobeUIController(SaveLoadManager saveLoadManager, LarvaProfile larvaProfile, HouseManager houseManager, UIManager uiManager, AudioManager audioManager)
+        public WardrobeUIController(LarvaProfile larvaProfile, HouseManager houseManager, 
+                                    UIManager uiManager, AudioManager audioManager)
         {
-            _saveLoadManager = saveLoadManager;
             _larvaProfile = larvaProfile;
             _houseManager = houseManager;
             _audioManager = audioManager;

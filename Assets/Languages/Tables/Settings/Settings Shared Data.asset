@@ -103,6 +103,26 @@ MonoBehaviour:
     m_Key: Sunday
     m_Metadata:
       m_Items: []
+  - m_Id: 6151201591947264
+    m_Key: DayTime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6134559235403776
+    m_Key: Auto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6134583453315072
+    m_Key: Day
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6134605716680704
+    m_Key: Evening
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6134634137284608
+    m_Key: Night
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -15,6 +15,9 @@ namespace Larva.House.Data
         [TextArea(1, 1)]
         public string Discription1;
         [field: SerializeField] public string PathForObjects { get; private set; }
+        [field: SerializeField] public string DaySpotLightPath { get; private set; }
+        [field: SerializeField] public string EveningSpotLightPath { get; private set; }
+        [field: SerializeField] public string NightSpotLightPath { get; private set; }
         [field: SerializeField] public string PotPath { get; private set; }
         [field: SerializeField] public string StoragePath { get; private set; }
         [field: SerializeField] public string PartnerPath { get; private set; }

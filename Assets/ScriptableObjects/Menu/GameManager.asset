@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PathForObjects>k__BackingField: Menu/
   <ScenePath>k__BackingField: Scene
-  <DirectionalLightPath>k__BackingField: DirectionalLight
+  <DayDirectionalLightPath>k__BackingField: DayDirectionalLight
+  <EveningDirectionalLightPath>k__BackingField: EveningDirectionalLight
+  <NightDirectionalLightPath>k__BackingField: NightDirectionalLight
   <MenuCameraPath>k__BackingField: MenuCamera
   <HouseCameraPath>k__BackingField: House/HouseCamera
   <MenuLarvaPath>k__BackingField: MenuLarva

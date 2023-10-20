@@ -32,7 +32,7 @@ namespace Larva.Menu.UI.Controller
         }
         protected void SimpleMode() => _houseManager.GameMode = GameMode.Simple;
         protected void RealMode() => _houseManager.GameMode = GameMode.Real;
-        protected void SetDayOfFeed(int parameters) => _houseManager.DayForGiveFood = (DayOfWeek)parameters + 1;
+        protected void SetDayOfFeed(int parameters) => _houseManager.DayForGiveFood = (DayOfWeek)parameters;
         protected void SetRuLanguage()
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[ru];
@@ -66,6 +66,24 @@ namespace Larva.Menu.UI.Controller
 
             if (value == 0)
                 _audioManager.AudioMixer.SetFloat(MixerGroups.Music.ToString(), -80);
+        }
+        protected void SetTimeOfDay(int parameters)
+        {
+            switch (parameters)
+            {
+                case 0:
+                    _gameManager.DayTime.Value = DayTime.Auto;
+                    break;
+                case 1:
+                    _gameManager.DayTime.Value = DayTime.Day;
+                    break;
+                case 2:
+                    _gameManager.DayTime.Value = DayTime.Evening;
+                    break;
+                case 3:
+                    _gameManager.DayTime.Value = DayTime.Night;
+                    break;
+            }
         }
         protected virtual void Back()
         {

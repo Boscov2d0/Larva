@@ -40,7 +40,7 @@ namespace Larva.Menu.UI.Controller
                                            SimpleMode, RealMode, SetDayOfFeed,
                                            SetSoundVolume, SetMusicVolume,
                                            SetScreenResolition, SetFullscreen,
-                                           Back);
+                                           SetTimeOfDay, Back);
         }
         private void OpenGamePanel()
         {
@@ -87,7 +87,7 @@ namespace Larva.Menu.UI.Controller
         }
         protected override void Back()
         {
-            Saver.SaveGamePCSettingsData(_localizationManager, _saveLoadManager, _audioManager, _videoManager);
+            Saver.SaveGamePCSettingsData(_localizationManager, _saveLoadManager, _gameManager, _audioManager, _videoManager);
 
             base.Back();
         }

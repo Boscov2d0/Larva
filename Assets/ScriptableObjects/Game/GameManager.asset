@@ -22,6 +22,8 @@ MonoBehaviour:
   <PathForObjects>k__BackingField: Game/
   <LoadingPath>k__BackingField: Loading
   <GameAreaPath>k__BackingField: GameArea
-  <DirectionalLightPath>k__BackingField: DirectionalLight
+  <DayDirectionalLightPath>k__BackingField: DayDirectionalLight
+  <EveningDirectionalLightPath>k__BackingField: EveningDirectionalLight
+  <NightDirectionalLightPath>k__BackingField: NightDirectionalLight
   <CameraPath>k__BackingField: Camera
   <AudioControllerPath>k__BackingField: AudioController

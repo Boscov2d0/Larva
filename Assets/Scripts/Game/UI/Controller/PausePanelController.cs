@@ -24,12 +24,12 @@ namespace Larva.Game.UI.Controller
         }
         private void ContinueGame()
         {
-            _gameManager.GameState.Value = GameState.Game;
+            _gameManager.GameState.Value = States.GameState.Game;
             _audioManager.State.Value = AudioStates.ButtonCancel;
         }
         private void ExitToMainMenu()
         {
-            _gameManager.GameState.Value = GameState.Exit;
+            _gameManager.GameState.Value = States.GameState.Exit;
             _audioManager.State.Value = AudioStates.ButtonApply;
         }
     }

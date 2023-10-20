@@ -6,6 +6,7 @@ namespace Larva.Menu.Tools
         OutSideMenu,
         LarvaHouse,
         Menu,
+        Instructions,
         Settings,
         Play,
         Exit

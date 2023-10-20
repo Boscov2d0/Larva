@@ -12,6 +12,7 @@ namespace Larva.Menu.UI.View
     public class PCSettingsCanvasView : MonoBehaviour
     {
         [SerializeField] private LocalizationManager _localizationManager;
+        [SerializeField] private GameManager _gameManager;
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private VideoManager _videoManager;
         [SerializeField] private House.Data.HouseManager _houseManager;
@@ -32,6 +33,7 @@ namespace Larva.Menu.UI.View
 
         [SerializeField] private Dropdown _screenResolutionDropdown;
         [SerializeField] private Toggle _fulscreenToggle;
+        [SerializeField] private Dropdown _timeOfDayDropdown;
         [SerializeField] private Button _backButton;
 
         [SerializeField] private List<GameObject> _panels;
@@ -52,6 +54,7 @@ namespace Larva.Menu.UI.View
         [SerializeField] private Text _musicText;
         [SerializeField] private Text _screenResolutionText;
         [SerializeField] private Text _fullscreenText;
+        [SerializeField] private Text _timeOfDayText;
         [SerializeField] private Text _backText;
 
         private UnityAction _openGamePanel;
@@ -68,6 +71,7 @@ namespace Larva.Menu.UI.View
         private UnityAction<float> _setMusicVolume;
         private UnityAction<int> _setScreenResolution;
         private UnityAction<bool> _setFullscreen;
+        private UnityAction<int> _setTimeOfDay;
         private UnityAction _back;
 
         public Dropdown ScreenResolutionDropdown { get { return _screenResolutionDropdown; } private set { } }
@@ -78,7 +82,7 @@ namespace Larva.Menu.UI.View
                                UnityAction simpleMode, UnityAction realMode, UnityAction<int> setDayOfFeed,
                                UnityAction<float> setSoundVolume, UnityAction<float> setMusicVolume,
                                UnityAction<int> setScreenResolution, UnityAction<bool> setFullscreen,
-                               UnityAction back)
+                               UnityAction<int> setTimeOfDay, UnityAction back)
         {
             _openGamePanel = openGamePanel;
             _openAudioPanel = openAudioPanel;
@@ -93,6 +97,7 @@ namespace Larva.Menu.UI.View
             _setMusicVolume = setMusicVolume;
             _setScreenResolution = setScreenResolution;
             _setFullscreen = setFullscreen;
+            _setTimeOfDay = setTimeOfDay;
             _back = back;
 
             _gamePanelButton.onClick.AddListener(_openGamePanel);
@@ -108,6 +113,7 @@ namespace Larva.Menu.UI.View
             _musicSlider.onValueChanged.AddListener(_setMusicVolume);
             _screenResolutionDropdown.onValueChanged.AddListener(_setScreenResolution);
             _fulscreenToggle.onValueChanged.AddListener(_setFullscreen);
+            _timeOfDayDropdown.onValueChanged.AddListener(_setTimeOfDay);
             _backButton.onClick.AddListener(_back);
 
             SetUI();
@@ -131,6 +137,7 @@ namespace Larva.Menu.UI.View
             _musicSlider.onValueChanged.RemoveListener(_setMusicVolume);
             _screenResolutionDropdown.onValueChanged.RemoveListener(_setScreenResolution);
             _fulscreenToggle.onValueChanged.RemoveListener(_setFullscreen);
+            _timeOfDayDropdown.onValueChanged.RemoveListener(_setTimeOfDay);
             _backButton.onClick.RemoveListener(_back);
         }
         private void SetUI()
@@ -155,6 +162,8 @@ namespace Larva.Menu.UI.View
                     _screenResolutionDropdown.value = i;
             }
             _fulscreenToggle.isOn = _videoManager.Fullscreen;
+
+            _timeOfDayDropdown.value = (int)_gameManager.DayTime.Value;
         }
         private void TranslateText()
         {
@@ -180,6 +189,14 @@ namespace Larva.Menu.UI.View
             _musicText.text = _localizationManager.SettingsTable.Value.GetEntry(Music.ToString())?.GetLocalizedString();
             _screenResolutionText.text = _localizationManager.SettingsTable.Value.GetEntry(ScreenResolution.ToString())?.GetLocalizedString();
             _fullscreenText.text = _localizationManager.SettingsTable.Value.GetEntry(Fullscreen.ToString())?.GetLocalizedString();
+            
+            _timeOfDayText.text = _localizationManager.SettingsTable.Value.GetEntry(DayTime.ToString())?.GetLocalizedString();
+            _timeOfDayDropdown.options[0].text = _localizationManager.SettingsTable.Value.GetEntry(Auto.ToString())?.GetLocalizedString();
+            _timeOfDayDropdown.options[1].text = _localizationManager.SettingsTable.Value.GetEntry(Day.ToString())?.GetLocalizedString();
+            _timeOfDayDropdown.options[2].text = _localizationManager.SettingsTable.Value.GetEntry(Evening.ToString())?.GetLocalizedString();
+            _timeOfDayDropdown.options[3].text = _localizationManager.SettingsTable.Value.GetEntry(Night.ToString())?.GetLocalizedString();
+            _timeOfDayDropdown.captionText.text = _timeOfDayDropdown.options[_timeOfDayDropdown.value].text;
+
             _backText.text = _localizationManager.SettingsTable.Value.GetEntry(Back.ToString())?.GetLocalizedString();
         }
     }

@@ -106,6 +106,26 @@ MonoBehaviour:
     m_Localized: You don't have to worry about feeding your family
     m_Metadata:
       m_Items: []
+  - m_Id: 6134559235403776
+    m_Localized: Auto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6134583453315072
+    m_Localized: Day
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6134605716680704
+    m_Localized: Evening
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6134634137284608
+    m_Localized: Night
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6151201591947264
+    m_Localized: Time of day
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

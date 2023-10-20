@@ -1,4 +1,5 @@
 using Larva.Data;
+using Larva.House.Core;
 using Larva.House.Data;
 using Larva.Tools;
 
@@ -9,6 +10,7 @@ namespace Larva.House.UI.Controller
     public class HUDController : ObjectsDisposer
     {
         private readonly SaveLoadManager _saveLoadManager;
+        private readonly LocalizationManager _localizationManager;
         private readonly HouseManager _houseManager;
         private readonly UIManager _uiManager;
         private readonly AudioManager _audioManager;
@@ -19,14 +21,23 @@ namespace Larva.House.UI.Controller
         private ChildrenRoomUIController _childrenRoomUIController;
         private KitchenUIController _kitchenUIController;
         private WardrobeUIController _wardrobeUIController;
+        private HouseRoomsUpgradesController _houseRoomsUpgradesController;
+        private HouseFamilyUpgradesController _houseFamilyUpgradesController;
 
-        public HUDController(SaveLoadManager saveLoadManager, HouseManager houseManager, UIManager uiManager, AudioManager audioManager, LarvaProfile larvaProfile)
+        public HUDController(SaveLoadManager saveLoadManager, LocalizationManager localizationManager, HouseManager houseManager, UIManager uiManager, AudioManager audioManager, LarvaProfile larvaProfile)
         {
             _saveLoadManager = saveLoadManager;
+            _localizationManager = localizationManager;
             _houseManager = houseManager;
             _uiManager = uiManager;
             _audioManager = audioManager;
             _larvaProfile = larvaProfile;
+
+            if (!_houseManager.AllBuilded)
+                _houseRoomsUpgradesController = new HouseRoomsUpgradesController(_saveLoadManager, _localizationManager, _houseManager, _uiManager, _audioManager);
+
+            if (_houseManager.CountOfChildren < 4)
+                _houseFamilyUpgradesController = new HouseFamilyUpgradesController(_localizationManager, _houseManager, _uiManager, _audioManager);
 
             _houseManager.RoomState.SubscribeOnChange(OnChangeRoomState);
             _houseManager.ActionState.SubscribeOnChange(OnChangeActionState);
@@ -36,9 +47,16 @@ namespace Larva.House.UI.Controller
             _houseManager.RoomState.UnSubscribeOnChange(OnChangeRoomState);
             _houseManager.ActionState.UnSubscribeOnChange(OnChangeActionState);
 
+            _houseRoomsUpgradesController?.Dispose();
+            _houseFamilyUpgradesController?.Dispose();
+
             DisposeControllers();
 
             base.OnDispose();
+        }
+        public void Execute() 
+        {
+            _houseFamilyUpgradesController?.Execute();
         }
         private void OnChangeRoomState()
         {
@@ -70,8 +88,8 @@ namespace Larva.House.UI.Controller
             {
                 case ActionState.OpenWardrobe:
                     _bedroomUIController?.Dispose();
-                    _wardrobeUIController = new WardrobeUIController(_saveLoadManager, _larvaProfile,
-                                                                     _houseManager, _uiManager, _audioManager);
+                    _wardrobeUIController = new WardrobeUIController(_larvaProfile, _houseManager,
+                                                                     _uiManager, _audioManager);
                     AddController(_wardrobeUIController);
                     break;
             }
@@ -82,6 +100,7 @@ namespace Larva.House.UI.Controller
             _bedroomUIController?.Dispose();
             _childrenRoomUIController?.Dispose();
             _kitchenUIController?.Dispose();
+            _wardrobeUIController?.Dispose();
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Larva.Data;
 using Larva.Game.Data;
-using Larva.Game.Tools;
 using Larva.Tools;
 
+using static Larva.Game.Tools.States;
 
 namespace Larva.Game.UI.Controller
 {

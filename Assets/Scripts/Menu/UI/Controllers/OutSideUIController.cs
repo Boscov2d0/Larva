@@ -17,6 +17,7 @@ namespace Larva.Menu.UI.Controller
 
         private MenuUIController _mainMenuUIController;
         private SettingsUIController _settingsUIController;
+        private GameInstructionUIController _gameInstructionUIController;
 
         public OutSideUIController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager,
                              GameManager gameManager, UIManager uiManager,
@@ -51,6 +52,9 @@ namespace Larva.Menu.UI.Controller
                 case GameState.Menu:
                     _mainMenuUIController = new MenuUIController(_gameManager, _uiManager, _audioManager);
                     break;
+                case GameState.Instructions:
+                    _gameInstructionUIController = new GameInstructionUIController(_gameManager, _uiManager, _audioManager);
+                    break;
                 case GameState.Settings:
 #if UNITY_ANDROID || UNITY_WEBGL && !UNITY_EDITOR
                     _settingsUIController = new PhoneSettingsUIController(_localizationManager, _saveLoadManager, 
@@ -70,6 +74,7 @@ namespace Larva.Menu.UI.Controller
         {
             _mainMenuUIController?.Dispose();
             _settingsUIController?.Dispose();
+            _gameInstructionUIController?.Dispose();
         }
     }
 }

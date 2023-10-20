@@ -55,9 +55,8 @@ namespace Larva.House.Core
         private void GetUpgrate(RoomManager room)
         {
             if (room.IsActive == false)
-                _addRoomUIController = new AddRoomUIController(_saveLoadManager, _localizationManager, 
-                                                               _houseManager, _uiManager, 
-                                                               _audioManager, room);
+                _addRoomUIController = new AddRoomUIController(_localizationManager, _houseManager, 
+                                                               _uiManager, _audioManager, room);
         }
     }
 }

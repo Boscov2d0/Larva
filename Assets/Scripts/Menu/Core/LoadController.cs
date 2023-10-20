@@ -9,15 +9,18 @@ namespace Larva.Menu.Core
     {
         private readonly LocalizationManager _localizationManager;
         private readonly SaveLoadManager _saveLoadManager;
+        private readonly GameManager _gameManager;
         private readonly AudioManager _audioManager;
         private readonly VideoManager _videoManager;
         private readonly LarvaProfile _larvaProfile;
 
         public LoadController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager, 
-                              AudioManager audioManager, VideoManager videoManager, LarvaProfile larvaProfile)
+                              GameManager gameManager, AudioManager audioManager, 
+                              VideoManager videoManager, LarvaProfile larvaProfile)
         {
             _localizationManager = localizationManager;
             _saveLoadManager = saveLoadManager;
+            _gameManager = gameManager;
             _audioManager = audioManager;
             _videoManager = videoManager;
             _larvaProfile = larvaProfile;
@@ -36,6 +39,7 @@ namespace Larva.Menu.Core
             _audioManager.MusicVolume = _saveLoadManager.GameSettingsData.MusicVolume;
             _videoManager.ScreenResolution = _saveLoadManager.GameSettingsData.ScreenResolution;
             _videoManager.Fullscreen = _saveLoadManager.GameSettingsData.Fullscreen;
+            _gameManager.DayTime.Value = _saveLoadManager.GameSettingsData.DayTime;
         }
         private void LoadLarvaData()
         {

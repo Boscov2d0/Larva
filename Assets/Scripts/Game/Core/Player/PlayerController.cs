@@ -4,6 +4,8 @@ using Larva.Game.Tools;
 using System.Collections.Generic;
 using UnityEngine;
 
+using static Larva.Game.Tools.States;
+
 namespace Larva.Game.Core.Player
 {
     public class PlayerController : MonoBehaviour

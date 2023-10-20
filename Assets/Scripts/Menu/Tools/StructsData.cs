@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
+
 using static Larva.Tools.Keys;
 
 namespace Larva.Tools
@@ -16,6 +17,7 @@ namespace Larva.Tools
             public float MusicVolume;
             public Vector3 ScreenResolution;
             public bool Fullscreen;
+            public DayTime DayTime;
         }
         public struct HouseData
         {
@@ -53,6 +55,7 @@ namespace Larva.Tools
             public bool IsNew;
             public int ID;
             public bool IsHungry;
+            public LarvaData LarvaData;
         }
     }
 }

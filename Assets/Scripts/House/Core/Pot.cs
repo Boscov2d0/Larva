@@ -21,8 +21,20 @@ namespace Larva.House.Core
             if (!_houseManager.PotManagers[_index].IsActive)
                 SetBody();
 
+            if (_houseManager.PotManagers[_index].Material == null)
+                _houseManager.PotManagers[_index].Material = _houseManager.PotMaterials[Random.Range(0, _houseManager.PotMaterials.Count)];
+
             _body = _bodyList[_houseManager.PotManagers[_index].BodyIndex];
-            _body.transform.GetComponent<Renderer>().material = _houseManager.PotManagers[_index].Material;
+            Renderer renderer = _body.transform.GetComponent<Renderer>();
+            renderer.material = _houseManager.PotManagers[_index].Material;
+
+            if (renderer.material == null || renderer.material.name == "Default-Material (Instance)") 
+            {
+                Material material = _houseManager.PotMaterials[Random.Range(0, _houseManager.PotMaterials.Count)];
+                renderer.material = material;
+                _houseManager.PotManagers[_index].Material = material;
+            }            
+
             _body.SetActive(true);
             _houseManager.PotManagers[_index].Capacity = _capacity;
         }

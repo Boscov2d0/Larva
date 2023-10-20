@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Discription1: Objects pathes
   <PathForObjects>k__BackingField: House/
+  <DaySpotLightPath>k__BackingField: DaySpotLight
+  <EveningSpotLightPath>k__BackingField: EveningSpotLight
+  <NightSpotLightPath>k__BackingField: NightSpotLight
   <PotPath>k__BackingField: FoodPot
   <StoragePath>k__BackingField: Storage
   <PartnerPath>k__BackingField: LarvaPartner
@@ -78,8 +81,8 @@ MonoBehaviour:
   HavePartner: 0
   HaveChild: 0
   CountOfChildren: 0
-  ChildrenID: 2
-  ConsumedFood: 4
+  ChildrenID: 1
+  ConsumedFood: 1
   PartnerPosition: {x: -6.5, y: -4.5, z: 5}
   ChildrensPositions:
   - {fileID: 11400000, guid: 0ecfda22bff6928478ba86d9b9af5259, type: 2}
@@ -115,4 +118,4 @@ MonoBehaviour:
   - {fileID: 2100000, guid: b1edf215c4364104d8eeb6a3c2f6f91c, type: 2}
   - {fileID: 2100000, guid: 69c6497400024854ca39043a50a10a1e, type: 2}
   GameMode: 1
-  DayForGiveFood: 4
+  DayForGiveFood: 6
