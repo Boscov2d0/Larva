@@ -30,6 +30,36 @@ MonoBehaviour:
     m_Localized: Exit
     m_Metadata:
       m_Items: []
+  - m_Id: 3619259868803072
+    m_Localized: Larva house
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6681079877758976
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6681018850635776
+    m_Localized: Score points by eating good leaves. The more points you score, the
+      more food there will be in the house. Points will be deducted for eating bad
+      leaves.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6681035640434688
+    m_Localized: 'Good leaves look like this:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6681057702473728
+    m_Localized: 'Bad leaves look like this:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6681065415798784
+    m_Localized: 'The game will be over when colliding with the following objects:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6842899410219008
+    m_Localized: How to play
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

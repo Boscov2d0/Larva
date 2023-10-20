@@ -32,6 +32,7 @@ namespace Larva.Menu.Core
         {
             GetMenuTable();
             GetSettingsTable();
+            GetHouseTable();
         }
         private void GetMenuTable() 
         {
@@ -42,6 +43,11 @@ namespace Larva.Menu.Core
         {
             StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable(Keys.TabelsNameKeys.Settings.ToString());
             _localizationManager.SettingsTable.Value = loadingOperation;
+        }
+        private void GetHouseTable()
+        {
+            StringTable loadingOperation = LocalizationSettings.StringDatabase.GetTable(Keys.TabelsNameKeys.House.ToString());
+            _localizationManager.HouseTable.Value = loadingOperation;
         }
     }
 }

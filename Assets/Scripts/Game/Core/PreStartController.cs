@@ -37,12 +37,12 @@ namespace Larva.Game.Core
         }
         public void FixedExecute()
         {
-            if (_gameManager.GameState.Value == GameState.Start)
+            if (_gameManager.GameState.Value == States.GameState.Start)
             {
                 if (_startCamera.transform.position != _cameraPosition)
                     MoveCamera();
                 else
-                    _gameManager.GameState.Value = GameState.PreGame;
+                    _gameManager.GameState.Value = States.GameState.PreGame;
             }
         }
         private void MoveCamera()

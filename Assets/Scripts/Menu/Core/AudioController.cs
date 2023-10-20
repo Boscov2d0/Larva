@@ -1,7 +1,8 @@
+using Larva.Data;
 using UnityEngine;
 using System.Collections.Generic;
-using Larva.Tools;
-using Larva.Data;
+
+using static Larva.Tools.AudioKeys;
 
 namespace Larva.Menu.Core
 {
@@ -22,8 +23,8 @@ namespace Larva.Menu.Core
             if (_audioManager.MusicVolume == 0)
                 _audioManager.MusicVolume = 0.0001f;
 
-            _audioManager.AudioMixer.SetFloat(AudioKeys.MixerGroups.Sound.ToString(), Mathf.Log10(_audioManager.SoundsVolume) * 20);
-            _audioManager.AudioMixer.SetFloat(AudioKeys.MixerGroups.Music.ToString(), Mathf.Log10(_audioManager.MusicVolume) * 20);
+            _audioManager.AudioMixer.SetFloat(MixerGroups.Sound.ToString(), Mathf.Log10(_audioManager.SoundsVolume) * 20);
+            _audioManager.AudioMixer.SetFloat(MixerGroups.Music.ToString(), Mathf.Log10(_audioManager.MusicVolume) * 20);
 
             _index = Random.Range(0, _musics.Count);
             _musics[_index].Play();
@@ -56,13 +57,13 @@ namespace Larva.Menu.Core
         {
             switch (_audioManager.State.Value)
             {
-                case AudioKeys.AudioStates.Button:
+                case AudioStates.Button:
                     PLayButtonSound();
                     break;
-                case AudioKeys.AudioStates.ButtonApply:
+                case AudioStates.ButtonApply:
                     PLayButtonApplySound();
                     break;
-                case AudioKeys.AudioStates.ButtonCancel:
+                case AudioStates.ButtonCancel:
                     PLayButtonCancelSound();
                     break;
             }

@@ -1,8 +1,9 @@
 using Larva.Game.Data;
-using Larva.Game.Tools;
 using Larva.Tools;
 using System.Collections.Generic;
 using UnityEngine;
+
+using static Larva.Game.Tools.States;
 
 namespace Larva.Game.Core.Player
 {
@@ -62,6 +63,7 @@ namespace Larva.Game.Core.Player
             }
 
             _bodyNodeList.Add(_body.transform);
+            _body.GetComponent<Renderer>().material = _larvaManager.BodySkin;
             _body = null;
         }
         private void LoseBody()
@@ -73,9 +75,7 @@ namespace Larva.Game.Core.Player
                 _bodyNodeList.Remove(_bodyNodeList[_bodyNodeList.Count - 1]);
             }
             else
-            {
                 _larvaManager.State.Value = LarvaState.Death;
-            }
         }
     }
 }

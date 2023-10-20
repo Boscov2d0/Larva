@@ -10,7 +10,7 @@ namespace Larva.Game.Core
 
         public void OnStateEnter()
         {
-            _gameManager.GameState.Value = GameState.Start;
+            _gameManager.GameState.Value = States.GameState.Start;
         }
     }
 }

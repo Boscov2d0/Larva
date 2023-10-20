@@ -18,11 +18,13 @@ namespace Larva.Game.Data
         [field: SerializeField] public string PathForObjects { get; private set; }
         [field: SerializeField] public string LoadingPath { get; private set; }
         [field: SerializeField] public string GameAreaPath { get; private set; }
-        [field: SerializeField] public string DirectionalLightPath { get; private set; }
+        [field: SerializeField] public string DayDirectionalLightPath { get; private set; }
+        [field: SerializeField] public string EveningDirectionalLightPath { get; private set; }
+        [field: SerializeField] public string NightDirectionalLightPath { get; private set; }
         [field: SerializeField] public string CameraPath { get; private set; }
         [field: SerializeField] public string AudioControllerPath { get; private set; }
 
-        public SubscriptionProperty<GameState> GameState = new SubscriptionProperty<GameState>();
+        public SubscriptionProperty<States.GameState> GameState = new SubscriptionProperty<States.GameState>();
         public SubscriptionProperty<int> CurrentCountOfGoodFood = new SubscriptionProperty<int>();
         public SubscriptionProperty<int> Score = new SubscriptionProperty<int>();
     }

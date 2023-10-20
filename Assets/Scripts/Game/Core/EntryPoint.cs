@@ -8,6 +8,7 @@ namespace Larva.Game.Core
     public class EntryPoint : MonoBehaviour
     {
         [SerializeField] private LocalizationManager _localizationManager;
+        [SerializeField] private LarvaProfile _larvaProfile;
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private LarvaManager _larvaManager;
         [SerializeField] private UIManager _uiManager;
@@ -21,7 +22,7 @@ namespace Larva.Game.Core
         private void Start()
         {
             _localizationController = new LocalizationController(_localizationManager);
-            _gameController = new GameController(_gameManager, _larvaManager, _preStartManager);
+            _gameController = new GameController(_larvaProfile, _gameManager, _larvaManager, _preStartManager);
             _hUdController = new HUDController(_gameManager, _uiManager, _audioManager);
         }
         private void Update()

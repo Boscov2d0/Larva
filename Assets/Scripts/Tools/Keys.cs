@@ -10,8 +10,28 @@ namespace Larva.Tools
         public enum TabelsNameKeys
         {
             Menu,
+            House,
             Settings,
             Game
+        }
+        public enum GameMode
+        {
+            Simple,
+            Real
+        }
+        public enum SaveState
+        {
+            Null,
+            SaveLarvaData,
+            SaveSettingsData,
+            SaveHouseData
+        }
+        public enum DayTime
+        {
+            Auto,
+            Day,
+            Evening,
+            Night
         }
     }
 }

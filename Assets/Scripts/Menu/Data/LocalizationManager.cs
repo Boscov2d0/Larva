@@ -13,5 +13,6 @@ namespace Larva.Data
         public SubscriptionProperty<StringTable> MenuTable = new SubscriptionProperty<StringTable>();
         public SubscriptionProperty<StringTable> SettingsTable = new SubscriptionProperty<StringTable>();
         public SubscriptionProperty<StringTable> GameTable = new SubscriptionProperty<StringTable>();
+        public SubscriptionProperty<StringTable> HouseTable = new SubscriptionProperty<StringTable>();
     }
 }

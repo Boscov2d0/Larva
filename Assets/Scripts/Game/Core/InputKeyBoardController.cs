@@ -28,7 +28,7 @@ namespace Larva.Game.Core
                 TurnDown();
 
             if (Input.GetKeyDown(KeyCode.Escape))
-                _gameManager.GameState.Value = GameState.Pause;
+                _gameManager.GameState.Value = States.GameState.Pause;
         }
     }
 }
