@@ -16,20 +16,53 @@ namespace Larva.Menu.UI.Controller
         private readonly VideoManager _videoManager;
         private readonly PCSettingsCanvasView _settingsCanvasView;
 
+        private const int _gamePanelIndex = 0;
+        private const int _audioPanelIndex = 1;
+        private const int _videoPanelIndex = 2;
+
+        private int _panelIndex;
         private int _width;
         private int _height;
         private int _refreshRate;
 
         public PCSettingsUIController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager,
                                       GameManager gameManager, UIManager uiManager,
-                                      AudioManager audioManager, VideoManager videoManager) : base(localizationManager, gameManager, audioManager)
+                                      AudioManager audioManager, VideoManager videoManager,
+                                      House.Data.HouseManager houseManager) : base(localizationManager, gameManager, audioManager, houseManager)
         {
             _saveLoadManager = saveLoadManager;
             _videoManager = videoManager;
 
             _settingsCanvasView = ResourcesLoader.InstantiateAndGetObject<PCSettingsCanvasView>(uiManager.PathForUIObjects + uiManager.PCSettingsCanvasPath);
             AddGameObject(_settingsCanvasView.gameObject);
-            _settingsCanvasView.Initialize(SetRuLanguage, SetEnLanguage, SetZhLanguage, SetSoundVolume, SetMusicVolume, SetScreenResolition, SetFullscreen, Back);
+            _settingsCanvasView.Initialize(OpenGamePanel, OpenAudioPanel, OpenVideoPanel,
+                                           SetRuLanguage, SetEnLanguage, SetZhLanguage,
+                                           SimpleMode, RealMode, SetDayOfFeed,
+                                           SetSoundVolume, SetMusicVolume,
+                                           SetScreenResolition, SetFullscreen,
+                                           Back);
+        }
+        private void OpenGamePanel()
+        {
+            _panelIndex = _gamePanelIndex;
+            OnPanelActivate();
+        }
+        private void OpenAudioPanel()
+        {
+            _panelIndex = _audioPanelIndex;
+            OnPanelActivate();
+        }
+        private void OpenVideoPanel()
+        {
+            _panelIndex = _videoPanelIndex;
+            OnPanelActivate();
+        }
+        private void OnPanelActivate()
+        {
+            for (int i = 0; i < _settingsCanvasView.Panels.Count; i++)
+                _settingsCanvasView.Panels[i].SetActive(false);
+
+            _settingsCanvasView.Panels[_panelIndex].SetActive(true);
         }
         private void SetScreenResolition(int parameters)
         {

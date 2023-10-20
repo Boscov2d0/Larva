@@ -1,8 +1,8 @@
 using Larva.Data;
 using Larva.House.Data;
-using Larva.House.Tools;
 using Larva.Tools;
-using UnityEngine;
+
+using static Larva.House.Tools.HouseState;
 
 namespace Larva.House.UI.Controller
 {
@@ -28,40 +28,49 @@ namespace Larva.House.UI.Controller
             _audioManager = audioManager;
             _larvaProfile = larvaProfile;
 
-            _houseManager.HouseState.SubscribeOnChange(OnChangeState);
+            _houseManager.RoomState.SubscribeOnChange(OnChangeRoomState);
+            _houseManager.ActionState.SubscribeOnChange(OnChangeActionState);
         }
         protected override void OnDispose()
         {
-            _houseManager.HouseState.UnSubscribeOnChange(OnChangeState);
+            _houseManager.RoomState.UnSubscribeOnChange(OnChangeRoomState);
+            _houseManager.ActionState.UnSubscribeOnChange(OnChangeActionState);
 
             DisposeControllers();
 
             base.OnDispose();
         }
-        private void OnChangeState()
+        private void OnChangeRoomState()
         {
             DisposeControllers();
 
-            switch (_houseManager.HouseState.Value)
+            switch (_houseManager.RoomState.Value)
             {
-                case HouseState.MainHall:
+                case RoomState.MainHall:
                     _mainHallUIController = new MainHallUIController(_houseManager, _uiManager, _audioManager);
                     AddController(_mainHallUIController);
                     break;
-                case HouseState.Bedroom:
+                case RoomState.Bedroom:
                     _bedroomUIController = new BedroomUIController(_houseManager, _uiManager, _audioManager);
                     AddController(_bedroomUIController);
                     break;
-                case HouseState.ChildrenRoom:
+                case RoomState.ChildrenRoom:
                     _childrenRoomUIController = new ChildrenRoomUIController(_houseManager, _uiManager, _audioManager);
                     AddController(_childrenRoomUIController);
                     break;
-                case HouseState.Kitchen:
+                case RoomState.Kitchen:
                     _kitchenUIController = new KitchenUIController(_houseManager, _uiManager, _audioManager);
                     AddController(_kitchenUIController);
                     break;
-                case HouseState.Wardrobe:
-                    _wardrobeUIController = new WardrobeUIController(_saveLoadManager, _larvaProfile, 
+            }
+        }
+        private void OnChangeActionState()
+        {
+            switch (_houseManager.ActionState.Value)
+            {
+                case ActionState.OpenWardrobe:
+                    _bedroomUIController?.Dispose();
+                    _wardrobeUIController = new WardrobeUIController(_saveLoadManager, _larvaProfile,
                                                                      _houseManager, _uiManager, _audioManager);
                     AddController(_wardrobeUIController);
                     break;

@@ -1,9 +1,9 @@
 using Larva.Data;
 using Larva.House.Data;
-using Larva.House.Tools;
 using Larva.House.UI.View;
 using Larva.Tools;
 
+using static Larva.House.Tools.HouseState;
 using static Larva.Tools.AudioKeys;
 
 namespace Larva.House.UI.Controller
@@ -25,12 +25,12 @@ namespace Larva.House.UI.Controller
         }
         private void GotToMainHall()
         {
-            _houseManager.HouseState.Value = HouseState.MainHall;
+            _houseManager.RoomState.Value = RoomState.MainHall;
             _audioManager.State.Value = AudioStates.Button;
         }
         private void GoToChildrenRoom()
         {
-            _houseManager.HouseState.Value = HouseState.ChildrenRoom;
+            _houseManager.RoomState.Value = RoomState.ChildrenRoom;
             _audioManager.State.Value = AudioStates.Button;
         }
     }

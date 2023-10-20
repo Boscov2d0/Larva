@@ -13,13 +13,15 @@ namespace Larva.Menu.UI.Controller
         private readonly UIManager _uiManager;
         private readonly AudioManager _audioManager;
         private readonly VideoManager _videoManager;
+        private readonly House.Data.HouseManager _houseManager;
 
         private MenuUIController _mainMenuUIController;
         private SettingsUIController _settingsUIController;
 
         public OutSideUIController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager,
                              GameManager gameManager, UIManager uiManager,
-                             AudioManager audioManager, VideoManager videoManager) 
+                             AudioManager audioManager, VideoManager videoManager,
+                             House.Data.HouseManager houseManager) 
         {
             _localizationManager = localizationManager;
             _saveLoadManager = saveLoadManager;
@@ -27,6 +29,7 @@ namespace Larva.Menu.UI.Controller
             _uiManager = uiManager;
             _audioManager = audioManager;
             _videoManager = videoManager;
+            _houseManager = houseManager;
 
             _gameManager.GameState.SubscribeOnChange(OnChangeState);
             _gameManager.GameState.Value = GameState.Menu;
@@ -50,11 +53,14 @@ namespace Larva.Menu.UI.Controller
                     break;
                 case GameState.Settings:
 #if UNITY_ANDROID || UNITY_WEBGL && !UNITY_EDITOR
-                    _settingsUIController = new PhoneSettingsUIController(_localizationManager, _saveLoadManager, _gameManager, _uiManager, _audioManager);
+                    _settingsUIController = new PhoneSettingsUIController(_localizationManager, _saveLoadManager, 
+                                                                          _gameManager, _uiManager,
+                                                                          _audioManager, _houseManager);
 #else
                     _settingsUIController = new PCSettingsUIController(_localizationManager, _saveLoadManager,
                                                                        _gameManager, _uiManager,
-                                                                       _audioManager, _videoManager);
+                                                                       _audioManager, _videoManager,
+                                                                       _houseManager);
 #endif
                     AddController(_settingsUIController);
                     break;

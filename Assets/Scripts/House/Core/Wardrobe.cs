@@ -1,6 +1,7 @@
 using Larva.House.Data;
-using Larva.House.Tools;
 using UnityEngine;
+
+using static Larva.House.Tools.HouseState;
 
 namespace Larva.House.Core
 {
@@ -19,18 +20,18 @@ namespace Larva.House.Core
 
         private void Start()
         {
-            _houseManager.HouseState.SubscribeOnChange(OnStateChange);
+            _houseManager.ActionState.SubscribeOnChange(OnStateChange);
         }
         private void OnDestroy()
         {
-            _houseManager.HouseState.UnSubscribeOnChange(OnStateChange);
+            _houseManager.ActionState.UnSubscribeOnChange(OnStateChange);
         }
         private void Update()
         {
-            if (!_houseManager.Bedroom.IsActive)
+            if (!_houseManager.Bedroom.IsActive || _houseManager.ActionState.Value == ActionState.OpenWardrobe)
                 return;
 
-            if (_houseManager.HouseState.Value == HouseState.Bedroom)
+            if (_houseManager.RoomState.Value == RoomState.Bedroom)
             {
                 raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(raycast, out raycastHit))
@@ -39,7 +40,7 @@ namespace Larva.House.Core
                     {
                         if (raycastHit.collider.TryGetComponent(out Wardrobe wardrobe))
                         {
-                            _houseManager.HouseState.Value = HouseState.Wardrobe;
+                            _houseManager.ActionState.Value = ActionState.OpenWardrobe;
                         }
                     }
                 }
@@ -52,13 +53,13 @@ namespace Larva.House.Core
         }
         private void OnStateChange()
         {
-            switch (_houseManager.HouseState.Value)
+            switch (_houseManager.ActionState.Value)
             {
-                case HouseState.Wardrobe:
+                case ActionState.OpenWardrobe:
                     _isOpen = false;
                     _openDoor = true;
                     break;
-                case HouseState.Bedroom:
+                case ActionState.CloseWardrobe:
                     _isOpen = true;
                     _openDoor = true;
                     break;

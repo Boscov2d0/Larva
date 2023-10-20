@@ -13,12 +13,14 @@ namespace Larva.Menu.UI.Controller
         private readonly UIManager _uiManager;
         private readonly AudioManager _audioManager;
         private readonly VideoManager _videoManager;
+        private readonly House.Data.HouseManager _houseManager;
 
         private OutSideUIController _outSideUIController;
 
         public HUDController(LocalizationManager localizationManager, SaveLoadManager saveLoadManager, 
                              GameManager gameManager, UIManager uiManager, 
-                             AudioManager audioManager, VideoManager videoManager)
+                             AudioManager audioManager, VideoManager videoManager,
+                             House.Data.HouseManager houseManager)
         {
             _localizationManager = localizationManager;
             _saveLoadManager = saveLoadManager;
@@ -26,6 +28,7 @@ namespace Larva.Menu.UI.Controller
             _uiManager = uiManager;
             _audioManager = audioManager;
             _videoManager = videoManager;
+            _houseManager = houseManager;
 
             _gameManager.GameState.SubscribeOnChange(OnChangeState);
             _gameManager.GameState.Value = GameState.OutSideMenu;
@@ -42,8 +45,9 @@ namespace Larva.Menu.UI.Controller
             {
                 case GameState.OutSideMenu:
                     _outSideUIController = new OutSideUIController(_localizationManager, _saveLoadManager,
-                                                                          _gameManager, _uiManager, 
-                                                                          _audioManager, _videoManager);
+                                                                   _gameManager, _uiManager, 
+                                                                   _audioManager, _videoManager,
+                                                                   _houseManager);
                     AddController(_outSideUIController);
                     break;
                 case GameState.LarvaHouse:

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Larva.House.Tools;
 using Larva.Data;
+using static Larva.Tools.Keys;
 
 namespace Larva.House.Core
 {
@@ -87,7 +88,7 @@ namespace Larva.House.Core
                 }
             }
 
-            Saver.SaveHouseData(_saveLoadManager, _houseManager);
+            _houseManager.SaveLoadState.Value = SaveState.SaveHouseData;
         }
         private void CreatePlaces(List<Transform> placesList)
         {

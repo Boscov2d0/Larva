@@ -55,6 +55,10 @@ MonoBehaviour:
     m_Key: HavetBedroom
     m_Metadata:
       m_Items: []
+  - m_Id: 785444066586624
+    m_Key: HavetKitchen
+    m_Metadata:
+      m_Items: []
   - m_Id: 420146234814464
     m_Key: Head
     m_Metadata:
@@ -69,6 +73,34 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 420187397713920
     m_Key: Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785607925460992
+    m_Key: Partner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785626229403648
+    m_Key: Child
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785644810170368
+    m_Key: Add
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785661235064832
+    m_Key: For
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785677014036480
+    m_Key: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785692532961280
+    m_Key: HavetPartner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 787616724447232
+    m_Key: FamilyEat
     m_Metadata:
       m_Items: []
   m_Metadata:

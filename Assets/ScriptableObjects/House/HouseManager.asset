@@ -12,16 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7888020d89f7e14a962ab3bcdb176b8, type: 3}
   m_Name: HouseManager
   m_EditorClassIdentifier: 
-  Discription1: 
+  Discription1: Objects pathes
   <PathForObjects>k__BackingField: House/
   <PotPath>k__BackingField: FoodPot
   <StoragePath>k__BackingField: Storage
-  Discription2: 
-  AllBuilded: 0
-  <Bedroom>k__BackingField: {fileID: 11400000, guid: 6e2d2a36f4932e748ac98bbc1dc38648, type: 2}
-  <ChildrenRoom>k__BackingField: {fileID: 11400000, guid: 5b6e7cc0bd2a3af4f8ec2214e64aab55, type: 2}
-  <Kitchen>k__BackingField: {fileID: 11400000, guid: d2d32a5704230fb4ea7a9110ee7d3d00, type: 2}
-  Discription3: 
+  <PartnerPath>k__BackingField: LarvaPartner
+  <ChildrensPath>k__BackingField: LarvaChild
+  Discription2: Food storage settings
   <PotManagers>k__BackingField:
   - {fileID: 11400000, guid: 0dc941753dfe05d4391556f88225e478, type: 2}
   - {fileID: 11400000, guid: 5f0069fbf75627a459006f704c26d3fc, type: 2}
@@ -63,9 +60,59 @@ MonoBehaviour:
   <PotCapacity>k__BackingField: 50
   <StorageCapacity>k__BackingField: 16
   <CountOfStorage>k__BackingField: 2
+  Discription3: Rooms managers
+  AllBuilded: 0
+  <Bedroom>k__BackingField: {fileID: 11400000, guid: 6e2d2a36f4932e748ac98bbc1dc38648, type: 2}
+  <ChildrenRoom>k__BackingField: {fileID: 11400000, guid: 5b6e7cc0bd2a3af4f8ec2214e64aab55, type: 2}
+  <Kitchen>k__BackingField: {fileID: 11400000, guid: d2d32a5704230fb4ea7a9110ee7d3d00, type: 2}
+  Discription4: Camera move settings
   <OutSideCameraPosition>k__BackingField: {x: 0, y: 1.5, z: 0}
   <MainHallCameraPosition>k__BackingField: {x: 0, y: -3, z: 0}
   <BedroomCameraPosition>k__BackingField: {x: 8.5, y: -3, z: 0}
   <ChildrenRoomCameraPosition>k__BackingField: {x: 17, y: -3, z: 0}
   <KitchenCameraPosition>k__BackingField: {x: -8.5, y: -3, z: 0}
   <CameraMoveSpeed>k__BackingField: 7
+  Discription5: Family settings
+  AddPartner: 0
+  AddChild: 0
+  HavePartner: 0
+  HaveChild: 0
+  CountOfChildren: 0
+  ChildrenID: 2
+  ConsumedFood: 4
+  PartnerPosition: {x: -6.5, y: -4.5, z: 5}
+  ChildrensPositions:
+  - {fileID: 11400000, guid: 0ecfda22bff6928478ba86d9b9af5259, type: 2}
+  - {fileID: 11400000, guid: 0107aceef0c2f0946a3682d516ea749f, type: 2}
+  - {fileID: 11400000, guid: cc851388abe39d8439da163d3c728f5f, type: 2}
+  <PartnerProfile>k__BackingField: {fileID: 11400000, guid: a7c029b18bdea854fbebd550bf47d8a5, type: 2}
+  <PillowManagers>k__BackingField:
+  - {fileID: 11400000, guid: 1c43df5782ac96b49926e22ef3162aa5, type: 2}
+  - {fileID: 11400000, guid: e674f2de1ad6ef441aff599f4378e33f, type: 2}
+  - {fileID: 11400000, guid: 7ea28e88e5ac2c847b6164a4f0cf0113, type: 2}
+  - {fileID: 11400000, guid: 2f76e58d0f4c1da4aa9895685d991da1, type: 2}
+  <ChildrensProfile>k__BackingField:
+  - {fileID: 11400000, guid: edb57e296e6242f4d94acadaf74fb5b0, type: 2}
+  - {fileID: 11400000, guid: 81ef192c30efa0d4fa1cf149348d1db9, type: 2}
+  - {fileID: 11400000, guid: f4d22dd05eb3f9444a79da83c7673812, type: 2}
+  - {fileID: 11400000, guid: a48eec0e6697a9d44b7fb9c2d9b36b45, type: 2}
+  <HeadMaterial>k__BackingField:
+  - {fileID: 2100000, guid: 412e299c8834eb34090cd1596b0601b4, type: 2}
+  - {fileID: 2100000, guid: d78b7805ed14eff4db205cad69f8dfcd, type: 2}
+  - {fileID: 2100000, guid: 6f89e8440b0603744baf5ff6574b2831, type: 2}
+  - {fileID: 2100000, guid: 6dc8d5716d7cb6549b13af321ef65062, type: 2}
+  - {fileID: 2100000, guid: 149325b1e2ed9904eb45dba87fea8734, type: 2}
+  - {fileID: 2100000, guid: 409818cbe1fb022488380edfcb007fbc, type: 2}
+  - {fileID: 2100000, guid: b1edf215c4364104d8eeb6a3c2f6f91c, type: 2}
+  - {fileID: 2100000, guid: 69c6497400024854ca39043a50a10a1e, type: 2}
+  <BodyMaterial>k__BackingField:
+  - {fileID: 2100000, guid: 412e299c8834eb34090cd1596b0601b4, type: 2}
+  - {fileID: 2100000, guid: d78b7805ed14eff4db205cad69f8dfcd, type: 2}
+  - {fileID: 2100000, guid: 6f89e8440b0603744baf5ff6574b2831, type: 2}
+  - {fileID: 2100000, guid: 6dc8d5716d7cb6549b13af321ef65062, type: 2}
+  - {fileID: 2100000, guid: 149325b1e2ed9904eb45dba87fea8734, type: 2}
+  - {fileID: 2100000, guid: 409818cbe1fb022488380edfcb007fbc, type: 2}
+  - {fileID: 2100000, guid: b1edf215c4364104d8eeb6a3c2f6f91c, type: 2}
+  - {fileID: 2100000, guid: 69c6497400024854ca39043a50a10a1e, type: 2}
+  GameMode: 1
+  DayForGiveFood: 4

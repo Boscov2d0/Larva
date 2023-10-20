@@ -1,5 +1,4 @@
 using Larva.Core;
-using Larva.Data;
 using Larva.House.Core;
 using Larva.Menu.Data;
 using Larva.Menu.Tools;
@@ -13,19 +12,19 @@ namespace Larva.Menu.Core
     {
         private readonly GameManager _gameManager;
         private readonly VideoManager _videoManager;
-        private readonly LarvaProfile _larvaProfile;
 
         private HouseController _house;
 
-        public GameController(GameManager gameManager, VideoManager videoManager, LarvaProfile larvaProfile)
+        public GameController(GameManager gameManager, VideoManager videoManager)
         {
             _gameManager = gameManager;
             _videoManager = videoManager;
-            _larvaProfile = larvaProfile;
 
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.ScenePath);
 
-            CreateLarva();
+            _gameManager.MenuLarva = ResourcesLoader.InstantiateAndGetObject<LarvaView>(_gameManager.PathForObjects + _gameManager.MenuLarvaPath);
+            AddGameObject(_gameManager.MenuLarva.gameObject);
+
             ResourcesLoader.InstantiateObject<Camera>(_gameManager.PathForObjects + _gameManager.MenuCameraPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.AudioControllerPath);
             ResourcesLoader.InstantiateObject<GameObject>(_gameManager.PathForObjects + _gameManager.DirectionalLightPath);
@@ -40,17 +39,6 @@ namespace Larva.Menu.Core
         protected override void OnDispose()
         {
             _gameManager.GameState.UnSubscribeOnChange(OnChangeGameState);
-        }
-        private void CreateLarva()
-        {
-            _gameManager.MenuLarva = ResourcesLoader.InstantiateAndGetObject<LarvaView>(_gameManager.PathForObjects + _gameManager.MenuLarvaPath);
-           
-            _gameManager.MenuLarva.Head.material = _larvaProfile.HeadSkin;
-            _gameManager.MenuLarva.Hand.material = _larvaProfile.BodySkin;
-            for (int i = 0; i < _gameManager.MenuLarva.Body.Count; i++) 
-            {
-                _gameManager.MenuLarva.Body[i].material = _larvaProfile.BodySkin;
-            }
         }
         private void SetVideoSettings()
         {

@@ -1,7 +1,8 @@
 using Larva.House.Data;
-using Larva.House.Tools;
 using Larva.Tools;
 using UnityEngine;
+
+using static Larva.House.Tools.HouseState;
 
 namespace Larva.House.Core
 {
@@ -20,7 +21,7 @@ namespace Larva.House.Core
 
             _camera = Camera.main;
 
-            _houseManager.HouseState.SubscribeOnChange(OnStateChange);
+            _houseManager.RoomState.SubscribeOnChange(OnStateChange);
 
             _houseManager.MenuLarva.transform.SetParent(_camera.transform);
 
@@ -28,7 +29,7 @@ namespace Larva.House.Core
         }
         protected override void OnDispose()
         {
-            _houseManager.HouseState.UnSubscribeOnChange(OnStateChange);
+            _houseManager.RoomState.UnSubscribeOnChange(OnStateChange);
 
             base.OnDispose();
         }
@@ -39,21 +40,21 @@ namespace Larva.House.Core
         }
         private void OnStateChange() 
         {
-            switch (_houseManager.HouseState.Value) 
+            switch (_houseManager.RoomState.Value) 
             {
-                case HouseState.OutSideMenu:
+                case RoomState.OutSideMenu:
                     SetCameraPositionsPoint(_houseManager.OutSideCameraPosition);
                     break;
-                case HouseState.MainHall:
+                case RoomState.MainHall:
                     SetCameraPositionsPoint(_houseManager.MainHallCameraPosition);
                     break;
-                case HouseState.Bedroom:
+                case RoomState.Bedroom:
                     SetCameraPositionsPoint(_houseManager.BedroomCameraPosition);
                     break;
-                case HouseState.ChildrenRoom:
+                case RoomState.ChildrenRoom:
                     SetCameraPositionsPoint(_houseManager.ChildrenRoomCameraPosition);
                     break;
-                case HouseState.Kitchen:
+                case RoomState.Kitchen:
                     SetCameraPositionsPoint(_houseManager.KitchenCameraPosition);
                     break;
             }

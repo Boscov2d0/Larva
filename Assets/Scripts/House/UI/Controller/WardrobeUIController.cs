@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using static Larva.Tools.AudioKeys;
+using static Larva.Tools.Keys;
 
 namespace Larva.House.UI.Controller
 {
@@ -57,12 +58,13 @@ namespace Larva.House.UI.Controller
             if (_houseManager.ChoosedBodySkin.Value)
                 _larvaProfile.BodySkin = _houseManager.ChoosedBodySkin.Value;
 
-            Saver.SaveLarvaData(_saveLoadManager, _larvaProfile);
+            _houseManager.SaveLoadState.Value = SaveState.SaveLarvaData;
         }
         private void BackToLarvaHouse()
         {
             ResetSkin();
-            _houseManager.HouseState.Value = HouseState.Bedroom;
+            _houseManager.ActionState.Value = HouseState.ActionState.CloseWardrobe;
+            _houseManager.RoomState.Value = HouseState.RoomState.Bedroom;
             _audioManager.State.Value = AudioStates.Button;
             Dispose();
         }

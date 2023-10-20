@@ -1,9 +1,9 @@
 ﻿using Larva.Data;
-using Larva.House.Tools;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+using static Larva.House.Tools.HouseState;
 using static Larva.Tools.LocalizationTextKeys.LocalizationHouseTextKeys;
 
 namespace Larva.House.UI.View
@@ -21,7 +21,7 @@ namespace Larva.House.UI.View
 
         private UnityAction _add;
 
-        public void Initialize(UnityAction add, int foodCost, HouseState room)
+        public void Initialize(UnityAction add, int foodCost, RoomState room)
         {
             _add = add;
 
@@ -35,19 +35,19 @@ namespace Larva.House.UI.View
         {
             _addButton.onClick.RemoveListener(_add);
         }
-        private void TranslateText(int foodCost, HouseState room) 
+        private void TranslateText(int foodCost, RoomState room) 
         {
             string roomName = null;
 
             switch (room)
             {
-                case HouseState.Kitchen:
+                case RoomState.Kitchen:
                     roomName = _localizationManager.HouseTable.Value.GetEntry(Kitchen.ToString())?.GetLocalizedString();
                     break;
-                case HouseState.Bedroom:
+                case RoomState.Bedroom:
                     roomName = _localizationManager.HouseTable.Value.GetEntry(Bedroom.ToString())?.GetLocalizedString();
                     break;
-                case HouseState.ChildrenRoom:
+                case RoomState.ChildrenRoom:
                     roomName = _localizationManager.HouseTable.Value.GetEntry(ChildrenRoom.ToString())?.GetLocalizedString();
                     break;
             }

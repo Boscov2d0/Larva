@@ -1,8 +1,9 @@
 using Larva.Data;
 using Larva.House.Data;
-using Larva.House.Tools;
 using Larva.House.UI.Controller;
 using Larva.Tools;
+
+using static Larva.House.Tools.HouseState;
 
 namespace Larva.House.Core
 {
@@ -26,11 +27,11 @@ namespace Larva.House.Core
             _uiManager = uiManager;
             _audioManager = audioManager;
 
-            _houseManager.HouseState.SubscribeOnChange(OnStateChange);
+            _houseManager.RoomState.SubscribeOnChange(OnStateChange);
         }
         protected override void OnDispose()
         {
-            _houseManager.HouseState.UnSubscribeOnChange(OnStateChange);
+            _houseManager.RoomState.UnSubscribeOnChange(OnStateChange);
 
             base.OnDispose();
         }
@@ -38,15 +39,15 @@ namespace Larva.House.Core
         {
             _addRoomUIController?.Dispose();
 
-            switch (_houseManager.HouseState.Value)
+            switch (_houseManager.RoomState.Value)
             {
-                case HouseState.Bedroom:
+                case RoomState.Bedroom:
                     GetUpgrate(_houseManager.Bedroom);
                     break;
-                case HouseState.ChildrenRoom:
+                case RoomState.ChildrenRoom:
                     GetUpgrate(_houseManager.ChildrenRoom);
                     break;
-                case HouseState.Kitchen:
+                case RoomState.Kitchen:
                     GetUpgrate(_houseManager.Kitchen);
                     break;
             }

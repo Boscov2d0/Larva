@@ -18,4 +18,5 @@ MonoBehaviour:
   <ChildrenRoomCanvasPath>k__BackingField: ChildrenRoomCanvas
   <KitchenCanvasPath>k__BackingField: KitchenCanvas
   <AddRoomCanvasPath>k__BackingField: AddRoomCanvas
+  <AddFamilyCanvasPath>k__BackingField: AddFamilyCanvas
   <WardrobeCanvasPath>k__BackingField: WardrobeCanvas

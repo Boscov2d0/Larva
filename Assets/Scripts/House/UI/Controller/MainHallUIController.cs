@@ -1,9 +1,9 @@
 using Larva.Data;
 using Larva.House.Data;
-using Larva.House.Tools;
 using Larva.House.UI.View;
 using Larva.Tools;
 
+using static Larva.House.Tools.HouseState;
 using static Larva.Tools.AudioKeys;
 
 namespace Larva.House.UI.Controller
@@ -24,17 +24,17 @@ namespace Larva.House.UI.Controller
         }
         private void GoOutSide()
         {
-            _houseManager.HouseState.Value = HouseState.OutSideMenu;
+            _houseManager.RoomState.Value = RoomState.OutSideMenu;
             _audioManager.State.Value = AudioStates.Button;
         }
         private void GoToBedroom()
         {
-            _houseManager.HouseState.Value = HouseState.Bedroom;
+            _houseManager.RoomState.Value = RoomState.Bedroom;
             _audioManager.State.Value = AudioStates.Button;
         }
         private void OpenKitchenPanel()
         {
-            _houseManager.HouseState.Value = HouseState.Kitchen;
+            _houseManager.RoomState.Value = RoomState.Kitchen;
             _audioManager.State.Value = AudioStates.Button;
         }
     }

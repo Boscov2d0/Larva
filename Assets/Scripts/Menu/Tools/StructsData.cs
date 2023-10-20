@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
+using static Larva.Tools.Keys;
 
 namespace Larva.Tools
 {
@@ -23,6 +24,14 @@ namespace Larva.Tools
             public bool BedroomIsActive;
             public bool ChildrenRoomIsActive;
             public bool KitcheIsActive;
+            public bool HavePartner;
+            public bool HaveChild;
+            public int CountOfChildren;
+            public GameMode GameMode;
+            public DayOfWeek DayForGiveFood;
+            public FamilyData Partner;
+            public List<bool> PillowsIsActive;
+            public List<FamilyData> Childrens;
         }
         [Serializable]
         public struct PotData
@@ -37,6 +46,13 @@ namespace Larva.Tools
         {
             public Material HeadSkin;
             public Material BodySkin;
+        }
+        [Serializable]
+        public struct FamilyData
+        {
+            public bool IsNew;
+            public int ID;
+            public bool IsHungry;
         }
     }
 }

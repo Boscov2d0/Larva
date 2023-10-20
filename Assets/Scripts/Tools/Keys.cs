@@ -14,5 +14,17 @@ namespace Larva.Tools
             Settings,
             Game
         }
+        public enum GameMode
+        {
+            Simple,
+            Real
+        }
+        public enum SaveState
+        {
+            Null,
+            SaveLarvaData,
+            SaveSettingsData,
+            SaveHouseData
+        }
     }
 }

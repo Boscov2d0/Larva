@@ -5,6 +5,7 @@ using Larva.House.UI.View;
 using Larva.Tools;
 
 using static Larva.Tools.AudioKeys;
+using static Larva.Tools.Keys;
 using static Larva.Tools.LocalizationTextKeys.LocalizationHouseTextKeys;
 
 namespace Larva.House.UI.Controller
@@ -32,7 +33,7 @@ namespace Larva.House.UI.Controller
         }
         private void AddRoom()
         {
-            if (_room.RoomName == HouseState.ChildrenRoom && !_houseManager.Bedroom.IsActive)
+            if (_room.RoomName == HouseState.RoomState.ChildrenRoom && !_houseManager.Bedroom.IsActive)
             {
                 _addRoomCanvasView.ErrorMessage(_localizationManager.HouseTable.Value.GetEntry(HavetBedroom.ToString())?.GetLocalizedString());
                 _audioManager.State.Value = AudioStates.ButtonCancel;
@@ -48,11 +49,11 @@ namespace Larva.House.UI.Controller
 
             _houseManager.CountOfFood.Value -= _room.Cost;
             _room.IsActive = true;
-            _houseManager.HouseState.Value = _room.RoomName;
+            _houseManager.RoomState.Value = _room.RoomName;
 
             _audioManager.State.Value = AudioStates.ButtonApply;
 
-            Saver.SaveHouseData(_saveLoadManager, _houseManager);
+            _houseManager.SaveLoadState.Value = SaveState.SaveHouseData;
         }
     }
 }

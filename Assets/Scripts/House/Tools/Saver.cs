@@ -1,6 +1,7 @@
 using Larva.Data;
 using Larva.House.Data;
 using Larva.Tools;
+using UnityEngine;
 
 namespace Larva.House.Tools
 {
@@ -28,6 +29,27 @@ namespace Larva.House.Tools
             saveLoadManager.HouseData.BedroomIsActive = houseManager.Bedroom.IsActive;
             saveLoadManager.HouseData.ChildrenRoomIsActive = houseManager.ChildrenRoom.IsActive;
             saveLoadManager.HouseData.KitcheIsActive = houseManager.Kitchen.IsActive;
+
+            saveLoadManager.HouseData.HavePartner = houseManager.HavePartner;
+            saveLoadManager.HouseData.HaveChild = houseManager.HaveChild;
+            saveLoadManager.HouseData.CountOfChildren = houseManager.CountOfChildren;
+            saveLoadManager.HouseData.GameMode = houseManager.GameMode;
+            saveLoadManager.HouseData.DayForGiveFood = houseManager.DayForGiveFood;
+            saveLoadManager.HouseData.Partner.IsNew = houseManager.PartnerProfile.IsNew;
+            saveLoadManager.HouseData.Partner.IsHungry = houseManager.PartnerProfile.IsHungry;
+
+            for (int i = 0; i < saveLoadManager.HouseData.PillowsIsActive.Count; i++)
+            {
+                saveLoadManager.HouseData.PillowsIsActive[i] = houseManager.PillowManagers[i].IsActive;
+            }
+            for (int i = 0; i < saveLoadManager.HouseData.Childrens.Count; i++)
+            {
+                StructsData.FamilyData children = new StructsData.FamilyData();
+                children.IsNew = houseManager.ChildrensProfile[i].IsNew;
+                children.ID = houseManager.ChildrensProfile[i].ID;
+                children.IsHungry = houseManager.ChildrensProfile[i].IsHungry;
+                saveLoadManager.HouseData.Childrens[i] = children;
+            }
 
             JSONDataLoadSaver<StructsData.HouseData>.SaveData(saveLoadManager.HouseData, saveLoadManager.HouseDataPath);
         }

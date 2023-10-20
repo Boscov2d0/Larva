@@ -42,6 +42,70 @@ MonoBehaviour:
     m_Localized: Back
     m_Metadata:
       m_Items: []
+  - m_Id: 4755175568076800
+    m_Localized: Simple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755233348808704
+    m_Localized: Real
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755154202292224
+    m_Localized: Video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755130131181568
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755105120546816
+    m_Localized: Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755374663299072
+    m_Localized: Monday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755384243089408
+    m_Localized: Tuesday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755401485873152
+    m_Localized: Wednesday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755418317615104
+    m_Localized: Thursday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755441596002304
+    m_Localized: Friday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755456779382784
+    m_Localized: Saturday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755471660773376
+    m_Localized: Sunday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4756197057261568
+    m_Localized: Game mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755348524396544
+    m_Localized: Every week of a certain day, food for the family will be deducted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4757240314884096
+    m_Localized: Choose a family feeding day
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4755317159391232
+    m_Localized: You don't have to worry about feeding your family
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

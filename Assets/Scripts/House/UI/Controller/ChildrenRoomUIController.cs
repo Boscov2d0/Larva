@@ -25,7 +25,7 @@ namespace Larva.House.UI.Controller
         }
         private void GoToBedroon() 
         {
-            _houseManager.HouseState.Value = HouseState.Bedroom;
+            _houseManager.RoomState.Value = HouseState.RoomState.Bedroom;
             _audioManager.State.Value = AudioStates.Button;
         }
     }

@@ -24,7 +24,7 @@ namespace Larva.House.UI.Controller
         }
         private void GoToMainHall()
         {
-            _houseManager.HouseState.Value = HouseState.MainHall;
+            _houseManager.RoomState.Value = HouseState.RoomState.MainHall;
             _audioManager.State.Value = AudioStates.Button;
         }
     }
